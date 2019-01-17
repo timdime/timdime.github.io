@@ -49,8 +49,6 @@ career-profile:
     summary: |
       Listens to people and interprets data to solve complicated problems and deliver results leveraging the appropriate tools and resources. A servant leader with 12+ years of analyzing, architecting, developing, managing and implementing process, software and infrastructure solutions in a low-latency, cross-platform, global infrastructure hosting proprietary trading software to produce stable, scalable and performant results. Consulted with regarding technical considerations around major business initiatives. Has gained expertise in many areas of IT and the operations around Trading because of the passion in doing things the right way, which often required learning a new tool or skill after completing ample research. Strives to understand the full scope of the issue before a solution is proposed and implemented.
 
-      Please view the Accomplishments section in LinkedIn for a sample of the types of work achieved in addition to what you would assume an IT Manager across Systems/Networking/DataCenters would handle regarding OS, Hardware and Systems Maintenance and Performance Monitoring. Many specifics have been left out to respect the privacy of Belvedere Trading.
-
 education:
 
     - degree: Bachelor, Information Management
@@ -66,60 +64,42 @@ education:
         Activities and Societies: Beta Alpha Psi (Professional Business Fraternity - 1.5 years) Sigma Iota Epsilon (Professional Honorary Fraternity - 1.5 years) Resident Assistant (2 years) Men's Club Soccer (2 years)
 
 experiences:
-    - role: Lead Developer
-      time: 2015 - Present
-      company: Startup Hubs, San Francisco
+    - role: Director of IT Operations and Infrastructure
+      time: 2017 - Present
+      company: Belvedere Trading, Chicago
       details: |
-        Describe your role here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-        Cum sociis natoque penatibus et magnis dis parturient montes,
-        nascetur ridiculus mus. Donec quam felis, ultricies nec,
-        pellentesque eu, pretium quis, sem. Nulla consequat massa quis
-        enim. Donec pede justo. Sed ut perspiciatis unde omnis iste natus
-        error sit voluptatem accusantium doloremque laudantium, totam rem
-        aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-        architecto beatae vitae dicta sunt explicabo.
+        Oversee the Infrastructure, Release, Support and Trading Desk Expansion & Maintenance Teams. Manage firm-wide projects overlapping this division. Own the Production Environment. Plan and align the team with the roadmap. Produce annual budget forecasts for approval and meet budgeting goals. Authorize expenditures. Negotiate annual and multi-year service contracts. Provide architectural guidance to development team regarding infrastructural impacts of software behavior. Advocate on behalf of the group to cross-department managers to seek buy-in and support regarding process changes or bug/feature prioritization. Provide performance insight of proprietary systems via various monitoring tools to load balance environment and to enable development team to further diagnose and optimize Belvedere's trading applications and services. Implement various out-of-band projects that need immediate attention by working directly with Stakeholders. Continually evolve process and automation for optimal efficiency. Be a resource. Automate process.
 
-          - Bullet point
-          - Bullet point
-
-    - role: Senior Software Engineer
-      time: 2014 - 2015
-      company: Google, London
+    - role: Sr. IT Operations Analyst
+      time: 2013 - 2017
+      company: Belvedere Trading, Chicago
       details: |
-        Describe your role here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-        Cum sociis natoque penatibus et magnis dis parturient montes,
-        nascetur ridiculus mus. Donec quam felis, ultricies nec,
-        pellentesque eu, pretium quis, sem.
+        Launched the Business Intelligence Team. Worked to normalize data across Belvedere's proprietary software systems to summarize data sets to deliver reporting metrics and dashboards for both trading desk and trader evaluations. Other various data requests were prioritized and delivered ranging from tick-to-trade times, to reviewing Clearing/Exchange data and fees, to Department Initiative efficiencies and burn-down charts. Leveraged a range of skillsets to consolidate disparate data sets into meaningful information in a single report/view. A scorecard framework was developed to be leveraged firm-wide by all groups in weekly meetings. Oversight regarding Infrastructure administrative and implementation needs were still continuing to be managed at this time. Solely developed a complete employee review platform (forms, notifications, reports) in 3 months to fulfill the vision of “balls and buckets” rankings, which was used quarterly over 3 years by 175 employees.
 
-          - Bullet point
-          - Bullet point
-
-    - role: UI Developer
-      time: 2012 - 2014
-      company: Amazon, London
+    - role: Infrastructure/Support Lead
+      time: 2007 - 2013
+      company: Belvedere Trading, Chicago
       details: |
-        Describe your role here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-        Cum sociis natoque penatibus et magnis dis parturient montes,
-        nascetur ridiculus mus. Donec quam felis, ultricies nec,
-        pellentesque eu, pretium quis, sem.
+        Systems/Network Administrator managing a complex environment of over 400 endpoints across 6 sites. The environment was a mix of linux and windows hosts running primarily on HP servers/workstations and force10 (Dell) and Arista switches. Managed via various tools (nagios, hp sim, corvil, citrix, vmware, splunk, smokeping, foreman, puppet, active directory, system center, etc) to ensure low latency and be proactive to any changes in service levels. Also, managed the implementations of third party trading systems like OptionsCity, ProOpticus, Orc, Trading Technologies, Actant, etc.) in addition to managing Belvedere's proprietary software rollouts.
 
-          - Bullet point
-          - Bullet point
+    - role: IT Specialist
+      time: 2006 - 2007
+      company: Belvedere Trading, Chicago
+      details: |
+        Performed all IT functions to support the business as the sole IT resource. Including, but not limited to: 
+        Application Support, Systems Administration, Network Administration, Telecom, etc.
 
 projects:
     title: Projects
     intro: >
-      You can list your side projects or open source libraries in this
-      section. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Vestibulum et ligula in nunc bibendum fringilla a eu lectus.
+      Below are a sample of the types of work achieved in addition to what you would assume an IT Manager across Systems/Networking/DataCenters would handle regarding OS, Hardware and Systems Maintenance and Performance Monitoring. Many specifics have been left out to respect the privacy of Belvedere Trading.
 
     assignments:
-      - title: Velocity
-        link: "#hook"
-        tagline: "A responsive website template designed to help startups promote, market and sell their products."
+      - title: Automation of Workflows
+        link: 
+        tagline: "Belvedere Software Authorization System (11/2018)
+        Employee Management System (2/2018)
+        Employee Change Notification System (2013)"
 
       - title: DevStudio
         link: "#"
