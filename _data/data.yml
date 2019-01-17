@@ -4,7 +4,7 @@
 
 sidebar:
     about: False # set to False or comment line if you want to remove the "how to use?" in the sidebar
-    education: True # set to False if you want education in main section instead of in sidebar
+    education: False # set to False if you want education in main section instead of in sidebar
 
     # Profile information
     name: Timothy Dime
@@ -47,28 +47,23 @@ sidebar:
 career-profile:
     title: Career Profile
     summary: |
-      Summarise your career here lorem ipsum dolor sit amet, consectetuer
-      adipiscing elit. You can [download this free resume/CV template here]().
-      Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque
-      penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-      Donec quam felis, ultricies nec, pellentesque eu.
+      Listens to people and interprets data to solve complicated problems and deliver results leveraging the appropriate tools and resources. A servant leader with 12+ years of analyzing, architecting, developing, managing and implementing process, software and infrastructure solutions in a low-latency, cross-platform, global infrastructure hosting proprietary trading software to produce stable, scalable and performant results. Consulted with regarding technical considerations around major business initiatives. Has gained expertise in many areas of IT and the operations around Trading because of the passion in doing things the right way, which often required learning a new tool or skill after completing ample research. Strives to understand the full scope of the issue before a solution is proposed and implemented.
 
-      Second paragraph if required.
+      Please view the Accomplishments section in LinkedIn for a sample of the types of work achieved in addition to what you would assume an IT Manager across Systems/Networking/DataCenters would handle regarding OS, Hardware and Systems Maintenance and Performance Monitoring. Many specifics have been left out to respect the privacy of Belvedere Trading.
 
 education:
 
-    - degree: BSc in Applied Mathematics
-      university: Bristol University
-      time: 2007 - 2011
+    - degree: Bachelor, Information Management
+      university: Western Illinois University
+      time: 2000 - 2004
       details: |
-        Describe your study here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-        sociis natoque penatibus et magnis dis parturient montes, nascetur
-        ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-        pretium quis, sem.
+        Minored in Computer Science
+        Graduated as Departmental Senior
+        Employed on-campus part-time throughout entire college career
+        Attended numerous volunteer activities
+        Attended many professional presentations
 
-          - Bullet point
-          - Bullet point
+        Activities and Societies: Beta Alpha Psi (Professional Business Fraternity - 1.5 years) Sigma Iota Epsilon (Professional Honorary Fraternity - 1.5 years) Resident Assistant (2 years) Men's Club Soccer (2 years)
 
 experiences:
     - role: Lead Developer
@@ -184,5 +179,3 @@ skills:
       - name: Sketch & Photoshop
         level: 60%
 
-#footer: >
-#  Designed with <i class="fas fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank" rel="nofollow">Xiaoying Riley</a>
