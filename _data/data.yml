@@ -24,9 +24,9 @@ sidebar:
     codewars:
     goodreads: # Number-Username, e.g. 123456-alandoe
 
-    languages:
-      - idiom: English
-        level: Native
+    #languages:
+    #  - idiom: English
+    #    level: Native
 
 career-profile:
     title: Career Profile
@@ -101,7 +101,7 @@ projects:
 
       - title: Various Datacenter & Office Opens/Migrations/Closes (10+)
         link: "#"
-        tagline: "I have lead and participated in several Office and DataCenter moves over the years and handling logistics, hardware/network provisioning, and server/hardware moves."
+        tagline: "I have led and participated in several Office and DataCenter moves over the years and handled logistics, hardware/network provisioning, and server/hardware moves."
 
       - title: Development/Production Environment Segmentation
         link: "#"
