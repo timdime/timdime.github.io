@@ -105,7 +105,7 @@ projects:
 
       - title: Development/Production Environment Segmentation
         link: "#"
-        tagline: "Ensure that Developers can't access the production environment to either intentionally or unintentionally make a trade, or interfere in any way with the environment without IT Operations authorization."
+        tagline: "Ensure that Developers can't access the production environment either intentionally or unintentionally to make a trade, or interfere in any way with the environment without IT Operations authorization."
 
 
 publications:
