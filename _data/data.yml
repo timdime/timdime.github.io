@@ -111,7 +111,7 @@ projects:
 publications:
     title: Recommendations
     intro: |
-      Below are a sample of Recommendations.  Please view my [LinkedIn profile](https://www.linkedin.com/in/tim10/) for an up-to-date list.
+      Below are 3 recent recommendations.  Please view my [LinkedIn profile](https://www.linkedin.com/in/tim10/) for a complete list.
 
     papers:
       - title: "I've been working for Belvedere Trading for over 12 years. Tim is one of the best among all people I've ever worked with. He is dedicated, self-motivated, methodical, and very capable. He is not only a reliable and forward-thinking leader but also an inspiring team player. Whenever I had a problem, there has never been a time he has left me without a solution. He has strong analytical skills. No matter how complex the problem is, he will always come up with a brilliant, elegant, and cost-effective solution. When comes to hands-on tasks, Tim possesses a winning combination of extensive infrastructure knowledge and solid programming skills. Tim is a credible individual and I will always hold him in the highest esteem."
@@ -131,7 +131,7 @@ skills:
 
     toolset:
       - name: Python
-        level: 80%
+        level: 85%
 
       - name: Powershell
         level: 80%
@@ -140,7 +140,7 @@ skills:
         level: 95%
 
       - name: Network Administrator
-        level: 70%
+        level: 78%
 
       - name: IT Operations
         level: 95%
