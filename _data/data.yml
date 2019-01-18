@@ -82,6 +82,12 @@ experiences:
         Performed all IT functions to support the business as the sole IT resource. Including, but not limited to: 
         Application Support, Systems Administration, Network Administration, Telecom, etc.
 
+    - role: Level II Desktop Support/Special Projects
+      time: 2005 - 2006
+      company: Peoples Gas, Chicago
+      details: |
+        Quickly promoted to work in the Special Projects group after 6 months. Special Projects consisted of: setting up all client hardware for a mobile command center, upgrading laptops/equipment in all field vehicles to complete a CDPD to CDMA modem/protocol upgrade and having all field vehicles registered in GIS for supervisor tracking and training users and supervisors throughout the rollout. Another notable accomplishment was coding a vbs/batch script for the support desk to use on demand to deploy software to call center machines that missed an SMS deploy.
+
 projects:
     title: Contributions
     intro: >
