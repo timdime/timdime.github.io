@@ -84,10 +84,10 @@ projects:
     assignments:
       - title: Automation of Workflows
         link: "#"
-        tagline: 
-        ..* Belvedere Software Authorization System (11/2018)
-        ..* Employee Management System (2/2018)
-        ..* Employee Change Notification System (2013)
+        tagline:
+        * Belvedere Software Authorization System (11/2018)
+        * Employee Management System (2/2018)
+        * Employee Change Notification System (2013)
 
       - title: Embed External Trading Groups
         link: "#"
