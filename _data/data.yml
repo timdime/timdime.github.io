@@ -131,21 +131,23 @@ skills:
     title: Skills &amp; Proficiency
 
     toolset:
+      - name: IT Operations
+        level: 95%
+        
+       - name: Trading Systems
+        level: 95%
+        
+       - name: Systems Engineer
+        level: 95%
+        
+      - name: Network Administrator
+        level: 78%
+        
       - name: Python
         level: 85%
 
       - name: Powershell
         level: 80%
 
-      - name: Systems Engineer
-        level: 95%
 
-      - name: Network Administrator
-        level: 78%
-
-      - name: IT Operations
-        level: 95%
-
-      - name: Trading Systems
-        level: 95%
 
