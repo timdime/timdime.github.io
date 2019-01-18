@@ -57,6 +57,8 @@ education:
         Activities and Societies: Beta Alpha Psi (Professional Business Fraternity - 1.5 years) Sigma Iota Epsilon (Professional Honorary Fraternity - 1.5 years) Resident Assistant (2 years) Men's Club Soccer (2 years)
 
 experiences:
+    -title: Professional Experience
+
     - role: Director of IT Operations and Infrastructure
       time: 2017 - Present
       company: Belvedere Trading, Chicago
