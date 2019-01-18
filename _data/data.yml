@@ -110,7 +110,7 @@ projects:
 
       - title: Embed External Trading Groups
         link: "#"
-        tagline: "Work with established traders and/or groups to understand their IT so they can successfully be embedded into Belvedere's environment and trade day 1. Every trader or group had different requirements. Most used 3rd party trading software where I needed to coordinate setup with ProOpticus, Aciv, TT, SpiderRock, OptionsCity, etc. and confirm access to different exchanges or execution venues, as well as access to market data, without compromising Belvedere's network. Some groups even had their own software and hardware, which was more challenging and even required some ETL of files dropped by Clearing to only provide them filtered data if the Clearing firm couldn't drop files only for their accounts."
+        tagline: "Work with established traders and/or groups to understand their IT so they can successfully be embedded into Belvedere's environment and trade day 1. Every trader or group had different requirements. Most used 3rd party trading software where I needed to coordinate setup with ProOpticus, Activ, TT, SpiderRock, OptionsCity, etc. and confirm access to different exchanges or execution venues, as well as access to market data, without compromising Belvedere's network. Some groups even had their own software and hardware, which was more challenging and even required some ETL of files dropped by Clearing to only provide them filtered data if the Clearing firm couldn't drop files only for their accounts."
 
       - title: Performance Monitoring
         link: "#"
