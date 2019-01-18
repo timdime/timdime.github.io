@@ -134,10 +134,10 @@ skills:
       - name: IT Operations
         level: 95%
         
-       - name: Trading Systems
+      - name: Trading Systems
         level: 95%
         
-       - name: Systems Engineer
+      - name: Systems Engineer
         level: 95%
         
       - name: Network Administrator
@@ -145,7 +145,7 @@ skills:
         
       - name: Python
         level: 85%
-
+        
       - name: Powershell
         level: 80%
 
