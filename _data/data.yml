@@ -30,11 +30,11 @@ sidebar:
 
 
 career-profile:
-    title: Career Profile
+    title: Objective
     summary: |
-      Listens to people and interprets data to solve complicated problems and deliver results leveraging the appropriate tools and resources. A servant leader with 12+ years of analyzing, architecting, developing, managing and implementing process, software and infrastructure solutions in a low-latency, cross-platform, global infrastructure hosting proprietary trading software to produce stable, scalable and performant results. Consulted with regarding technical considerations around major business initiatives. Has gained expertise in many areas of IT and the operations around Trading because of the passion in doing things the right way, which often required learning a new tool or skill after completing ample research. Strives to understand the full scope of the issue before a solution is proposed and implemented.
+      IT Professional in the Trading Industry looking for a technical leadership position, where I can apply my 12+ years of IT, industry and management experience to support a firm's growth and success.  
       
-      Please view my [LinkedIn profile](https://www.linkedin.com/in/tim10/) for more information.
+      Please view my [LinkedIn profile](https://www.linkedin.com/in/tim10/) for detailed information.
 
 education:
 
@@ -42,8 +42,8 @@ education:
       university: Western Illinois University
       time: 2000 - 2004
       details: |
-        Minored in Computer Science
         Graduated as Departmental Senior
+        Minored in Computer Science
         Employed on-campus part-time throughout entire college career
         Attended numerous volunteer activities
         Attended many professional presentations
@@ -84,9 +84,10 @@ projects:
     assignments:
       - title: Automation of Workflows
         link: "#"
-        tagline: "Belvedere Software Authorization System (11/2018) |
-        Employee Management System (2/2018) |
-        Employee Change Notification System (2013)"
+        tagline: 
+        ..* Belvedere Software Authorization System (11/2018)
+        ..* Employee Management System (2/2018)
+        ..* Employee Change Notification System (2013)
 
       - title: Embed External Trading Groups
         link: "#"
