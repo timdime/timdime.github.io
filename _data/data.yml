@@ -83,7 +83,7 @@ experiences:
       time: 2007 - 2013
       company: Belvedere Trading, Chicago
       details: |
-        Systems/Network Administrator managing a complex environment of over 400 endpoints across 6 sites. The environment was a mix of linux and windows hosts running primarily on HP servers/workstations and force10 (Dell) and Arista switches. Managed via various tools (nagios, hp sim, corvil, citrix, vmware, splunk, smokeping, foreman, puppet, active directory, system center, etc) to ensure low latency and be proactive to any changes in service levels. Also, managed the implementations of third party trading systems like OptionsCity, ProOpticus, Orc, Trading Technologies, Actant, etc.) in addition to managing Belvedere's proprietary software rollouts.
+        Systems/Network Administrator managing a complex environment of over 400 endpoints across 6 sites. The environment was a mix of linux and windows hosts running primarily on HP servers/workstations and force10 (Dell) and Arista switches. Managed via various tools (nagios, hp sim, corvil, citrix, vmware, splunk, smokeping, foreman, puppet, active directory, system center, etc) to ensure low latency and be proactive to any changes in service levels. Also, managed the implementations of third party trading systems like OptionsCity, ProOpticus, Orc, Trading Technologies, Actant, etc. in addition to managing Belvedere's proprietary software rollouts.
 
     - role: IT Specialist
       time: 2006 - 2007
