@@ -6,7 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 * {box-sizing: border-box;}
-
+ .center {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   width: 50%;
+ }
+  
 .img-magnifier-container {
   position:relative;
 }
@@ -84,7 +90,7 @@ function magnify(imgID, zoom) {
   <p style="text-align:center;">Hover the mosaic of Bob to see his photographs.</p>
 
 <div class="img-magnifier-container">
-  <img id="myimage" src="https://timdime.com/assets/bobhorsch-remembered.jpg" width="700" height="800">
+  <img class="center" id="myimage" src="https://timdime.com/assets/bobhorsch-remembered.jpg" width="700" height="800">
 </div>
 
 
