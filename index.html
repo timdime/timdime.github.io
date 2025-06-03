@@ -1,18 +1,980 @@
----
-layout: default
----
+        // Initialize floating elements
+        createFloatingElements();
 
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
 
-{% include career-profile.html %}
+        // PDF Resume Generation and Download
+        function generatePDFResume() {
+            const resumeHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Dime - Resume</title>
+    <style>
+        @page { size: A4; margin: 0.5in; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; font-size: 11px; line-height: 1.4; color: #333; background: white; }
+        .resume-container { max-width: 8.5in; margin: 0 auto; background: white; padding: 0; }
+        .header { background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); color: white; padding: 20px; text-align: center; margin-bottom: 20px; }
+        .header h1 { font-size: 28px; font-weight: bold; margin-bottom: 5px; }
+        .header .title { font-size: 16px; margin-bottom: 10px; opacity: 0.9; }
+        .header .contact { font-size: 12px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .contact-item { display: flex; align-items: center; gap: 5px; }
+        .section { margin-bottom: 20px; page-break-inside: avoid; }
+        .section-title { font-size: 16px; font-weight: bold; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 3px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .summary { background: #f8f9fa; padding: 15px; border-left: 4px solid #3498db; margin-bottom: 20px; }
+        .summary p { line-height: 1.5; text-align: justify; }
+        .experience-item { margin-bottom: 15px; page-break-inside: avoid; }
+        .experience-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; flex-wrap: wrap; }
+        .experience-title { font-weight: bold; font-size: 13px; color: #2c3e50; }
+        .experience-company { font-weight: bold; color: #3498db; font-size: 12px; }
+        .experience-period { font-style: italic; color: #666; font-size: 11px; }
+        .experience-description { margin-top: 5px; line-height: 1.4; }
+        .experience-description ul { margin-left: 15px; margin-top: 5px; }
+        .experience-description li { margin-bottom: 3px; }
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
+        .skill-category { background: #f8f9fa; padding: 12px; border-radius: 5px; border-left: 3px solid #3498db; }
+        .skill-category h4 { font-size: 12px; font-weight: bold; color: #2c3e50; margin-bottom: 8px; }
+        .skill-list { font-size: 10px; line-height: 1.3; color: #555; }
+        .contributions-list { list-style: none; padding: 0; }
+        .contributions-list li { margin-bottom: 8px; padding-left: 15px; position: relative; }
+        .contributions-list li:before { content: "▶"; color: #3498db; position: absolute; left: 0; top: 0; }
+        .contribution-title { font-weight: bold; color: #2c3e50; }
+        .contribution-desc { font-size: 10px; color: #666; margin-top: 2px; }
+        @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .header { background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%) !important; color: white !important; } .section { page-break-inside: avoid; } .experience-item { page-break-inside: avoid; } }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="header">
+            <h1>Tim Dime</h1>
+            <div class="title">IT Professional & Trading Industry Expert</div>
+            <div class="contact">
+                <div class="contact-item"><span>📧</span><span>contact@timdime.com</span></div>
+                <div class="contact-item"><span>🔗</span><span>linkedin.com/in/tim10</span></div>
+                <div class="contact-item"><span>🌐</span><span>timdime.com</span></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Professional Summary</div>
+            <div class="summary">
+                <p>IT Professional in the Trading Industry with 15+ years of IT, industry and management experience. Excellent command of technologies, analysis, and best practices. Collaborate cross-functionally across organizational levels to analyze system behavior, troubleshoot emerging issues, and develop solutions. Capital Partner of Belvedere Trading with proven track record in infrastructure management, automation, and business intelligence.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Professional Experience</div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Capital Partner & IT Director</div>
+                        <div class="experience-company">Belvedere Trading</div>
+                    </div>
+                    <div class="experience-period">January 2011 - Present</div>
+                </div>
+                <div class="experience-description">
+                    <ul>
+                        <li>Oversee Infrastructure, Release, Support and Trading Desk Expansion & Maintenance Teams</li>
+                        <li>Manage firm-wide projects and own the Production Environment with 400+ endpoints across 6 sites</li>
+                        <li>Produce annual budget forecasts, authorize expenditures, and negotiate multi-year service contracts</li>
+                        <li>Provide architectural guidance to development teams regarding infrastructural impacts</li>
+                        <li>Implement performance monitoring tools to optimize trading applications and services</li>
+                        <li>Automate workflows and processes for optimal efficiency across the organization</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Business Intelligence Team Lead</div>
+                        <div class="experience-company">Belvedere Trading</div>
+                    </div>
+                    <div class="experience-period">Previous Role</div>
+                </div>
+                <div class="experience-description">
+                    <ul>
+                        <li>Launched and led the Business Intelligence Team to normalize data across proprietary systems</li>
+                        <li>Delivered reporting metrics and dashboards for trading desk and trader evaluations</li>
+                        <li>Analyzed tick-to-trade times, Exchange data, fees, and departmental efficiency metrics</li>
+                        <li>Developed firm-wide scorecard framework used in weekly meetings across all groups</li>
+                        <li>Created complete employee review platform in 3 months, used by 175 employees over 3 years</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Systems/Network Administrator</div>
+                        <div class="experience-company">Belvedere Trading</div>
+                    </div>
+                    <div class="experience-period">Previous Role</div>
+                </div>
+                <div class="experience-description">
+                    <ul>
+                        <li>Managed complex environment of 400+ endpoints across 6 sites (Linux/Windows mix)</li>
+                        <li>Implemented third-party trading systems: OptionsCity, ProOpticus, Orc, Trading Technologies</li>
+                        <li>Utilized comprehensive monitoring tools: Nagios, Corvil, Citrix, VMware, Splunk, SmokePing</li>
+                        <li>Ensured low latency and proactive service level management for trading operations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Technical Skills</div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Systems & Infrastructure</h4>
+                    <div class="skill-list">Windows Server/Desktop, Linux, CentOS, Mac OSX, VMware, oVirt, Active Directory, Data Center Management, System Center, PXE, Puppet, Foreman, SaltStack, Citrix</div>
+                </div>
+                <div class="skill-category">
+                    <h4>Networking & Security</h4>
+                    <div class="skill-list">BGP, Multicast, PIM, IGMP, Proxies, Firewalls, Switches, Juniper, Arista, Cisco, Palo Alto, TCP, UDP, SIP, Routing</div>
+                </div>
+                <div class="skill-category">
+                    <h4>Programming & Scripting</h4>
+                    <div class="skill-list">Python, PowerShell, Bash, Perl, VBS, Batch, Git, HTML, CSS, Flask, SQL, MariaDB, PostgreSQL, InfluxDB, MSSQL</div>
+                </div>
+                <div class="skill-category">
+                    <h4>Trading & Financial Systems</h4>
+                    <div class="skill-list">Trading Technologies, OptionsCity, ProOpticus, Orc, Bloomberg, Exchange Access, Market Data, Execution, Clearing Systems, OneTick, FPGA</div>
+                </div>
+                <div class="skill-category">
+                    <h4>Monitoring & Analytics</h4>
+                    <div class="skill-list">Splunk, Nagios, SmokePing, Cacti, Corvil, Telegraf, Grafana, Performance Monitoring, Data ETL, Business Intelligence</div>
+                </div>
+                <div class="skill-category">
+                    <h4>Management & Leadership</h4>
+                    <div class="skill-list">Project Management, Team Leadership, Budget Planning, Contract Negotiations, Process Automation, Cross-functional Collaboration</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Key Contributions & Achievements</div>
+            <ul class="contributions-list">
+                <li><div class="contribution-title">Workflow Automation Systems</div><div class="contribution-desc">Developed Belvedere Software Authorization System, Employee Management System, and Change Notification System (2013-2018)</div></li>
+                <li><div class="contribution-title">External Trading Group Integration</div><div class="contribution-desc">Successfully embedded multiple external trading groups into Belvedere's infrastructure while maintaining security and performance</div></li>
+                <li><div class="contribution-title">Performance Monitoring Solutions</div><div class="contribution-desc">Created custom monitoring scripts in multiple languages to capture application-level metrics and optimize trading system performance</div></li>
+                <li><div class="contribution-title">Datacenter Operations</div><div class="contribution-desc">Led 10+ office and datacenter migrations, handling logistics, provisioning, and server moves with zero downtime</div></li>
+                <li><div class="contribution-title">Web Application Development</div><div class="contribution-desc">Built internal applications including Company Directory, Crypto Positions tracker, Interview Management, and Office Maps</div></li>
+                <li><div class="contribution-title">Security Implementation</div><div class="contribution-desc">Implemented robust development/production environment segmentation to prevent unauthorized access to trading systems</div></li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Additional Information</div>
+            <p><strong>Partnership:</strong> Capital Partner of Belvedere Trading since January 2011</p>
+            <p><strong>Specialization:</strong> High-frequency trading infrastructure, low-latency systems, and financial market operations</p>
+            <p><strong>References:</strong> Available upon request. Complete recommendations available on LinkedIn profile</p>
+        </div>
+    </div>
+</body>
+</html>`;
+            
+            // Create a new window with the resume content
+            const printWindow = window.open('', '_blank', 'width=800,height=1000');
+            printWindow.document.write(resumeHTML);
+            printWindow.document.close();
+            
+            // Wait for content to load, then trigger print dialog
+            printWindow.onload = function() {
+                setTimeout(() => {
+                    printWindow.print();
+                }, 500);
+            };
+        }
 
-{% unless site.data.data.sidebar.education %}
-  {% include education.html %}
-{% endunless %}
+        // Add event listeners for download buttons
+        document.getElementByI<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Dime - IT Professional & Trading Industry Expert</title>
+    <meta name="description" content="Senior IT Professional with 15+ years experience in trading industry, infrastructure management, and systems administration">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-{% include experiences.html %}
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --gray: #6c757d;
+            --border-color: #dee2e6;
+        }
 
-{% include projects.html %}
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
 
-{% include publications.html %}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-{% include skills.html %}
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .header .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: var(--secondary-color);
+            background: var(--light-bg);
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav a:hover::after {
+            width: 80%;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* Objective Section */
+        .objective {
+            background: var(--light-bg);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 60px;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .objective h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .objective p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .skill-category {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: var(--light-bg);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .experience-item {
+            background: var(--white);
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .experience-header {
+            margin-bottom: 20px;
+        }
+
+        .experience-title {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .experience-company {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .experience-period {
+            color: var(--gray);
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .experience-description {
+            color: var(--gray);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* Contributions Section */
+        .contributions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contribution-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .contribution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .contribution-title {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contribution-description {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav ul {
+                gap: 20px;
+            }
+
+            .nav a {
+                font-size: 1rem;
+                padding: 8px 15px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid,
+            .contributions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-item {
+                padding: 25px;
+            }
+
+            .header .contact-links {
+                gap: 15px;
+            }
+
+            .contact-link {
+                font-size: 1rem;
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .header {
+                padding: 60px 0;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .main {
+                padding: 40px 0;
+            }
+
+            .section {
+                margin-bottom: 60px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content fade-in">
+                <h1>Tim Dime</h1>
+                <p class="subtitle">IT Professional & Trading Industry Expert</p>
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/tim10/" class="contact-link" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn Profile
+                    </a>
+                    <a href="mailto:contact@timdime.com" class="contact-link">
+                        <i class="fas fa-envelope"></i>
+                        Contact
+                    </a>
+                    <a href="#" class="contact-link" id="downloadResume">
+                        <i class="fas fa-download"></i>
+                        Download Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objective">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contributions">Contributions</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main">
+        <div class="container">
+            <section id="objective" class="section fade-in">
+                <div class="objective">
+                    <h3><i class="fas fa-user-tie"></i> Career Profile</h3>
+                    <p>IT Professional in the Trading Industry with 15+ years of IT, industry and management experience. Excellent command of technologies, analysis, and best practices. Collaborate cross-functionally across organizational levels to analyze system behavior, troubleshoot emerging issues, and develop solutions.</p>
+                </div>
+            </section>
+
+            <section id="skills" class="section fade-in">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4><i class="fas fa-cogs"></i> Core Skills</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Systems Engineering</span>
+                            <span class="skill-tag">Network Administration</span>
+                            <span class="skill-tag">Virtualization</span>
+                            <span class="skill-tag">Automation</span>
+                            <span class="skill-tag">Infrastructure</span>
+                            <span class="skill-tag">Trading Systems</span>
+                            <span class="skill-tag">Project Management</span>
+                            <span class="skill-tag">Data Analysis</span>
+                            <span class="skill-tag">Leadership</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-server"></i> Systems & Platforms</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Windows Server</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">CentOS</span>
+                            <span class="skill-tag">VMWare</span>
+                            <span class="skill-tag">Active Directory</span>
+                            <span class="skill-tag">Office 365</span>
+                            <span class="skill-tag">Citrix</span>
+                            <span class="skill-tag">System Center</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-network-wired"></i> Networking & Security</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">BGP</span>
+                            <span class="skill-tag">Multicast</span>
+                            <span class="skill-tag">Firewalls</span>
+                            <span class="skill-tag">Juniper</span>
+                            <span class="skill-tag">Cisco</span>
+                            <span class="skill-tag">Arista</span>
+                            <span class="skill-tag">Palo Alto</span>
+                            <span class="skill-tag">TCP/UDP</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-code"></i> Programming & Tools</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">PowerShell</span>
+                            <span class="skill-tag">Bash</span>
+                            <span class="skill-tag">Perl</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">Flask</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-chart-line"></i> Trading & Finance</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Trading Technologies</span>
+                            <span class="skill-tag">OptionsCity</span>
+                            <span class="skill-tag">Bloomberg</span>
+                            <span class="skill-tag">Market Data</span>
+                            <span class="skill-tag">Exchange Access</span>
+                            <span class="skill-tag">Clearing Systems</span>
+                            <span class="skill-tag">Financial Markets</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-chart-bar"></i> Monitoring & Analytics</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Splunk</span>
+                            <span class="skill-tag">Nagios</span>
+                            <span class="skill-tag">Grafana</span>
+                            <span class="skill-tag">Telegraf</span>
+                            <span class="skill-tag">InfluxDB</span>
+                            <span class="skill-tag">Corvil</span>
+                            <span class="skill-tag">SmokePing</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience" class="section fade-in">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="experience-title">Capital Partner & IT Director</div>
+                            <div class="experience-company">Belvedere Trading</div>
+                            <div class="experience-period">January 2011 - Present</div>
+                        </div>
+                        <div class="experience-description">
+                            <p>Oversee the Infrastructure, Release, Support and Trading Desk Expansion & Maintenance Teams. Manage firm-wide projects overlapping this division. Own the Production Environment. Plan and align the team with the roadmap. Produce annual budget forecasts for approval and meet budgeting goals. Authorize expenditures. Negotiate annual and multi-year service contracts.</p>
+                            <p>Provide architectural guidance to development team regarding infrastructural impacts of software behavior. Advocate on behalf of the group to cross-department managers to seek buy-in and support regarding process changes or bug/feature prioritization.</p>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="experience-title">Business Intelligence Team Lead</div>
+                            <div class="experience-company">Belvedere Trading</div>
+                            <div class="experience-period">Previous Role</div>
+                        </div>
+                        <div class="experience-description">
+                            <p>Launched the Business Intelligence Team. Worked to normalize data across Belvedere's proprietary software systems to summarize data sets to deliver reporting metrics and dashboards for both trading desk and trader evaluations.</p>
+                            <p>Delivered various data requests ranging from tick-to-trade times, to reviewing Clearing/Exchange data and fees, to Department Initiative efficiencies and burn-down charts. Developed a scorecard framework leveraged firm-wide by all groups in weekly meetings.</p>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="experience-title">Systems/Network Administrator</div>
+                            <div class="experience-company">Belvedere Trading</div>
+                            <div class="experience-period">Previous Role</div>
+                        </div>
+                        <div class="experience-description">
+                            <p>Managed a complex environment of over 400 endpoints across 6 sites. The environment was a mix of Linux and Windows hosts running primarily on HP servers/workstations and Force10 (Dell) and Arista switches.</p>
+                            <p>Managed implementations of third party trading systems like OptionsCity, ProOpticus, Orc, Trading Technologies, Actant, in addition to managing Belvedere's proprietary software rollouts.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contributions" class="section fade-in">
+                <h2 class="section-title">Key Contributions</h2>
+                <div class="contributions-grid">
+                    <div class="contribution-card">
+                        <div class="contribution-title">
+                            <i class="fas fa-robot"></i>
+                            Workflow Automation
+                        </div>
+                        <div class="contribution-description">
+                            Developed and implemented multiple automation systems including Belvedere Software Authorization System, Employee Management System, and Employee Change Notification System, significantly improving operational efficiency.
+                        </div>
+                    </div>
+
+                    <div class="contribution-card">
+                        <div class="contribution-title">
+                            <i class="fas fa-users"></i>
+                            External Trading Integration
+                        </div>
+                        <div class="contribution-description">
+                            Successfully embedded external trading groups into Belvedere's environment, coordinating setup with various trading platforms (ProOpticus, TT, SpiderRock, OptionsCity) while maintaining network security and infrastructure integrity.
+                        </div>
+                    </div>
+
+                    <div class="contribution-card">
+                        <div class="contribution-title">
+                            <i class="fas fa-chart-line"></i>
+                            Performance Monitoring
+                        </div>
+                        <div class="contribution-description">
+                            Created custom scripts and monitoring solutions in multiple languages (Python, PowerShell, Perl, Bash) to capture application-level metrics, helping resolve inefficiencies and detect bugs in trading systems.
+                        </div>
+                    </div>
+
+                    <div class="contribution-card">
+                        <div class="contribution-title">
+                            <i class="fas fa-globe"></i>
+                            Web Development
+                        </div>
+                        <div class="contribution-description">
+                            Developed general-purpose websites including Company Directory, Crypto Positions tracking, Interview Rooms management, and Belvedere Office Maps for improved internal operations.
+                        </div>
+                    </div>
+
+                    <div class="contribution-card">
+                        <div class="contribution-title">
+                            <i class="fas fa-building"></i>
+                            Datacenter Operations
+                        </div>
+                        <div class="contribution-description">
+                            Led and participated in 10+ office and datacenter migrations, handling logistics, hardware/network provisioning, and server moves while maintaining business continuity.
+                        </div>
+                    </div>
+
+                    <div class="contribution-card">
+                        <div class="contribution-title">
+                            <i class="fas fa-shield-alt"></i>
+                            Environment Security
+                        </div>
+                        <div class="contribution-description">
+                            Implemented robust development/production environment segmentation to ensure developers cannot access production trading systems without proper IT Operations authorization.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="https://www.linkedin.com/in/tim10/" class="contact-link" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                    LinkedIn
+                </a>
+                <a href="mailto:contact@timdime.com" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    Email
+                </a>
+            </div>
+            <p>&copy; 2025 Tim Dime. Professional IT Consultant & Trading Systems Expert.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation delay to elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section, .experience-item, .skill-category, .contribution-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add interactive hover effects to skill tags
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Add click effect to contribution cards
+        document.querySelectorAll('.contribution-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-5px)';
+                }, 150);
+            });
+        });
+
+        // Dynamic background animation
+        function createFloatingElements() {
+            const header = document.querySelector('.header');
+            for (let i = 0; i < 5; i++) {
+                const element = document.createElement('div');
+                element.style.position = 'absolute';
+                element.style.width = Math.random() * 10 + 5 + 'px';
+                element.style.height = element.style.width;
+                element.style.background = 'rgba(255,255,255,0.1)';
+                element.style.borderRadius = '50%';
+                element.style.left = Math.random() * 100 + '%';
+                element.style.top = Math.random() * 100 + '%';
+                element.style.animation = `float ${Math.random() * 10 + 10}s infinite linear`;
+                header.appendChild(element);
+            }
+        }
+
+        // Initialize floating elements
+        createFloatingElements();
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
