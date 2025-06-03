@@ -343,7 +343,6 @@
             }
         }
     </style>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -359,9 +358,9 @@
                         <i class="fab fa-linkedin"></i>
                         LinkedIn Profile
                     </a>
-                    <a href="https://timdime.com" class="contact-item" target="_blank">
+                    <a href="mailto:tim@timdime.com" class="contact-item" target="_blank">
                         <i class="fas fa-globe"></i>
-                        timdime.com
+                        Email
                     </a>
                 </div>
                 
@@ -684,88 +683,11 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>&copy; 2025 Tim Dime. All rights reserved. | <a href="https://www.linkedin.com/in/tim10/" style="color: rgba(255,255,255,0.8);">LinkedIn</a> | <a href="https://timdime.com" style="color: rgba(255,255,255,0.8);">Website</a></p>
+            <p>&copy; 2025 Tim Dime. All rights reserved. | <a href="https://www.linkedin.com/in/tim10/" style="color: rgba(255,255,255,0.8);">LinkedIn</a> | <a href="mailto:tim@timdime.com" style="color: rgba(255,255,255,0.8);">Email</a></p>
         </footer>
     </div>
 
     <script>
-        function downloadPDF() {
-            // Show loading state
-            const button = document.querySelector('.pdf-button');
-            const originalText = button.innerHTML;
-            button.innerHTML = '⏳ Generating PDF...';
-            button.disabled = true;
-
-            // Get the content to convert
-            const element = document.getElementById('resume-content');
-            
-            // Configure options for better PDF generation
-            const options = {
-                margin: [0.5, 0.5, 0.5, 0.5], // top, right, bottom, left (in inches)
-                filename: 'Tim_Dime_Resume.pdf',
-                image: { 
-                    type: 'jpeg', 
-                    quality: 0.98 
-                },
-                html2canvas: { 
-                    scale: 2,
-                    useCORS: true,
-                    letterRendering: true,
-                    allowTaint: false,
-                    backgroundColor: '#ffffff',
-                    scrollX: 0,
-                    scrollY: 0,
-                    width: element.scrollWidth,
-                    height: element.scrollHeight
-                },
-                jsPDF: { 
-                    unit: 'in', 
-                    format: 'letter', 
-                    orientation: 'portrait',
-                    compress: true
-                },
-                pagebreak: { 
-                    mode: ['avoid-all', 'css', 'legacy'],
-                    before: '.section',
-                    after: '.experience-item',
-                    avoid: '.experience-item'
-                }
-            };
-
-            // Generate PDF
-            html2pdf()
-                .set(options)
-                .from(element)
-                .save()
-                .then(() => {
-                    // Reset button state
-                    button.innerHTML = originalText;
-                    button.disabled = false;
-                })
-                .catch((error) => {
-                    console.error('PDF generation failed:', error);
-                    button.innerHTML = '❌ Error - Try Again';
-                    button.disabled = false;
-                    
-                    // Reset button after 3 seconds
-                    setTimeout(() => {
-                        button.innerHTML = originalText;
-                    }, 3000);
-                });
-        }
-
-        // Ensure all images and fonts are loaded before allowing PDF generation
-        window.addEventListener('load', function() {
-            console.log('Page fully loaded - PDF generation ready');
-        });
-
-        // Add keyboard shortcut for PDF download (Ctrl+P or Cmd+P)
-        document.addEventListener('keydown', function(e) {
-            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
-                e.preventDefault();
-                downloadPDF();
-            }
-        });
         // Smooth scrolling for any anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
