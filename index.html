@@ -1,49 +1,722 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dime Gallery</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="images/dime-icon.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Dime - IT Professional & Financial Industry Specialist</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(30, 60, 114, 0.15);
+            padding: 1.5rem 0;
+            margin: 1.5rem 0;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .title {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #1e3c72;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(30, 60, 114, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(30, 60, 114, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(30, 60, 114, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e293b;
+            border-bottom: 2px solid #1e3c72;
+            padding-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .objective {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #475569;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #1e3c72;
+        }
+
+        .experience-item {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid #2a5298;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(30, 60, 114, 0.1);
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.01em;
+        }
+
+        .company {
+            font-size: 1rem;
+            color: #1e3c72;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .duration {
+            color: #64748b;
+            font-style: italic;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .skill-category {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-top: 3px solid #1e3c72;
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 0.25rem 0.7rem;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .contributions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .contribution-item {
+            background: #f8fafc;
+            padding: 1.2rem;
+            border-radius: 12px;
+            border-left: 3px solid #2a5298;
+            transition: transform 0.3s ease;
+        }
+
+        .contribution-item:hover {
+            transform: translateY(-1px);
+        }
+
+        .job-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .job-icon {
+            color: #1e3c72;
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+            min-width: 24px;
+        }
+
+        .job-responsibilities {
+            margin-left: 2.5rem;
+        }
+
+        .responsibility-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+        }
+
+        .responsibility-item i {
+            color: #2a5298;
+            font-size: 0.9rem;
+            min-width: 16px;
+        }
+
+        .skill-category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .skill-category-icon {
+            color: #1e3c72;
+            font-size: 1.2rem;
+        }
+
+        .contribution-icon {
+            color: #2a5298;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .main-content {
+                padding: 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* Print styles for PDF generation */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .header, .main-content {
+                background: white;
+                box-shadow: none;
+                border: none;
+            }
+            
+            .download-btn {
+                display: none;
+            }
+        }
+    </style>
+
 </head>
 <body>
-  <header>
-    <h1 class="surreal-title">Dime Gallery</h1>
-    <nav>
-      <ul>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#game">Dime Game</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-    </nav>
-  </header>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <img src="assets/1675122834072.jpeg" alt="TD" class="profile-img" style="width: 100px; height: 100px;">
+                <h1 class="name">Tim Dime</h1>
+                <p class="title">IT Professional & Financial Industry Specialist</p>
+                
+                <div class="contact-info">
+                    <a href="https://www.linkedin.com/in/tim10/" class="contact-item" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn Profile
+                    </a>
+                    <a href="mailto:tim@timdime.com?subject=Contact%20Request" class="contact-item" target="_blank">
+                        <i class="fas fa-globe"></i>
+                        Email
+                    </a>
+                </div>
+            </div>
+        </header>
 
-  <section id="gallery" class="surreal-section">
-    <h2>Surreal Dimes</h2>
-    <div class="image-grid">
-      <img src="images/dime1.png" alt="Melting Dime" />
-      <img src="images/dali-dime1.png" alt="Clock Dime" />
-      <img src="images/dali-dime2.png" alt="Stretch Dime" />
-      <img src="images/dime-eye.png" alt="Eye Dime" />
+        <!-- Main Content -->
+        <main class="main-content" id="resume-content">
+            <!-- Career Profile -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-user"></i>
+                    Career Profile
+                </h2>
+                <div class="objective">
+                    IT Professional in the Trading Industry with 20+ years of IT, industry and management experience. 
+                    Excellent command of technologies, analysis, and best practices. Collaborate cross-functionally 
+                    across organizational levels to analyze system behavior, troubleshoot emerging issues, and develop solutions.
+                    <br><br>
+                    <strong>Capital Partner of Belvedere Trading from January 2011 to present.</strong>
+                </div>
+            </section>
+
+            <!-- Professional Experience -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-briefcase"></i>
+                    Professional Experience
+                </h2>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <i class="fas fa-crown job-icon"></i>
+                        <div>
+                            <h3 class="job-title">IT Director & Capital Partner</h3>
+                            <p class="company">Belvedere Trading</p>
+                            <p class="duration">January 2011 - Present</p>
+                        </div>
+                    </div>
+                    <div class="job-responsibilities">
+                        <div class="responsibility-item">
+                            <i class="fas fa-users"></i>
+                            <span>Oversee Infrastructure, Release, Support and Trading Desk Teams</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Manage firm-wide projects and own the Production Environment</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-calculator"></i>
+                            <span>Produce annual budget forecasts and authorize expenditures</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-handshake"></i>
+                            <span>Negotiate annual and multi-year service contracts</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-header">
+                        <i class="fas fa-chart-bar job-icon"></i>
+                        <div>
+                            <h3 class="job-title">Business Intelligence Team Lead</h3>
+                            <p class="company">Belvedere Trading</p>
+                        </div>
+                    </div>
+                    <div class="job-responsibilities">
+                        <div class="responsibility-item">
+                            <i class="fas fa-rocket"></i>
+                            <span>Launched the Business Intelligence Team from ground up</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-database"></i>
+                            <span>Normalized data across proprietary software systems for reporting</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Created dashboards for trading desk and trader evaluations</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-star"></i>
+                            <span>Developed complete employee review platform used by 175 employees</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-header">
+                        <i class="fas fa-server job-icon"></i>
+                        <div>
+                            <h3 class="job-title">Systems/Network Administrator</h3>
+                            <p class="company">Belvedere Trading</p>
+                        </div>
+                    </div>
+                    <div class="job-responsibilities">
+                        <div class="responsibility-item">
+                            <i class="fas fa-network-wired"></i>
+                            <span>Managed 400+ endpoints across 6 sites with Linux/Windows environments</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-tools"></i>
+                            <span>Utilized HP servers, Force10 (Dell) and Arista switches</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Implemented trading systems: OptionsCity, ProOpticus, Orc, TT, Actant</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Ensured low latency and proactive monitoring via multiple tools</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-header">
+                        <i class="fas fa-laptop job-icon"></i>
+                        <div>
+                            <h3 class="job-title">IT Support Specialist</h3>
+                            <p class="company">Previous Organizations</p>
+                        </div>
+                    </div>
+                    <div class="job-responsibilities">
+                        <div class="responsibility-item">
+                            <i class="fas fa-wrench"></i>
+                            <span>Performed all IT functions as sole IT resource</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-phone"></i>
+                            <span>Managed Application Support, Systems Admin, Network Admin, Telecom</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>Promoted to Special Projects group after 6 months</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Led mobile command center and infrastructure upgrade projects</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-cogs"></i>
+                    Technical Skills
+                </h2>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <div class="skill-category-header">
+                            <i class="fas fa-desktop skill-category-icon"></i>
+                            <h3>Operating Systems & Virtualization</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Windows Server/Desktop</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">CentOS</span>
+                            <span class="skill-tag">Mac OSX</span>
+                            <span class="skill-tag">VMware</span>
+                            <span class="skill-tag">Citrix</span>
+                            <span class="skill-tag">oVirt</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-header">
+                            <i class="fas fa-network-wired skill-category-icon"></i>
+                            <h3>Networking & Infrastructure</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">BGP</span>
+                            <span class="skill-tag">Multicast</span>
+                            <span class="skill-tag">Juniper</span>
+                            <span class="skill-tag">Arista</span>
+                            <span class="skill-tag">Cisco</span>
+                            <span class="skill-tag">Palo Alto</span>
+                            <span class="skill-tag">Data Center Management</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-header">
+                            <i class="fas fa-robot skill-category-icon"></i>
+                            <h3>Automation & Monitoring</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">SaltStack</span>
+                            <span class="skill-tag">Puppet</span>
+                            <span class="skill-tag">Splunk</span>
+                            <span class="skill-tag">Nagios</span>
+                            <span class="skill-tag">Grafana</span>
+                            <span class="skill-tag">Telegraf</span>
+                            <span class="skill-tag">SmokePing</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-header">
+                            <i class="fas fa-code skill-category-icon"></i>
+                            <h3>Programming & Scripting</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Perl</span>
+                            <span class="skill-tag">Bash</span>
+                            <span class="skill-tag">PowerShell</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">Flask</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-header">
+                            <i class="fas fa-chart-line skill-category-icon"></i>
+                            <h3>Trading Systems</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">OptionsCity</span>
+                            <span class="skill-tag">Trading Technologies</span>
+                            <span class="skill-tag">ProOpticus</span>
+                            <span class="skill-tag">Orc</span>
+                            <span class="skill-tag">Bloomberg</span>
+                            <span class="skill-tag">Market Data</span>
+                            <span class="skill-tag">Exchange Access</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-header">
+                            <i class="fas fa-database skill-category-icon"></i>
+                            <h3>Databases & Storage</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">MariaDB</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MSSQL</span>
+                            <span class="skill-tag">InfluxDB</span>
+                            <span class="skill-tag">OneTick</span>
+                            <span class="skill-tag">SAN/NAS</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Contributions -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-trophy"></i>
+                    Key Contributions
+                </h2>
+                
+                <div class="contributions-grid">
+                    <div class="contribution-item">
+                        <i class="fas fa-robot contribution-icon"></i>
+                        <h4>Automation of Workflows</h4>
+                        <p>Belvedere Software Authorization System, Employee Management System, and Employee Change Notification System</p>
+                    </div>
+
+                    <div class="contribution-item">
+                        <i class="fas fa-plug contribution-icon"></i>
+                        <h4>External Trading Groups Integration</h4>
+                        <p>Successfully embedded external traders into Belvedere's environment with various trading software and exchange access requirements</p>
+                    </div>
+
+                    <div class="contribution-item">
+                        <i class="fas fa-chart-line contribution-icon"></i>
+                        <h4>Performance Monitoring</h4>
+                        <p>Created custom monitoring solutions and load testing tools to optimize infrastructure performance and detect inefficiencies</p>
+                    </div>
+
+                    <div class="contribution-item">
+                        <i class="fas fa-globe contribution-icon"></i>
+                        <h4>General Purpose Websites</h4>
+                        <p>Company Directory, Crypto Positions tracker, Interview Rooms system, and Belvedere Office Maps</p>
+                    </div>
+
+                    <div class="contribution-item">
+                        <i class="fas fa-building contribution-icon"></i>
+                        <h4>Infrastructure Projects</h4>
+                        <p>Led 10+ datacenter and office migrations, moves, and expansions across multiple locations</p>
+                    </div>
+
+                    <div class="contribution-item">
+                        <i class="fas fa-lock contribution-icon"></i>
+                        <h4>Environment Segmentation</h4>
+                        <p>Implemented secure development/production environment separation to prevent unauthorized access to trading systems</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Soft Skills -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-users"></i>
+                    Core Competencies
+                </h2>
+                <div class="skill-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <span class="skill-tag">Project Management</span>
+                    <span class="skill-tag">Leadership</span>
+                    <span class="skill-tag">Team Management</span>
+                    <span class="skill-tag">Troubleshooting</span>
+                    <span class="skill-tag">Problem Solving</span>
+                    <span class="skill-tag">Budgeting</span>
+                    <span class="skill-tag">Contract Negotiations</span>
+                    <span class="skill-tag">Financial Markets</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Cross-functional Collaboration</span>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 Tim Dime. All rights reserved. | <a href="https://www.linkedin.com/in/tim10/" style="color: rgba(255,255,255,0.8);">LinkedIn</a> | <a href="mailto:tim@timdime.com?subject=Contact%20Request" style="color: rgba(255,255,255,0.8);">Email</a></p>
+        </footer>
     </div>
-  </section>
 
-  <section id="game" class="surreal-section">
-    <h2>Catch the Dimes</h2>
-    <canvas id="dimeGame" width="800" height="500"></canvas>
-    <p>Click the falling dimes before they melt!</p>
-  </section>
+    <script>
+        
+        // Smooth scrolling for any anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href'))?.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-  <section id="about" class="surreal-section">
-    <h2>About Dime Gallery</h2>
-    <p>Welcome to a portal of melted time and silver illusions, where dimes become dreams. Inspired by the surreal works of Salvador Dalí, this gallery bends logic and currency alike.</p>
-  </section>
+        // Add subtle scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-  <footer>
-    <p>&copy; 2025 Dime Gallery - A Surreal Experience</p>
-  </footer>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
 
-  <script src="game.js"></script>
+        // Observe all sections
+        document.querySelectorAll('.section, .experience-item, .contribution-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
