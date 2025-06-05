@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datacenter Switch Challenge</title>
+  <style>
+    body {
+      background: #111827;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      color: #60a5fa;
+    }
+    .rack {
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 1rem;
+      padding: 1rem;
+      margin: 1rem auto;
+      width: 300px;
+    }
+    .rack.online {
+      border-color: #10b981;
+    }
+    .rack.offline {
+      border-color: #ef4444;
+    }
+    .status {
+      font-weight: bold;
+    }
+    .status.online {
+      color: #10b981;
+    }
+    .status.offline {
+      color: #ef4444;
+    }
+    .timer, .score {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+    .btn {
+      padding: 0.5rem 1rem;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #3b82f6;
+    }
+  </style>
+</head>
+<body>
+  <h1>Datacenter Switch Challenge</h1>
+  <p>Click on racks to bring them back online. You have <span id="timer">60</span> seconds!</p>
+  <div id="racks"></div>
+  <div class="score">Score: <span id="score">0</span></div>
+  <button id="restart" class="btn" style="display:none">Restart Game</button>
+
+  <script>
+    const rackContainer = document.getElementById('racks');
+    const timerDisplay = document.getElementById('timer');
+    const scoreDisplay = document.getElementById('score');
+    const restartButton = document.getElementById('restart');
+
+    let racks = [];
+    let score = 0;
+    let timeLeft = 60;
+    let timerInterval;
+
+    function generateRacks() {
+      racks = Array.from({ length: 5 }, (_, id) => ({
+        id,
+        serverCount: Math.floor(Math.random() * 4) + 2,
+        online: Math.random() > 0.5
+      }));
+    }
+
+    function renderRacks() {
+      rackContainer.innerHTML = '';
+      racks.forEach(rack => {
+        const div = document.createElement('div');
+        div.className = `rack ${rack.online ? 'online' : 'offline'}`;
+        div.innerHTML = `
+          <h3>Rack #${rack.id}</h3>
+          <p>${rack.serverCount} servers</p>
+          <p class="status ${rack.online ? 'online' : 'offline'}">
+            ${rack.online ? 'Online' : 'Offline'}
+          </p>
+        `;
+        div.onclick = () => {
+          if (!rack.online) {
+            rack.online = true;
+            score += 10;
+            updateDisplay();
+          }
+        };
+        rackContainer.appendChild(div);
+      });
+    }
+
+    function updateDisplay() {
+      renderRacks();
+      scoreDisplay.textContent = score;
+    }
+
+    function startGame() {
+      generateRacks();
+      updateDisplay();
+      timeLeft = 60;
+      score = 0;
+      timerDisplay.textContent = timeLeft;
+      restartButton.style.display = 'none';
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          restartButton.style.display = 'inline-block';
+        }
+      }, 1000);
+    }
+
+    restartButton.onclick = startGame;
+
+    // Initial game start
+    startGame();
+  </script>
+</body>
+</html>
