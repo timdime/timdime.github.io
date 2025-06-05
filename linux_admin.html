@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datacenter Engineer Game</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #0f0;
+            font-family: monospace;
+            padding: 20px;
+        }
+        #terminal {
+            width: 80%;
+            height: 300px;
+            border: 2px solid #0f0;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #000;
+        }
+        #input {
+            width: 80%;
+            background-color: #222;
+            border: 2px solid #0f0;
+            color: #0f0;
+            font-family: monospace;
+            padding: 5px;
+            margin-top: 10px;
+            caret-color: transparent;
+            position: relative;
+        }
+        /* Blinking Cursor Effect */
+        #input::after {
+            content: "_";
+            position: absolute;
+            right: 10px;
+            animation: blink 0.6s infinite alternate;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        /* Color-Coded Log Messages */
+        .error { color: red; }
+        .success { color: limegreen; }
+        .info { color: cyan; }
+    </style>
+</head>
+<body>
+    <h1>Datacenter Engineer Game</h1>
+    <div id="terminal"></div>
+    <input type="text" id="input" placeholder="Type a command...">
+    
+    <script>
+        const terminal = document.getElementById("terminal");
+        const input = document.getElementById("input");
+
+        function logMessage(message, type = "info") {
+            let span = document.createElement("span");
+            span.className = type;
+            span.textContent = "> " + message;
+            terminal.appendChild(span);
+            terminal.appendChild(document.createElement("br"));
+            terminal.scrollTop = terminal.scrollHeight;
+            animateTyping(span);
+        }
+
+        /* Typing Animation */
+        function animateTyping(element) {
+            let text = element.textContent;
+            element.textContent = "> ";
+            let i = 0;
+            function type() {
+                if (i < text.length - 2) {
+                    element.textContent += text.charAt(i + 2);
+                    i++;
+                    setTimeout(type, 50);
+                }
+            }
+            type();
+        }
+
+        input.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                const command = input.value.toLowerCase().trim();
+                input.value = "";
+                if (command === "restart nginx") {
+                    logMessage("Restarting Nginx...", "info");
+                    setTimeout(() => logMessage("Nginx restarted successfully!", "success"), 2000);
+                } else {
+                    logMessage("ERROR: Unknown command!", "error");
+                }
+            }
+        });
+
+        logMessage("Welcome, Engineer! Type Linux commands to diagnose and fix issues.");
+    </script>
+</body>
+</html>
