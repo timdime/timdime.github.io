@@ -1,184 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datacenter Engineer Game</title>
-    <style>
-        body {
-            background-color: #222;
-            color: #0f0;
-            font-family: monospace;
-            padding: 20px;
-        }
-        #terminal {
-            width: 80%;
-            height: 300px;
-            border: 2px solid #0f0;
-            padding: 10px;
-            overflow-y: auto;
-            background-color: #000;
-        }
-        #input {
-            width: 80%;
-            background-color: #222;
-            border: 2px solid #0f0;
-            color: #0f0;
-            font-family: monospace;
-            padding: 5px;
-            margin-top: 10px;
-            caret-color: transparent;
-            position: relative;
-        }
-        /* Blinking Cursor Effect */
-        #input::after {
-            content: "_";
-            position: absolute;
-            right: 10px;
-            animation: blink 0.6s infinite alternate;
-        }
-        @keyframes blink {
-            0% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-        /* Color-Coded Log Messages */
-        .error { color: red; }
-        .success { color: limegreen; }
-        .info { color: cyan; }
-        /* Progress Bar */
-        #progress {
-            width: 80%;
-            height: 20px;
-            background: gray;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        #progress-bar {
-            width: 0%;
-            height: 100%;
-            background: limegreen;
-        }
-        /* Status Bar */
-        #status-bar {
-            margin-top: 10px;
-            padding: 5px;
-            background: #111;
-            border: 1px solid #0f0;
-            font-size: 14px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Datacenter Defender: Linux Ops Adventure</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    #game {
+      display: none;
+    }
+    #terminal {
+      background-color: #000;
+      color: #0f0;
+      padding: 10px;
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+    #commandInput {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    #scoreboard {
+      display: flex;
+      justify-content: space-between;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-    <h1>Datacenter Engineer Game</h1>
-
-    <div id="terminal"></div>
-    <input type="text" id="input" placeholder="Type a command...">
-    
-    <div id="status-bar">CPU Load: <span id="cpu-load">70%</span> | Network: Online</div>
-    
-    <div id="progress">
-        <div id="progress-bar"></div>
+  <div class="container">
+    <h1>Datacenter Defender: Linux Ops Adventure</h1>
+    <div id="storyline">
+      <p>Welcome to Datacenter Defender! You start as a Junior SysAdmin. Each level presents a broken server scenario. Diagnose and fix it using the simulated CLI. Progress through the levels to become a Senior Linux Engineer!</p>
     </div>
+    <div id="game">
+      <div id="terminal">
+        <div id="output"></div>
+        <input type="text" id="commandInput" placeholder="Type your command here..." />
+      </div>
+      <div id="scoreboard">
+        <p>Level: <span id="level">1</span></p>
+        <p>Score: <span id="score">0</span></p>
+        <p>Time: <span id="timer">0</span> seconds</p>
+      </div>
+    </div>
+    <button id="startButton">Start Game</button>
+  </div>
 
-    <script>
-        const terminal = document.getElementById("terminal");
-        const input = document.getElementById("input");
-        const progressBar = document.getElementById("progress-bar");
-        const statusBar = document.getElementById("status-bar");
-        let alertInterval = 10000;
-        let issuesResolved = 0;
-        let rank = "Junior Engineer";
+  <script>
+    let level = 1;
+    let score = 0;
+    let startTime;
+    let timerInterval;
 
-        const issues = [
-            { problem: "High CPU usage detected!", commands: ["top", "kill -9 <pid>"], solved: false },
-            { problem: "Network down!", commands: ["ip addr show eth0", "dhclient eth0"], solved: false },
-            { problem: "Nginx service failed!", commands: ["systemctl status nginx", "systemctl restart nginx"], solved: false }
-        ];
+    const levels = [
+      {
+        description: "Disk space is running low. Use the 'df -h' command to check disk usage and 'rm' to remove unnecessary files.",
+        commands: ["df -h", "rm"],
+        solution: ["df -h", "rm -rf /tmp/*"]
+      },
+      {
+        description: "The Apache service is down. Use 'systemctl' to restart the service.",
+        commands: ["systemctl status apache2", "systemctl restart apache2"],
+        solution: ["systemctl restart apache2"]
+      },
+      {
+        description: "Network issues detected. Use 'ping' to diagnose.",
+        commands: ["ping google.com"],
+        solution: ["ping google.com"]
+      }
+    ];
 
-        const helpMessage = `
-        Available Commands:
-        - top                (Check CPU usage)
-        - kill -9 <pid>      (Terminate high CPU-consuming process)
-        - ip addr show eth0  (Check network status)
-        - dhclient eth0      (Restart network and request IP)
-        - systemctl status nginx (Check Nginx service)
-        - systemctl restart nginx (Restart Nginx service)
-        - help               (Show available commands)
-        `;
+    document.getElementById("startButton").addEventListener("click", startGame);
+    document.getElementById("commandInput").addEventListener("keydown", handleCommand);
 
-        function logMessage(message, type = "info") {
-            let span = document.createElement("span");
-            span.className = type;
-            span.textContent = "> " + message;
-            terminal.appendChild(span);
-            terminal.appendChild(document.createElement("br"));
-            terminal.scrollTop = terminal.scrollHeight;
-            animateTyping(span);
+    function startGame() {
+      document.getElementById("game").style.display = "block";
+      document.getElementById("startButton").style.display = "none";
+      startTime = Date.now();
+      timerInterval = setInterval(updateTimer, 1000);
+      showLevel();
+    }
+
+    function showLevel() {
+      const levelInfo = levels[level - 1];
+      document.getElementById("storyline").innerHTML = `<p>${levelInfo.description}</p>`;
+      document.getElementById("output").innerHTML = "";
+      document.getElementById("commandInput").value = "";
+    }
+
+    function handleCommand(event) {
+      if (event.key === "Enter") {
+        const command = event.target.value.trim();
+        const levelInfo = levels[level - 1];
+        document.getElementById("output").innerHTML += `<p>$ ${command}</p>`;
+        if (command === "help") {
+          document.getElementById("output").innerHTML += `<p>Available commands: ${levelInfo.commands.join(", ")}</p>`;
+        } else if (levelInfo.solution.includes(command)) {
+          document.getElementById("output").innerHTML += `<p>Command executed successfully!</p>`;
+          score += 10;
+          level++;
+          if (level > levels.length) {
+            clearInterval(timerInterval);
+            document.getElementById("storyline").innerHTML = "<p>Congratulations! You've completed the game!</p>";
+            document.getElementById("game").style.display = "none";
+            document.getElementById("startButton").style.display = "block";
+          } else {
+            showLevel();
+          }
+        } else {
+          document.getElementById("output").innerHTML += `<p>Invalid command. Try again.</p>`;
         }
+        document.getElementById("commandInput").value = "";
+        updateScoreboard();
+      }
+    }
 
-        function animateTyping(element) {
-            let text = element.textContent;
-            element.textContent = "> ";
-            let i = 0;
-            function type() {
-                if (i < text.length - 2) {
-                    element.textContent += text.charAt(i + 2);
-                    i++;
-                    setTimeout(type, 50);
-                }
-            }
-            type();
-        }
+    function updateScoreboard() {
+      document.getElementById("level").innerText = level;
+      document.getElementById("score").innerText = score;
+    }
 
-        function generateIssue() {
-            const issue = issues[Math.floor(Math.random() * issues.length)];
-            issue.solved = false;
-            logMessage(`ALERT: ${issue.problem}`, "error");
-            return issue;
-        }
-
-        function increaseDifficulty() {
-            alertInterval -= 1000;
-            if (alertInterval < 5000) alertInterval = 5000;
-        }
-
-        function updateProgress() {
-            issuesResolved++;
-            let percentage = (issuesResolved / 10) * 100;
-            progressBar.style.width = percentage + "%";
-            if (issuesResolved >= 10) rank = "Datacenter Architect";
-            statusBar.innerHTML = `Rank: ${rank} | Issues Solved: ${issuesResolved}`;
-        }
-
-        function playSound(type) {
-            let sound = new Audio(type === 'error' ? 'error.mp3' : 'success.mp3');
-            sound.play();
-        }
-
-        let activeIssue = generateIssue();
-
-        input.addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                const command = input.value.toLowerCase().trim();
-                input.value = "";
-
-                if (command === "help") {
-                    logMessage(helpMessage, "info");
-                } else if (activeIssue && activeIssue.commands.includes(command)) {
-                    logMessage(`COMMAND EXECUTED: ${command} - Issue resolved!`, "success");
-                    activeIssue.solved = true;
-                    updateProgress();
-                    playSound("success");
-                    setTimeout(() => activeIssue = generateIssue(), alertInterval);
-                } else {
-                    logMessage("ERROR: Incorrect command! Try again.", "error");
-                    playSound("error");
-                }
-            }
-        });
-
-        logMessage("Welcome, Engineer! Type Linux commands to diagnose and fix issues.");
-        setTimeout(() => activeIssue = generateIssue(), alertInterval);
-    </script>
+    function updateTimer() {
+      const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+      document.getElementById("timer").innerText = elapsedTime;
+    }
+  </script>
 </body>
 </html>
