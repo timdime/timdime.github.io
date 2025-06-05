@@ -45,16 +45,66 @@
         .error { color: red; }
         .success { color: limegreen; }
         .info { color: cyan; }
+        /* Progress Bar */
+        #progress {
+            width: 80%;
+            height: 20px;
+            background: gray;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background: limegreen;
+        }
+        /* Status Bar */
+        #status-bar {
+            margin-top: 10px;
+            padding: 5px;
+            background: #111;
+            border: 1px solid #0f0;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
     <h1>Datacenter Engineer Game</h1>
+
     <div id="terminal"></div>
     <input type="text" id="input" placeholder="Type a command...">
     
+    <div id="status-bar">CPU Load: <span id="cpu-load">70%</span> | Network: Online</div>
+    
+    <div id="progress">
+        <div id="progress-bar"></div>
+    </div>
+
     <script>
         const terminal = document.getElementById("terminal");
         const input = document.getElementById("input");
+        const progressBar = document.getElementById("progress-bar");
+        const statusBar = document.getElementById("status-bar");
+        let alertInterval = 10000;
+        let issuesResolved = 0;
+        let rank = "Junior Engineer";
+
+        const issues = [
+            { problem: "High CPU usage detected!", commands: ["top", "kill -9 <pid>"], solved: false },
+            { problem: "Network down!", commands: ["ip addr show eth0", "dhclient eth0"], solved: false },
+            { problem: "Nginx service failed!", commands: ["systemctl status nginx", "systemctl restart nginx"], solved: false }
+        ];
+
+        const helpMessage = `
+        Available Commands:
+        - top                (Check CPU usage)
+        - kill -9 <pid>      (Terminate high CPU-consuming process)
+        - ip addr show eth0  (Check network status)
+        - dhclient eth0      (Restart network and request IP)
+        - systemctl status nginx (Check Nginx service)
+        - systemctl restart nginx (Restart Nginx service)
+        - help               (Show available commands)
+        `;
 
         function logMessage(message, type = "info") {
             let span = document.createElement("span");
@@ -66,7 +116,6 @@
             animateTyping(span);
         }
 
-        /* Typing Animation */
         function animateTyping(element) {
             let text = element.textContent;
             element.textContent = "> ";
@@ -81,20 +130,55 @@
             type();
         }
 
+        function generateIssue() {
+            const issue = issues[Math.floor(Math.random() * issues.length)];
+            issue.solved = false;
+            logMessage(`ALERT: ${issue.problem}`, "error");
+            return issue;
+        }
+
+        function increaseDifficulty() {
+            alertInterval -= 1000;
+            if (alertInterval < 5000) alertInterval = 5000;
+        }
+
+        function updateProgress() {
+            issuesResolved++;
+            let percentage = (issuesResolved / 10) * 100;
+            progressBar.style.width = percentage + "%";
+            if (issuesResolved >= 10) rank = "Datacenter Architect";
+            statusBar.innerHTML = `Rank: ${rank} | Issues Solved: ${issuesResolved}`;
+        }
+
+        function playSound(type) {
+            let sound = new Audio(type === 'error' ? 'error.mp3' : 'success.mp3');
+            sound.play();
+        }
+
+        let activeIssue = generateIssue();
+
         input.addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 const command = input.value.toLowerCase().trim();
                 input.value = "";
-                if (command === "restart nginx") {
-                    logMessage("Restarting Nginx...", "info");
-                    setTimeout(() => logMessage("Nginx restarted successfully!", "success"), 2000);
+
+                if (command === "help") {
+                    logMessage(helpMessage, "info");
+                } else if (activeIssue && activeIssue.commands.includes(command)) {
+                    logMessage(`COMMAND EXECUTED: ${command} - Issue resolved!`, "success");
+                    activeIssue.solved = true;
+                    updateProgress();
+                    playSound("success");
+                    setTimeout(() => activeIssue = generateIssue(), alertInterval);
                 } else {
-                    logMessage("ERROR: Unknown command!", "error");
+                    logMessage("ERROR: Incorrect command! Try again.", "error");
+                    playSound("error");
                 }
             }
         });
 
         logMessage("Welcome, Engineer! Type Linux commands to diagnose and fix issues.");
+        setTimeout(() => activeIssue = generateIssue(), alertInterval);
     </script>
 </body>
 </html>
