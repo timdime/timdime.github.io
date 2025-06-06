@@ -35,23 +35,26 @@
       font-family: monospace;
       min-height: 200px;
       margin: 1rem 0;
+      overflow-x: auto;
     }
     input.command {
       width: 100%;
-      padding: 0.5rem;
+      padding: 0.75rem;
       font-family: monospace;
       border: none;
       outline: none;
       background: #222;
       color: #0f0;
+      font-size: 1rem;
     }
     button {
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1.25rem;
       background: #457b9d;
       color: white;
       border: none;
       cursor: pointer;
       margin-top: 1rem;
+      font-size: 1rem;
     }
     button:hover {
       background: #1d3557;
@@ -64,12 +67,14 @@
     }
     #scoreBoard {
       position: fixed;
-      top: 1rem;
-      right: 1rem;
+      top: 0.5rem;
+      right: 0.5rem;
       background: #1d3557;
       color: white;
       padding: 0.5rem 1rem;
       border-radius: 0.5rem;
+      font-size: 1rem;
+      z-index: 1000;
     }
     .blink {
       animation: blink 1s infinite alternate;
@@ -77,6 +82,28 @@
     @keyframes blink {
       from { stroke: #000; }
       to { stroke: red; }
+    }
+    @media (max-width: 600px) {
+      main {
+        padding: 1rem;
+      }
+      .task {
+        font-size: 1rem;
+      }
+      input.command {
+        font-size: 0.95rem;
+      }
+      button {
+        font-size: 0.95rem;
+      }
+      svg {
+        width: 100%;
+        height: auto;
+      }
+      #scoreBoard {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.6rem;
+      }
     }
   </style>
 </head>
@@ -98,7 +125,7 @@
     <div id="level2" class="level">
       <h2>Level 2: Cabling</h2>
       <div class="task">Task: Drag the cable to connect the switch to the router.</div>
-      <svg width="100%" height="200">
+      <svg viewBox="0 0 500 150" preserveAspectRatio="xMidYMid meet">
         <rect x="50" y="50" width="100" height="50" fill="#a8dadc" />
         <text x="70" y="80" fill="#000">Switch</text>
         <rect x="300" y="50" width="100" height="50" fill="#f4a261" />
