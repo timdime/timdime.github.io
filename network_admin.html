@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Network Engineer Career Game</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #edf3f8;
+      color: #333;
+    }
+    header {
+      background: #1d3557;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .level {
+      display: none;
+    }
+    .visible {
+      display: block;
+    }
+    .terminal {
+      background: #000;
+      color: #00ff00;
+      padding: 1rem;
+      font-family: monospace;
+      min-height: 200px;
+      margin: 1rem 0;
+    }
+    input.command {
+      width: 100%;
+      padding: 0.5rem;
+      font-family: monospace;
+      border: none;
+      outline: none;
+      background: #222;
+      color: #0f0;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background: #457b9d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background: #1d3557;
+    }
+    .task {
+      background: #f1faee;
+      padding: 1rem;
+      border-left: 5px solid #457b9d;
+      margin-bottom: 1rem;
+    }
+    #scoreBoard {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #1d3557;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+    }
+    .blink {
+      animation: blink 1s infinite alternate;
+    }
+    @keyframes blink {
+      from { stroke: #000; }
+      to { stroke: red; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Network Engineer Career Game</h1>
+    <p>Start as a Jr. Network Tech and rise to Sr. Network Engineer!</p>
+  </header>
+  <div id="scoreBoard">Score: <span id="score">0</span></div>
+  <main>
+    <div id="level1" class="level visible">
+      <h2>Level 1: Basic Networking</h2>
+      <div class="task">Task: What is the subnet mask for a Class C IP?</div>
+      <div class="terminal" id="terminal1"></div>
+      <input type="text" class="command" id="input1" placeholder="Type your answer..." />
+      <button onclick="checkAnswer(1, '255.255.255.0')">Submit</button>
+    </div>
+
+    <div id="level2" class="level">
+      <h2>Level 2: Cabling</h2>
+      <div class="task">Task: Drag the cable to connect the switch to the router.</div>
+      <svg width="100%" height="200">
+        <rect x="50" y="50" width="100" height="50" fill="#a8dadc" />
+        <text x="70" y="80" fill="#000">Switch</text>
+        <rect x="300" y="50" width="100" height="50" fill="#f4a261" />
+        <text x="320" y="80" fill="#000">Router</text>
+        <line id="cable" x1="150" y1="75" x2="300" y2="75" stroke="#000" stroke-width="2" class="blink" />
+      </svg>
+      <button onclick="nextLevel(2)">Continue</button>
+    </div>
+
+    <div id="level3" class="level">
+      <h2>Level 3: VLAN Configuration</h2>
+      <div class="task">Task: Assign port eth0 to VLAN 10.</div>
+      <div class="terminal" id="terminal3"></div>
+      <input type="text" class="command" id="input3" placeholder="Type your command..." />
+      <button onclick="checkAnswer(3, 'switchport access vlan 10')">Submit</button>
+    </div>
+
+    <div id="level4" class="level">
+      <h2>Level 4: OSPF Configuration</h2>
+      <div class="task">Task: Enter the command to enable OSPF process 1.</div>
+      <div class="terminal" id="terminal4"></div>
+      <input type="text" class="command" id="input4" placeholder="Type your command..." />
+      <button onclick="checkAnswer(4, 'router ospf 1')">Submit</button>
+    </div>
+
+    <div id="level5" class="level">
+      <h2>Level 5: Troubleshooting</h2>
+      <div class="task">Task: What command checks if a host is reachable?</div>
+      <div class="terminal" id="terminal5"></div>
+      <input type="text" class="command" id="input5" placeholder="Type your answer..." />
+      <button onclick="checkAnswer(5, 'ping')">Submit</button>
+    </div>
+
+    <div id="completion" class="level">
+      <h2>Congratulations!</h2>
+      <p>You are now a certified Network Engineer!</p>
+      <p>Your final score is <span id="finalScore"></span>!</p>
+      <p>More levels coming soon...</p>
+    </div>
+  </main>
+  <audio id="correctSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+  <audio id="wrongSound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
+  <script>
+    let score = 0;
+
+    function updateScore(points) {
+      score += points;
+      document.getElementById('score').textContent = score;
+    }
+
+    function playSound(correct) {
+      const sound = document.getElementById(correct ? 'correctSound' : 'wrongSound');
+      sound.play();
+    }
+
+    function checkAnswer(level, correct) {
+      const input = document.getElementById(`input${level}`).value.trim().toLowerCase();
+      const output = document.getElementById(`terminal${level}`);
+      if (input === correct.toLowerCase()) {
+        output.innerHTML += `\n> ${input}\n✔ Correct! Moving to next level...`;
+        updateScore(10);
+        playSound(true);
+        setTimeout(() => nextLevel(level), 1500);
+      } else {
+        output.innerHTML += `\n> ${input}\n✖ Incorrect, try again.`;
+        playSound(false);
+      }
+    }
+
+    function nextLevel(current) {
+      document.getElementById(`level${current}`).classList.remove('visible');
+      const next = document.getElementById(`level${current + 1}`);
+      if (next) {
+        next.classList.add('visible');
+      } else {
+        document.getElementById('completion').classList.add('visible');
+        document.getElementById('finalScore').textContent = score;
+      }
+    }
+  </script>
+</body>
+</html>
