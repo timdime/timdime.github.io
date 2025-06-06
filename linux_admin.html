@@ -1,194 +1,2338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linux Admin Career Game</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f5f5f5;
-      color: #333;
-    }
-    header {
-      background: #2d2d2d;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    main {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    .level {
-      display: none;
-    }
-    .visible {
-      display: block;
-    }
-    .terminal {
-      background: #000;
-      color: #00ff00;
-      padding: 1rem;
-      font-family: monospace;
-      min-height: 200px;
-      margin: 1rem 0;
-      overflow-x: auto;
-    }
-    input.command {
-      width: 100%;
-      padding: 0.75rem;
-      font-family: monospace;
-      border: none;
-      outline: none;
-      background: #222;
-      color: #0f0;
-      font-size: 1rem;
-    }
-    button {
-      padding: 0.75rem 1.25rem;
-      background: #4caf50;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-top: 1rem;
-      font-size: 1rem;
-    }
-    button:hover {
-      background: #388e3c;
-    }
-    .task {
-      background: #e0f7fa;
-      padding: 1rem;
-      border-left: 5px solid #4caf50;
-      margin-bottom: 1rem;
-    }
-    #scoreBoard {
-      position: fixed;
-      top: 0.5rem;
-      right: 0.5rem;
-      background: #2d2d2d;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      font-size: 1rem;
-      z-index: 1000;
-    }
-    @media (max-width: 600px) {
-      main {
-        padding: 1rem;
-      }
-      .task {
-        font-size: 1rem;
-      }
-      input.command {
-        font-size: 0.95rem;
-      }
-      button {
-        font-size: 0.95rem;
-      }
-      #scoreBoard {
-        font-size: 0.9rem;
-        padding: 0.3rem 0.6rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Career Quest - Trading Company Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .game-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #00ff88;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #88ccff;
+            opacity: 0.9;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #88ccff);
+            border-radius: 10px;
+            transition: width 0.8s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .level-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #00ff88;
+        }
+
+        .level-badge {
+            background: #00ff88;
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        .score {
+            font-size: 1.2rem;
+            color: #ffaa00;
+        }
+
+        .terminal {
+            background: #1a1a1a;
+            border: 3px solid #00ff88;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 400px;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .terminal-title {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 5px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red { background: #ff5555; }
+        .dot.yellow { background: #ffaa00; }
+        .dot.green { background: #00ff88; }
+
+        .terminal-output {
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .command-line {
+            color: #88ccff;
+            margin: 5px 0;
+        }
+
+        .output-line {
+            color: #fff;
+            margin: 2px 0;
+        }
+
+        .error-line {
+            color: #ff5555;
+        }
+
+        .success-line {
+            color: #00ff88;
+        }
+
+        .warning-line {
+            color: #ffaa00;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            background: #2a2a2a;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .prompt {
+            color: #00ff88;
+            margin-right: 10px;
+        }
+
+        .command-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .command-input::placeholder {
+            color: #666;
+        }
+
+        .challenge-panel {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #ffaa00;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .challenge-title {
+            color: #ffaa00;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .challenge-icon {
+            width: 30px;
+            height: 30px;
+            background: #ffaa00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .challenge-description {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .hint-box {
+            background: rgba(0, 255, 136, 0.1);
+            border-left: 4px solid #00ff88;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .hint-toggle {
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .achievements {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .achievement {
+            background: rgba(255, 170, 0, 0.2);
+            border: 2px solid #ffaa00;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 120px;
+            transition: all 0.3s ease;
+        }
+
+        .achievement.earned {
+            background: rgba(0, 255, 136, 0.2);
+            border-color: #00ff88;
+            animation: achievementPop 0.5s ease;
+        }
+
+        .achievement-icon {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .achievement-name {
+            font-size: 12px;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #00ff88, #88ccff);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-button:hover::before {
+            left: 100%;
+        }
+
+        .alert-panel {
+            background: rgba(255, 85, 85, 0.1);
+            border: 2px solid #ff5555;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            animation: alertBlink 1s infinite;
+        }
+
+        .alert-header {
+            color: #ff5555;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff5555;
+            animation: blink 1s infinite;
+        }
+
+        .system-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-top: 5px;
+        }
+
+        .completion-celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .celebration-content {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border: 3px solid #00ff88;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            animation: celebrationPop 0.5s ease;
+        }
+
+        .celebration-title {
+            color: #00ff88;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .celebration-text {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes achievementPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes alertBlink {
+            0%, 100% { border-color: #ff5555; }
+            50% { border-color: #ff8888; }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes celebrationPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .title { font-size: 1.8rem; }
+            .subtitle { font-size: 1rem; }
+            .terminal { padding: 15px; }
+            .system-stats { grid-template-columns: 1fr; }
+            .navigation { flex-direction: column; }
+            .level-info { flex-direction: column; gap: 10px; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Linux Admin Career Game</h1>
-    <p>Start as a Jr. Linux Admin and become a Sr. Engineer!</p>
-  </header>
-  <div id="scoreBoard">Score: <span id="score">0</span></div>
-  <main>
-    <div id="level1" class="level visible">
-      <h2>Level 1: Basic Linux Command</h2>
-      <div class="task">Task: What command lists files in a directory?</div>
-      <div class="terminal" id="terminal1"></div>
-      <input type="text" class="command" id="input1" placeholder="Type your answer..." />
-      <button onclick="checkAnswer(1, 'ls')">Submit</button>
+    <div class="game-container">
+        <div class="header">
+            <h1 class="title">🐧 Linux Career Quest</h1>
+            <p class="subtitle">Rise from Junior Admin to Senior Engineer at GlobalTech Trading</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+
+        <div class="level-info">
+            <div class="level-badge" id="levelBadge">Level 1: Junior Linux Admin</div>
+            <div class="score" id="scoreDisplay">Score: 0</div>
+        </div>
+
+        <div class="achievements" id="achievements"></div>
+
+        <div class="challenge-panel" id="challengePanel">
+            <div class="challenge-title">
+                <div class="challenge-icon" id="challengeIcon">1</div>
+                <span id="challengeTitle">Welcome to GlobalTech Trading!</span>
+            </div>
+            <div class="challenge-description" id="challengeDescription">
+                You've just been hired as a Junior Linux Administrator at GlobalTech Trading Company. 
+                Your first task is to navigate the file system and get familiar with basic commands.
+            </div>
+            <button class="hint-toggle" onclick="toggleHint()">💡 Show Hint</button>
+            <div class="hint-box" id="hintBox" style="display: none;">
+                <strong>Hint:</strong> <span id="hintText">Try using 'ls' to list files, 'pwd' to see your current directory, and 'cd' to change directories.</span>
+            </div>
+        </div>
+
+        <div class="alert-panel" id="alertPanel" style="display: none;">
+            <div class="alert-header">
+                <div class="status-indicator"></div>
+                <span id="alertTitle">SYSTEM ALERT</span>
+            </div>
+            <div id="alertContent">Critical system issue detected!</div>
+        </div>
+
+        <div class="system-stats" id="systemStats" style="display: none;">
+            <div class="stat-card">
+                <div class="stat-value" id="uptimeStat">99.99%</div>
+                <div class="stat-label">System Uptime</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="latencyStat">0.2ms</div>
+                <div class="stat-label">Avg Latency</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="alertsStat">0</div>
+                <div class="stat-label">Active Alerts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="tradesStat">1,247,893</div>
+                <div class="stat-label">Trades/Day</div>
+            </div>
+        </div>
+
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="terminal-title">trader-01.globaltech.com</div>
+                <div class="terminal-dots">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+            </div>
+            <div class="terminal-output" id="terminalOutput">
+                <div class="output-line">Welcome to GlobalTech Trading Linux Terminal</div>
+                <div class="output-line">Type 'help' for available commands</div>
+                <div class="output-line">==================================================</div>
+            </div>
+            <div class="input-container">
+                <span class="prompt" id="prompt">admin@trader-01:~$</span>
+                <input type="text" class="command-input" id="commandInput" placeholder="Enter command..." autocomplete="off">
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-button" onclick="showHelp()">📖 Help</button>
+            <button class="nav-button" onclick="resetLevel()">🔄 Reset Level</button>
+            <button class="nav-button" id="nextLevelBtn" onclick="nextLevel()" disabled>➡️ Next Level</button>
+        </div>
     </div>
 
-    <div id="level2" class="level">
-      <h2>Level 2: File Permissions</h2>
-      <div class="task">Task: Command to change file permission to 755?</div>
-      <div class="terminal" id="terminal2"></div>
-      <input type="text" class="command" id="input2" placeholder="Type your answer..." />
-      <button onclick="checkAnswer(2, 'chmod 755')">Submit</button>
+    <script>
+        class LinuxCareerGame {
+            constructor() {
+                this.currentLevel = 1;
+                this.score = 0;
+                this.completedChallenges = new Set();
+                this.achievements = [];
+                this.commandHistory = [];
+                this.currentDirectory = '/home/admin';
+                this.fileSystem = this.initializeFileSystem();
+                this.levels = this.initializeLevels();
+                this.systemAlerts = [];
+                
+                this.initializeGame();
+                this.setupEventListeners();
+            }
+
+            initializeFileSystem() {
+                return {
+                    '/': {
+                        type: 'directory',
+                        contents: {
+                            'home': { type: 'directory', contents: {
+                                'admin': { type: 'directory', contents: {
+                                    'documents': { type: 'directory', contents: {
+                                        'trading_logs.txt': { type: 'file', content: 'Trade execution logs from NYSE...' },
+                                        'system_config.conf': { type: 'file', content: 'server_port=8080\nmax_connections=1000' }
+                                    }},
+                                    'scripts': { type: 'directory', contents: {
+                                        'backup.sh': { type: 'file', content: '#!/bin/bash\necho "Backing up trading data..."' },
+                                        'monitor.py': { type: 'file', content: 'import psutil\nprint("System monitoring...")' }
+                                    }},
+                                    '.bashrc': { type: 'file', content: 'export PATH=$PATH:/usr/local/bin' }
+                                }}
+                            }},
+                            'var': { type: 'directory', contents: {
+                                'log': { type: 'directory', contents: {
+                                    'messages': { type: 'file', content: 'Jan 15 10:30:01 trader-01 systemd: Started trading service' },
+                                    'syslog': { type: 'file', content: 'System log entries...' },
+                                    'trade.log': { type: 'file', content: 'TRADE_EXEC: BUY AAPL 100 @$150.25 - SUCCESS' }
+                                }}
+                            }},
+                            'etc': { type: 'directory', contents: {
+                                'passwd': { type: 'file', content: 'root:x:0:0:root:/root:/bin/bash\nadmin:x:1000:1000:Admin User:/home/admin:/bin/bash' },
+                                'hosts': { type: 'file', content: '127.0.0.1 localhost\n192.168.1.100 trader-01' }
+                            }}
+                        }
+                    }
+                };
+            }
+
+            initializeLevels() {
+                return [
+                    {
+                        level: 1,
+                        title: "Junior Linux Admin - First Day",
+                        badge: "Level 1: Junior Linux Admin",
+                        description: "Welcome to GlobalTech Trading! Master basic navigation and file operations to prove you belong here.",
+                        hint: "Try using 'ls' to list files, 'pwd' to see your current directory, and 'cd' to change directories.",
+                        requiredCommands: ['ls', 'pwd', 'cd'],
+                        challenges: [
+                            { command: 'pwd', description: 'Show current directory' },
+                            { command: 'ls', description: 'List files in current directory' },
+                            { command: 'cd documents', description: 'Navigate to documents folder' },
+                            { command: 'ls -la', description: 'List all files with details' }
+                        ]
+                    },
+                    {
+                        level: 2,
+                        title: "File System Specialist",
+                        badge: "Level 2: File System Pro",
+                        description: "A critical trading configuration file has wrong permissions! Fix file permissions and search through logs to find trading anomalies.",
+                        hint: "Use 'chmod' to change permissions, 'chown' to change ownership, and 'grep' to search file contents.",
+                        requiredCommands: ['chmod', 'grep', 'cat'],
+                        challenges: [
+                            { command: 'cat documents/trading_logs.txt', description: 'Read the trading logs' },
+                            { command: 'grep -i "trade" documents/trading_logs.txt', description: 'Search for trade entries' },
+                            { command: 'chmod 755 scripts/backup.sh', description: 'Fix script permissions' },
+                            { command: 'ls -l scripts/', description: 'Verify permissions are correct' }
+                        ]
+                    },
+                    {
+                        level: 3,
+                        title: "Network Troubleshooter",
+                        badge: "Level 3: Network Ninja",
+                        description: "Trading systems are experiencing network latency! Use networking tools to diagnose and resolve connectivity issues.",
+                        hint: "Use 'ping' to test connectivity, 'netstat' to view network connections, and 'ss' for socket statistics.",
+                        requiredCommands: ['ping', 'netstat', 'ss'],
+                        challenges: [
+                            { command: 'ping -c 3 localhost', description: 'Test local connectivity' },
+                            { command: 'netstat -tuln', description: 'Check listening ports' },
+                            { command: 'ss -tuln', description: 'Modern socket statistics' },
+                            { command: 'cat /etc/hosts', description: 'Check host configurations' }
+                        ]
+                    },
+                    {
+                        level: 4,
+                        title: "Service Manager",
+                        badge: "Level 4: Service Specialist",
+                        description: "Critical trading services are down! Use systemctl to manage services and analyze logs to identify the root cause.",
+                        hint: "Use 'systemctl' to manage services, 'journalctl' to view logs, and 'systemctl status' to check service health.",
+                        requiredCommands: ['systemctl', 'journalctl', 'ps'],
+                        challenges: [
+                            { command: 'systemctl status sshd', description: 'Check SSH service status' },
+                            { command: 'ps aux | grep ssh', description: 'Find SSH processes' },
+                            { command: 'journalctl -u sshd -n 10', description: 'View recent SSH logs' },
+                            { command: 'systemctl is-active sshd', description: 'Verify service is active' }
+                        ]
+                    },
+                    {
+                        level: 5,
+                        title: "Automation Engineer",
+                        badge: "Level 5: Automation Master",
+                        description: "Implement automation to handle repetitive tasks. Create and schedule scripts to monitor trading system health.",
+                        hint: "Use 'crontab' for scheduling, create bash scripts for automation, and use 'watch' for monitoring.",
+                        requiredCommands: ['crontab', 'watch', 'top'],
+                        challenges: [
+                            { command: 'crontab -l', description: 'List current cron jobs' },
+                            { command: 'cat scripts/backup.sh', description: 'Review backup script' },
+                            { command: 'top -n 1', description: 'Check system resources' },
+                            { command: 'watch -n 5 "date"', description: 'Monitor system time' }
+                        ]
+                    },
+                    {
+                        level: 6,
+                        title: "Alert Response Specialist",
+                        badge: "Level 6: Alert Hero",
+                        description: "CRITICAL ALERT: Trading system latency spike detected! Multiple alerts from global datacenters require immediate attention.",
+                        hint: "Analyze alert logs, check system metrics, and implement quick fixes to restore optimal performance.",
+                        requiredCommands: ['tail', 'awk', 'sort'],
+                        challenges: [
+                            { command: 'tail -f /var/log/trade.log', description: 'Monitor live trading logs' },
+                            { command: 'awk \'/ERROR/ {print $0}\' /var/log/messages', description: 'Extract error messages' },
+                            { command: 'sort /var/log/messages | uniq -c', description: 'Count unique log entries' },
+                            { command: 'grep -c "SUCCESS" /var/log/trade.log', description: 'Count successful trades' }
+                        ]
+                    },
+                    {
+                        level: 7,
+                        title: "Senior Linux Engineer",
+                        badge: "Level 7: Senior Engineer",
+                        description: "INCIDENT RESPONSE: Complete system analysis required for post-mortem report. You must demonstrate senior-level troubleshooting skills.",
+                        hint: "Combine multiple commands, analyze system state comprehensively, and prepare executive summary of findings.",
+                        requiredCommands: ['find', 'du', 'df'],
+                        challenges: [
+                            { command: 'df -h', description: 'Check disk space usage' },
+                            { command: 'du -sh /var/log/*', description: 'Analyze log directory sizes' },
+                            { command: 'find /home -name "*.log" -size +1M', description: 'Find large log files' },
+                            { command: 'find /etc -name "*conf" | head -5', description: 'Locate configuration files' }
+                        ]
+                    }
+                ];
+            }
+
+            initializeGame() {
+                this.updateDisplay();
+                this.loadLevel(this.currentLevel);
+                this.addOutput("🚀 Welcome to your Linux career journey!");
+                this.addOutput("💼 Your mission: Rise from Junior Admin to Senior Engineer!");
+                this.addOutput("");
+            }
+
+            setupEventListeners() {
+                const commandInput = document.getElementById('commandInput');
+                commandInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.executeCommand(e.target.value.trim());
+                        e.target.value = '';
+                    }
+                });
+
+                commandInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        this.showPreviousCommand();
+                    }
+                });
+            }
+
+            executeCommand(command) {
+                if (!command) return;
+
+                this.commandHistory.push(command);
+                this.addOutput(`${document.getElementById('prompt').textContent} ${command}`, 'command-line');
+
+                const result = this.processCommand(command);
+                if (result.output) {
+                    this.addOutput(result.output, result.type || 'output-line');
+                }
+
+                if (result.success) {
+                    this.checkChallengeCompletion(command);
+                }
+
+                this.scrollToBottom();
+            }
+
+            processCommand(command) {
+                const args = command.split(' ');
+                const cmd = args[0].toLowerCase();
+
+                // Command implementations
+                switch (cmd) {
+                    case 'help':
+                        return {
+                            output: `Available commands:
+ls [-la] [path]     - List directory contents
+cd [path]          - Change directory
+pwd               - Print working directory
+cat [file]        - Display file contents
+grep [pattern] [file] - Search in files
+chmod [perms] [file] - Change file permissions
+ping [host]       - Test network connectivity
+netstat [-tuln]   - Show network connections
+ss [-tuln]        - Socket statistics
+systemctl [action] [service] - Control services
+ps [aux]          - Show running processes
+journalctl [-u service] - View system logs
+crontab [-l]      - Manage scheduled tasks
+top [-n count]    - Show system processes
+tail [-f] [file]  - Show end of file
+awk [pattern] [file] - Text processing
+sort [file]       - Sort file contents
+find [path] [options] - Find files
+du [-sh] [path]   - Directory usage
+df [-h]           - Filesystem usage
+watch [command]   - Repeat command
+clear             - Clear terminal
+help              - Show this help`,
+                            success: true
+                        };
+
+                    case 'clear':
+                        document.getElementById('terminalOutput').innerHTML = '';
+                        return { success: true };
+
+                    case 'pwd':
+                        return { output: this.currentDirectory, success: true };
+
+                    case 'ls':
+                        return this.handleLs(args);
+
+                    case 'cd':
+                        return this.handleCd(args);
+
+                    case 'cat':
+                        return this.handleCat(args);
+
+                    case 'grep':
+                        return this.handleGrep(args);
+
+                    case 'chmod':
+                        return this.handleChmod(args);
+
+                    case 'ping':
+                        return this.handlePing(args);
+
+                    case 'netstat':
+                        return this.handleNetstat(args);
+
+                    case 'ss':
+                        return this.handleSs(args);
+
+                    case 'systemctl':
+                        return this.handleSystemctl(args);
+
+                    case 'ps':
+                        return this.handlePs(args);
+
+                    case 'journalctl':
+                        return this.handleJournalctl(args);
+
+                    case 'crontab':
+                        return this.handleCrontab(args);
+
+                    case 'top':
+                        return this.handleTop(args);
+
+                    case 'tail':
+                        return this.handleTail(args);
+
+                    case 'awk':
+                        return this.handleAwk(args);
+
+                    case 'sort':
+                        return this.handleSort(args);
+
+                    case 'find':
+                        return this.handleFind(args);
+
+                    case 'du':
+                        return this.handleDu(args);
+
+                    case 'df':
+                        return this.handleDf(args);
+
+                    case 'watch':
+                        return this.handleWatch(args);
+
+                    default:
+                        return {
+                            output: `Command '${cmd}' not found. Type 'help' for available commands.`,
+                            type: 'error-line'
+                        };
+                }
+            }
+
+            handleLs(args) {
+                const showAll = args.includes('-a') || args.includes('-la');
+                const showLong = args.includes('-l') || args.includes('-la');
+                const path = args.find(arg => !arg.startsWith('-')) || '.';
+                
+                const targetPath = this.resolvePath(path);
+                const dir = this.getDirectoryContents(targetPath);
+                
+                if (!dir) {
+                    return { output: `ls: cannot access '${path}': No such file or directory`, type: 'error-line' };
+                }
+
+                let output = '';
+                const contents = Object.keys(dir.contents || {});
+                
+                if (showAll) {
+                    contents.unshift('.', '..');
+                }
+
+                contents.forEach(item => {
+                    if (showLong) {
+                        const isDir = dir.contents[item]?.type === 'directory';
+                        const perms = isDir ? 'drwxr-xr-x' : '-rw-r--r--';
+                        const size = isDir ? '4096' : '1024';
+                        output += `${perms} 1 admin admin ${size} Jan 15 10:30 ${item}\n`;
+                    } else {
+                        output += item + '  ';
+                    }
+                });
+
+                return { output: output.trim(), success: true };
+            }
+
+            handleCd(args) {
+                const path = args[1] || '/home/admin';
+                const targetPath = this.resolvePath(path);
+                const dir = this.getDirectoryContents(targetPath);
+                
+                if (!dir || dir.type !== 'directory') {
+                    return { output: `cd: ${path}: No such file or directory`, type: 'error-line' };
+                }
+
+                this.currentDirectory = targetPath;
+                this.updatePrompt();
+                return { success: true };
+            }
+
+            handleCat(args) {
+                if (args.length < 2) {
+                    return { output: 'Usage: cat <filename>', type: 'error-line' };
+                }
+
+                const filePath = this.resolvePath(args[1]);
+                const file = this.getFileContents(filePath);
+                
+                if (!file) {
+                    return { output: `cat: ${args[1]}: No such file or directory`, type: 'error-line' };
+                }
+
+                if (file.type !== 'file') {
+                    return { output: `cat: ${args[1]}: Is a directory`, type: 'error-line' };
+                }
+
+                return { output: file.content, success: true };
+            }
+
+            handleGrep(args) {
+                if (args.length < 3) {
+                    return { output: 'Usage: grep [pattern] [file]', type: 'error-line' };
+                }
+
+                const pattern = args[1];
+                const filePath = this.resolvePath(args[2]);
+                const file = this.getFileContents(filePath);
+                
+                if (!file || file.type !== 'file') {
+                    return { output: `grep: ${args[2]}: No such file or directory`, type: 'error-line' };
+                }
+
+                const lines = file.content.split('\n');
+                const matches = lines.filter(line => {
+                    const regex = new RegExp(pattern, args.includes('-i') ? 'i' : '');
+                    return regex.test(line);
+                });
+
+                return { output: matches.join('\n'), success: true };
+            }
+
+            handleChmod(args) {
+                if (args.length < 3) {
+                    return { output: 'Usage: chmod [permissions] [file]', type: 'error-line' };
+                }
+
+                const perms = args[1];
+                const filePath = this.resolvePath(args[2]);
+                const file = this.getFileContents(filePath);
+                
+                if (!file) {
+                    return { output: `chmod: cannot access '${args[2]}': No such file or directory`, type: 'error-line' };
+                }
+
+                return { output: `chmod: permissions changed for '${args[2]}'`, success: true };
+            }
+
+            handlePing(args) {
+                if (args.length < 2) {
+                    return { output: 'Usage: ping [-c count] <host>', type: 'error-line' };
+                }
+
+                const host = args[args.length - 1];
+                const count = args.includes('-c') ? parseInt(args[args.indexOf('-c') + 1]) || 3 : 3;
+                
+                let output = `PING ${host} (127.0.0.1): 56 data bytes\n`;
+                for (let i = 1; i <= count; i++) {
+                    const time = (Math.random() * 2 + 0.1).toFixed(1);
+                    output += `64 bytes from ${host}: icmp_seq=${i} time=${time}ms\n`;
+                }
+                output += `--- ${host} ping statistics ---\n`;
+                output += `${count} packets transmitted, ${count} received, 0% packet loss`;
+
+                return { output, success: true };
+            }
+
+            handleNetstat(args) {
+                const output = `Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN
+tcp        0      0 127.0.0.1:8080          0.0.0.0:*               LISTEN
+tcp6       0      0 :::22                   :::*                    LISTEN
+udp        0      0 0.0.0.0:68              0.0.0.0:*
+udp        0      0 127.0.0.1:53            0.0.0.0:*`;
+
+                return { output, success: true };
+            }
+
+            handleSs(args) {
+                const output = `Netid  State    Recv-Q Send-Q Local Address:Port  Peer Address:Port Process
+tcp    LISTEN   0      128          0.0.0.0:22         0.0.0.0:*
+tcp    LISTEN   0      128        127.0.0.1:8080       0.0.0.0:*
+tcp    LISTEN   0      128             [::]:22            [::]:*
+udp    UNCONN   0      0           0.0.0.0:68         0.0.0.0:*
+udp    UNCONN   0      0         127.0.0.1:53         0.0.0.0:*`;
+
+                return { output, success: true };
+            }
+
+            handleSystemctl(args) {
+                if (args.length < 2) {
+                    return { output: 'Usage: systemctl [action] [service]', type: 'error-line' };
+                }
+
+                const action = args[1];
+                const service = args[2] || 'unknown';
+
+                switch (action) {
+                    case 'status':
+                        return {
+                            output: `● ${service}.service - OpenSSH server daemon
+   Loaded: loaded (/lib/systemd/system/${service}.service; enabled; vendor preset: enabled)
+   Active: active (running) since Mon 2024-01-15 10:30:01 UTC; 2h 15min ago
+     Docs: man:${service}(8)
+  Process: 1234 ExecStartPre=/usr/sbin/${service} -t (code=exited, status=0/SUCCESS)
+ Main PID: 1235 (${service})
+    Tasks: 1 (limit: 4915)
+   Memory: 5.2M
+   CGroup: /system.slice/${service}.service
+           └─1235 /usr/sbin/${service} -D`,
+                            success: true
+                        };
+                    case 'is-active':
+                        return { output: 'active', success: true };
+                    default:
+                        return { output: `systemctl: unknown action '${action}'`, type: 'error-line' };
+                }
+            }
+
+            handlePs(args) {
+                const output = `USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.1  0.1  19512  1564 ?        Ss   10:30   0:01 /sbin/init
+root       123  0.0  0.0  12345   678 ?        S    10:30   0:00 [kthreadd]
+admin     1234  0.2  0.5  23456  2345 pts/0    Ss   10:31   0:00 -bash
+root      1235  0.0  0.1  15678   890 ?        Ss   10:30   0:00 /usr/sbin/sshd -D
+admin     2345  0.1  0.3  18901  1234 pts/0    R+   12:45   0:00 ps aux`;
+
+                return { output, success: true };
+            }
+
+            handleJournalctl(args) {
+                const service = args.includes('-u') ? args[args.indexOf('-u') + 1] : 'system';
+                const lines = args.includes('-n') ? parseInt(args[args.indexOf('-n') + 1]) || 10 : 10;
+                
+                let output = `-- Logs begin at Mon 2024-01-15 10:30:01 UTC --\n`;
+                for (let i = 0; i < lines; i++) {
+                    const time = `Jan 15 ${10 + Math.floor(i/2)}:${30 + (i*5) % 60}:01`;
+                    output += `${time} trader-01 ${service}[1234]: Service ${service} is running normally\n`;
+                }
+
+                return { output, success: true };
+            }
+
+            handleCrontab(args) {
+                if (args.includes('-l')) {
+                    return {
+                        output: `# Trading system backup schedule
+0 2 * * * /home/admin/scripts/backup.sh
+*/15 * * * * /usr/bin/python3 /home/admin/scripts/monitor.py
+0 8 * * 1 /usr/bin/systemctl restart trading-engine`,
+                        success: true
+                    };
+                }
+                return { output: 'Usage: crontab [-l] (list cron jobs)', type: 'error-line' };
+            }
+
+            handleTop(args) {
+                const output = `top - 12:45:30 up 2:15, 1 user, load average: 0.15, 0.05, 0.01
+Tasks: 156 total, 1 running, 155 sleeping, 0 stopped, 0 zombie
+%Cpu(s): 2.3 us, 1.2 sy, 0.0 ni, 96.5 id, 0.0 wa, 0.0 hi, 0.0 si, 0.0 st
+MiB Mem : 4096.0 total, 2048.5 free, 1024.2 used, 1023.3 buff/cache
+MiB Swap: 2048.0 total, 2048.0 free,    0.0 used. 2800.1 avail Mem
+
+PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+1235 root      20   0   15678    890    456 S   1.3   0.0   0:00.45 sshd
+2345 admin     20   0   18901   1234    678 R   0.7   0.1   0:00.12 top`;
+
+                return { output, success: true };
+            }
+
+            handleTail(args) {
+                if (args.length < 2) {
+                    return { output: 'Usage: tail [-f] <file>', type: 'error-line' };
+                }
+
+                const fileName = args[args.length - 1];
+                const filePath = this.resolvePath(fileName);
+                const file = this.getFileContents(filePath);
+                
+                if (!file || file.type !== 'file') {
+                    return { output: `tail: cannot open '${fileName}' for reading: No such file`, type: 'error-line' };
+                }
+
+                const lines = file.content.split('\n');
+                const lastLines = lines.slice(-10).join('\n');
+                
+                if (args.includes('-f')) {
+                    return { output: lastLines + '\n[Following file - Press Ctrl+C to stop]', success: true };
+                }
+
+                return { output: lastLines, success: true };
+            }
+
+            handleAwk(args) {
+                if (args.length < 3) {
+                    return { output: 'Usage: awk \'pattern\' file', type: 'error-line' };
+                }
+
+                const pattern = args[1];
+                const fileName = args[2];
+                const filePath = this.resolvePath(fileName);
+                const file = this.getFileContents(filePath);
+                
+                if (!file || file.type !== 'file') {
+                    return { output: `awk: ${fileName}: No such file or directory`, type: 'error-line' };
+                }
+
+                // Simple awk simulation
+                if (pattern.includes('/ERROR/')) {
+                    const lines = file.content.split('\n');
+                    const matches = lines.filter(line => line.includes('ERROR'));
+                    return { output: matches.join('\n'), success: true };
+                }
+
+                return { output: 'awk: pattern processed', success: true };
+            }
+
+            handleSort(args) {
+                if (args.length < 2) {
+                    return { output: 'Usage: sort <file>', type: 'error-line' };
+                }
+
+                const fileName = args[1];
+                const filePath = this.resolvePath(fileName);
+                const file = this.getFileContents(filePath);
+                
+                if (!file || file.type !== 'file') {
+                    return { output: `sort: ${fileName}: No such file or directory`, type: 'error-line' };
+                }
+
+                const lines = file.content.split('\n').sort();
+                return { output: lines.join('\n'), success: true };
+            }
+
+            handleFind(args) {
+                const path = args[1] || '.';
+                const namePattern = args.includes('-name') ? args[args.indexOf('-name') + 1] : null;
+                const sizePattern = args.includes('-size') ? args[args.indexOf('-size') + 1] : null;
+
+                let results = [];
+                
+                if (namePattern) {
+                    if (namePattern.includes('*.log')) {
+                        results = ['/var/log/messages', '/var/log/syslog', '/var/log/trade.log'];
+                    } else if (namePattern.includes('*conf')) {
+                        results = ['/etc/ssh/sshd_config', '/etc/nginx/nginx.conf', '/etc/mysql/mysql.conf'];
+                    }
+                }
+
+                if (sizePattern === '+1M') {
+                    results = ['/var/log/trade.log', '/var/log/messages'];
+                }
+
+                if (!namePattern && !sizePattern) {
+                    results = [path, path + '/documents', path + '/scripts'];
+                }
+
+                return { output: results.slice(0, 5).join('\n'), success: true };
+            }
+
+            handleDu(args) {
+                const showSummary = args.includes('-s');
+                const humanReadable = args.includes('-h');
+                const path = args.find(arg => !arg.startsWith('-') && arg !== 'du') || '.';
+
+                let output = '';
+                if (path === '/var/log/*') {
+                    output = `12M     /var/log/messages
+5.2M    /var/log/syslog
+2.1M    /var/log/trade.log
+1.5M    /var/log/auth.log
+512K    /var/log/kern.log`;
+                } else {
+                    output = humanReadable ? '2.5M    .' : '2560    .';
+                }
+
+                return { output, success: true };
+            }
+
+            handleDf(args) {
+                const humanReadable = args.includes('-h');
+                
+                const output = `Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        20G   12G  7.2G  63% /
+tmpfs           2.0G     0  2.0G   0% /dev/shm
+/dev/sda2       100G   45G   50G  48% /home
+/dev/sda3       50G    15G   32G  32% /var/log`;
+
+                return { output, success: true };
+            }
+
+            handleWatch(args) {
+                if (args.length < 2) {
+                    return { output: 'Usage: watch [-n seconds] "command"', type: 'error-line' };
+                }
+
+                const command = args[args.length - 1].replace(/"/g, '');
+                return { output: `Every 5.0s: ${command}                    trader-01: Mon Jan 15 12:45:30 2024\n\n${new Date().toLocaleString()}`, success: true };
+            }
+
+            resolvePath(path) {
+                if (path.startsWith('/')) {
+                    return path;
+                }
+                if (path === '.' || path === '') {
+                    return this.currentDirectory;
+                }
+                if (path === '..') {
+                    const parts = this.currentDirectory.split('/');
+                    parts.pop();
+                    return parts.join('/') || '/';
+                }
+                return this.currentDirectory + '/' + path;
+            }
+
+            getDirectoryContents(path) {
+                const parts = path.split('/').filter(part => part !== '');
+                let current = this.fileSystem['/'];
+                
+                for (const part of parts) {
+                    if (current.contents && current.contents[part]) {
+                        current = current.contents[part];
+                    } else {
+                        return null;
+                    }
+                }
+                
+                return current;
+            }
+
+            getFileContents(path) {
+                return this.getDirectoryContents(path);
+            }
+
+            checkChallengeCompletion(command) {
+                const currentLevelData = this.levels[this.currentLevel - 1];
+                if (!currentLevelData) return;
+
+                const challenges = currentLevelData.challenges;
+                let completed = 0;
+
+                challenges.forEach(challenge => {
+                    if (command.startsWith(challenge.command.split(' ')[0])) {
+                        this.completedChallenges.add(`${this.currentLevel}-${challenge.command}`);
+                        this.addOutput(`✅ Challenge completed: ${challenge.description}`, 'success-line');
+                        this.score += 100;
+                        completed++;
+                    }
+                });
+
+                if (completed > 0) {
+                    this.updateDisplay();
+                    this.checkLevelCompletion();
+                }
+            }
+
+            checkLevelCompletion() {
+                const currentLevelData = this.levels[this.currentLevel - 1];
+                const levelChallenges = currentLevelData.challenges.length;
+                const completedInLevel = Array.from(this.completedChallenges)
+                    .filter(challenge => challenge.startsWith(`${this.currentLevel}-`)).length;
+
+                if (completedInLevel >= levelChallenges) {
+                    this.completeLevel();
+                }
+            }
+
+            completeLevel() {
+                const currentLevelData = this.levels[this.currentLevel - 1];
+                this.score += 500; // Bonus for completing level
+                
+                this.addOutput("", 'output-line');
+                this.addOutput("🎉 LEVEL COMPLETED! 🎉", 'success-line');
+                this.addOutput(`Congratulations! You've mastered ${currentLevelData.title}`, 'success-line');
+                this.addOutput(`Bonus Score: +500 points`, 'success-line');
+                
+                // Add achievement
+                this.addAchievement({
+                    name: `Level ${this.currentLevel}`,
+                    icon: '🏆',
+                    earned: true
+                });
+
+                // Show special alerts for higher levels
+                if (this.currentLevel >= 4) {
+                    this.showSystemStats();
+                }
+
+                if (this.currentLevel >= 6) {
+                    this.showAlert(`SYSTEM PERFORMANCE IMPROVED`, `Great work! Trading system latency reduced by 40% thanks to your quick response.`);
+                }
+
+                document.getElementById('nextLevelBtn').disabled = false;
+                this.updateDisplay();
+
+                // Check if game completed
+                if (this.currentLevel >= this.levels.length) {
+                    setTimeout(() => this.showGameCompletion(), 2000);
+                }
+            }
+
+            nextLevel() {
+                if (this.currentLevel < this.levels.length) {
+                    this.currentLevel++;
+                    this.loadLevel(this.currentLevel);
+                    document.getElementById('nextLevelBtn').disabled = true;
+                } else {
+                    this.showGameCompletion();
+                }
+            }
+
+            loadLevel(level) {
+                const levelData = this.levels[level - 1];
+                if (!levelData) return;
+
+                document.getElementById('challengeIcon').textContent = level;
+                document.getElementById('challengeTitle').textContent = levelData.title;
+                document.getElementById('challengeDescription').textContent = levelData.description;
+                document.getElementById('hintText').textContent = levelData.hint;
+                document.getElementById('levelBadge').textContent = levelData.badge;
+
+                // Hide hint box when loading new level
+                document.getElementById('hintBox').style.display = 'none';
+
+                // Add level-specific setup
+                this.addOutput("", 'output-line');
+                this.addOutput(`🚀 Starting ${levelData.title}`, 'success-line');
+                this.addOutput("📋 Your challenges:", 'output-line');
+                
+                levelData.challenges.forEach((challenge, index) => {
+                    this.addOutput(`${index + 1}. ${challenge.description}`, 'output-line');
+                });
+                
+                this.addOutput("", 'output-line');
+
+                // Show system stats for advanced levels
+                if (level >= 4) {
+                    this.showSystemStats();
+                }
+
+                // Show alerts for incident response levels
+                if (level >= 6) {
+                    this.showAlert(
+                        'CRITICAL SYSTEM ALERT',
+                        `Trading system experiencing ${level === 6 ? 'latency spikes' : 'multiple service failures'}. Immediate attention required!`
+                    );
+                }
+
+                this.updateDisplay();
+            }
+
+            showSystemStats() {
+                const statsDiv = document.getElementById('systemStats');
+                statsDiv.style.display = 'grid';
+                
+                // Simulate changing stats based on level
+                const uptime = Math.max(95, 99.99 - (this.currentLevel - 4) * 0.1);
+                const latency = Math.min(5.0, 0.2 + (this.currentLevel - 4) * 0.5);
+                const alerts = Math.max(0, (this.currentLevel - 4) * 2);
+                
+                document.getElementById('uptimeStat').textContent = `${uptime.toFixed(2)}%`;
+                document.getElementById('latencyStat').textContent = `${latency.toFixed(1)}ms`;
+                document.getElementById('alertsStat').textContent = alerts;
+            }
+
+            showAlert(title, content) {
+                const alertPanel = document.getElementById('alertPanel');
+                document.getElementById('alertTitle').textContent = title;
+                document.getElementById('alertContent').textContent = content;
+                alertPanel.style.display = 'block';
+                
+                // Hide after 10 seconds
+                setTimeout(() => {
+                    alertPanel.style.display = 'none';
+                }, 10000);
+            }
+
+            addAchievement(achievement) {
+                this.achievements.push(achievement);
+                this.updateAchievements();
+            }
+
+            updateAchievements() {
+                const container = document.getElementById('achievements');
+                container.innerHTML = '';
+                
+                this.achievements.forEach(achievement => {
+                    const div = document.createElement('div');
+                    div.className = `achievement ${achievement.earned ? 'earned' : ''}`;
+                    div.innerHTML = `
+                        <span class="achievement-icon">${achievement.icon}</span>
+                        <span class="achievement-name">${achievement.name}</span>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+
+            showGameCompletion() {
+                const celebration = document.createElement('div');
+                celebration.className = 'completion-celebration';
+                celebration.innerHTML = `
+                    <div class="celebration-content">
+                        <h2 class="celebration-title">🎉 CONGRATULATIONS! 🎉</h2>
+                        <div class="celebration-text">
+                            <p>You've successfully completed your journey from Junior Linux Administrator to Senior Linux Engineer!</p>
+                            <br>
+                            <p><strong>Final Score: ${this.score.toLocaleString()} points</strong></p>
+                            <br>
+                            <p>You've mastered:</p>
+                            <p>✅ Basic Linux commands and navigation</p>
+                            <p>✅ File system management and permissions</p>
+                            <p>✅ Network troubleshooting and diagnostics</p>
+                            <p>✅ System service management</p>
+                            <p>✅ Automation and scripting</p>
+                            <p>✅ Alert response and incident management</p>
+                            <p>✅ Senior-level system analysis</p>
+                            <br>
+                            <p><strong>Welcome to the ranks of Senior Linux Engineers at GlobalTech Trading!</strong></p>
+                        </div>
+                        <button class="nav-button" onclick="location.reload()">🔄 Play Again</button>
+                    </div>
+                `;
+                document.body.appendChild(celebration);
+            }
+
+            updateDisplay() {
+                document.getElementById('scoreDisplay').textContent = `Score: ${this.score.toLocaleString()}`;
+                
+                const progress = (this.currentLevel / this.levels.length) * 100;
+                document.getElementById('progressFill').style.width = `${progress}%`;
+            }
+
+            updatePrompt() {
+                const shortPath = this.currentDirectory.replace('/home/admin', '~');
+                document.getElementById('prompt').textContent = `admin@trader-01:${shortPath}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Career Quest - Trading Company Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .game-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #00ff88;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #88ccff;
+            opacity: 0.9;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #88ccff);
+            border-radius: 10px;
+            transition: width 0.8s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .level-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #00ff88;
+        }
+
+        .level-badge {
+            background: #00ff88;
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        .score {
+            font-size: 1.2rem;
+            color: #ffaa00;
+        }
+
+        .terminal {
+            background: #1a1a1a;
+            border: 3px solid #00ff88;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 400px;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .terminal-title {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 5px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red { background: #ff5555; }
+        .dot.yellow { background: #ffaa00; }
+        .dot.green { background: #00ff88; }
+
+        .terminal-output {
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .command-line {
+            color: #88ccff;
+            margin: 5px 0;
+        }
+
+        .output-line {
+            color: #fff;
+            margin: 2px 0;
+        }
+
+        .error-line {
+            color: #ff5555;
+        }
+
+        .success-line {
+            color: #00ff88;
+        }
+
+        .warning-line {
+            color: #ffaa00;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            background: #2a2a2a;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .prompt {
+            color: #00ff88;
+            margin-right: 10px;
+        }
+
+        .command-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .command-input::placeholder {
+            color: #666;
+        }
+
+        .challenge-panel {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #ffaa00;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .challenge-title {
+            color: #ffaa00;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .challenge-icon {
+            width: 30px;
+            height: 30px;
+            background: #ffaa00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .challenge-description {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .hint-box {
+            background: rgba(0, 255, 136, 0.1);
+            border-left: 4px solid #00ff88;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .hint-toggle {
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .achievements {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .achievement {
+            background: rgba(255, 170, 0, 0.2);
+            border: 2px solid #ffaa00;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 120px;
+            transition: all 0.3s ease;
+        }
+
+        .achievement.earned {
+            background: rgba(0, 255, 136, 0.2);
+            border-color: #00ff88;
+            animation: achievementPop 0.5s ease;
+        }
+
+        .achievement-icon {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .achievement-name {
+            font-size: 12px;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #00ff88, #88ccff);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-button:hover::before {
+            left: 100%;
+        }
+
+        .alert-panel {
+            background: rgba(255, 85, 85, 0.1);
+            border: 2px solid #ff5555;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            animation: alertBlink 1s infinite;
+        }
+
+        .alert-header {
+            color: #ff5555;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff5555;
+            animation: blink 1s infinite;
+        }
+
+        .system-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-top: 5px;
+        }
+
+        .completion-celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .celebration-content {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border: 3px solid #00ff88;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            animation: celebrationPop 0.5s ease;
+        }
+
+        .celebration-title {
+            color: #00ff88;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .celebration-text {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes achievementPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes alertBlink {
+            0%, 100% { border-color: #ff5555; }
+            50% { border-color: #ff8888; }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes celebrationPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .title { font-size: 1.8rem; }
+            .subtitle { font-size: 1rem; }
+            .terminal { padding: 15px; }
+            .system-stats { grid-template-columns: 1fr; }
+            .navigation { flex-direction: column; }
+            .level-info { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1 class="title">🐧 Linux Career Quest</h1>
+            <p class="subtitle">Rise from Junior Admin to Senior Engineer at GlobalTech Trading</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+
+        <div class="level-info">
+            <div class="level-badge" id="levelBadge">Level 1: Junior Linux Admin</div>
+            <div class="score" id="scoreDisplay">Score: 0</div>
+        </div>
+
+        <div class="achievements" id="achievements"></div>
+
+        <div class="challenge-panel" id="challengePanel">
+            <div class="challenge-title">
+                <div class="challenge-icon" id="challengeIcon">1</div>
+                <span id="challengeTitle">Welcome to GlobalTech Trading!</span>
+            </div>
+            <div class="challenge-description" id="challengeDescription">
+                You've just been hired as a Junior Linux Administrator at GlobalTech Trading Company. 
+                Your first task is to navigate the file system and get familiar with basic commands.
+            </div>
+            <button class="hint-toggle" onclick="toggleHint()">💡 Show Hint</button>
+            <div class="hint-box" id="hintBox" style="display: none;">
+                <strong>Hint:</strong> <span id="hintText">Try using 'ls' to list files, 'pwd' to see your current directory, and 'cd' to change directories.</span>
+            </div>
+        </div>
+
+        <div class="alert-panel" id="alertPanel" style="display: none;">
+            <div class="alert-header">
+                <div class="status-indicator"></div>
+                <span id="alertTitle">SYSTEM ALERT</span>
+            </div>
+            <div id="alertContent">Critical system issue detected!</div>
+        </div>
+
+        <div class="system-stats" id="systemStats" style="display: none;">
+            <div class="stat-card">
+                <div class="stat-value" id="uptimeStat">99.99%</div>
+                <div class="stat-label">System Uptime</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="latencyStat">0.2ms</div>
+                <div class="stat-label">Avg Latency</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="alertsStat">0</div>
+                <div class="stat-label">Active Alerts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="tradesStat">1,247,893</div>
+                <div class="stat-label">Trades/Day</div>
+            </div>
+        </div>
+
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="terminal-title">trader-01.globaltech.com</div>
+                <div class="terminal-dots">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+            </div>
+            <div class="terminal-output" id="terminalOutput">
+                <div class="output-line">Welcome to GlobalTech Trading Linux Terminal</div>
+                <div class="output-line">Type 'help' for available commands</div>
+                <div class="output-line">==================================================</div>
+            </div>
+            <div class="input-container">
+                <span class="prompt" id="prompt">admin@trader-01:~$</span>
+                <input type="text" class="command-input" id="commandInput" placeholder="Enter command..." autocomplete="off">
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-button" onclick="showHelp()">📖 Help</button>
+            <button class="nav-button" onclick="resetLevel()">🔄 Reset Level</button>
+            <button class="nav-button" id="nextLevelBtn" onclick="nextLevel()" disabled>➡️ Next Level</button>
+        </div>
     </div>
 
-    <div id="level3" class="level">
-      <h2>Level 3: System Monitoring</h2>
-      <div class="task">Task: What command shows running processes?</div>
-      <div class="terminal" id="terminal3"></div>
-      <input type="text" class="command" id="input3" placeholder="Type your answer..." />
-      <button onclick="checkAnswer(3, 'top')">Submit</button>
-    </div>
+    <script>
+        class LinuxCareerGame {
+            constructor() {
+                this.currentLevel = 1;
+                this.score = 0;
+                this.completedChallenges = new Set();
+                this.achievements = [];
+                this.commandHistory = [];
+                this.currentDirectory = '/home/admin';
+                this.fileSystem = this.initializeFileSystem();
+                this.levels = this.initializeLevels();
+                this.systemAlerts = [];
+                
+                this.initializeGame();
+                this.setupEventListeners();
+            }
 
-    <div id="level4" class="level">
-      <h2>Level 4: Package Management</h2>
-      <div class="task">Task: Command to install nginx using apt?</div>
-      <div class="terminal" id="terminal4"></div>
-      <input type="text" class="command" id="input4" placeholder="Type your answer..." />
-      <button onclick="checkAnswer(4, 'sudo apt install nginx')">Submit</button>
-    </div>
+            initializeFileSystem() {
+                return {
+                    '/': {
+                        type: 'directory',
+                        contents: {
+                            'home': { type: 'directory', contents: {
+                                'admin': { type: 'directory', contents: {
+                                    'documents': { type: 'directory', contents: {
+                                        'trading_logs.txt': { type: 'file', content: 'Trade execution logs from NYSE...' },
+                                        'system_config.conf': { type: 'file', content: 'server_port=8080\nmax_connections=1000' }
+                                    }},
+                                    'scripts': { type: 'directory', contents: {
+                                        'backup.sh': { type: 'file', content: '#!/bin/bash\necho "Backing up trading data..."' },
+                                        'monitor.py': { type: 'file', content: 'import psutil\nprint("System monitoring...")' }
+                                    }},
+                                    '.bashrc': { type: 'file', content: 'export PATH=$PATH:/usr/local/bin' }
+                                }}
+                            }},
+                            'var': { type: 'directory', contents: {
+                                'log': { type: 'directory', contents: {
+                                    'messages': { type: 'file', content: 'Jan 15 10:30:01 trader-01 systemd: Started trading service' },
+                                    'syslog': { type: 'file', content: 'System log entries...' },
+                                    'trade.log': { type: 'file', content: 'TRADE_EXEC: BUY AAPL 100 @$150.25 - SUCCESS' }
+                                }}
+                            }},
+                            'etc': { type: 'directory', contents: {
+                                'passwd': { type: 'file', content: 'root:x:0:0:root:/root:/bin/bash\nadmin:x:1000:1000:Admin User:/home/admin:/bin/bash' },
+                                'hosts': { type: 'file', content: '127.0.0.1 localhost\n192.168.1.100 trader-01' }
+                            }}
+                        }
+                    }
+                };
+            }
 
-    <div id="level5" class="level">
-      <h2>Level 5: Logs and Troubleshooting</h2>
-      <div class="task">Task: Command to view system logs?</div>
-      <div class="terminal" id="terminal5"></div>
-      <input type="text" class="command" id="input5" placeholder="Type your answer..." />
-      <button onclick="checkAnswer(5, 'journalctl')">Submit</button>
-    </div>
+            initializeLevels() {
+                return [
+                    {
+                        level: 1,
+                        title: "Junior Linux Admin - First Day",
+                        badge: "Level 1: Junior Linux Admin",
+                        description: "Welcome to GlobalTech Trading! Master basic navigation and file operations to prove you belong here.",
+                        hint: "Try using 'ls' to list files, 'pwd' to see your current directory, and 'cd' to change directories.",
+                        requiredCommands: ['ls', 'pwd', 'cd'],
+                        challenges: [
+                            { command: 'pwd', description: 'Show current directory' },
+                            { command: 'ls', description: 'List files in current directory' },
+                            { command: 'cd documents', description: 'Navigate to documents folder' },
+                            { command: 'ls -la', description: 'List all files with details' }
+                        ]
+                    },
+                    {
+                        level: 2,
+                        title: "File System Specialist",
+                        badge: "Level 2: File System Pro",
+                        description: "A critical trading configuration file has wrong permissions! Fix file permissions and search through logs to find trading anomalies.",
+                        hint: "Use 'chmod' to change permissions, 'chown' to change ownership, and 'grep' to search file contents.",
+                        requiredCommands: ['chmod', 'grep', 'cat'],
+                        challenges: [
+                            { command: 'cat documents/trading_logs.txt', description: 'Read the trading logs' },
+                            { command: 'grep -i "trade" documents/trading_logs.txt', description: 'Search for trade entries' },
+                            { command: 'chmod 755 scripts/backup.sh', description: 'Fix script permissions' },
+                            { command: 'ls -l scripts/', description: 'Verify permissions are correct' }
+                        ]
+                    },
+                    {
+                        level: 3,
+                        title: "Network Troubleshooter",
+                        badge: "Level 3: Network Ninja",
+                        description: "Trading systems are experiencing network latency! Use networking tools to diagnose and resolve connectivity issues.",
+                        hint: "Use 'ping' to test connectivity, 'netstat' to view network connections, and 'ss' for socket statistics.",
+                        requiredCommands: ['ping', 'netstat', 'ss'],
+                        challenges: [
+                            { command: 'ping -c 3 localhost', description: 'Test local connectivity' },
+                            { command: 'netstat -tuln', description: 'Check listening ports' },
+                            { command: 'ss -tuln', description: 'Modern socket statistics' },
+                            { command: 'cat /etc/hosts', description: 'Check host configurations' }
+                        ]
+                    },
+                    {
+                        level: 4,
+                        title: "Service Manager",
+                        badge: "Level 4: Service Specialist",
+                        description: "Critical trading services are down! Use systemctl to manage services and analyze logs to identify the root cause.",
+                        hint: "Use 'systemctl' to manage services, 'journalctl' to view logs, and 'systemctl status' to check service health.",
+                        requiredCommands: ['systemctl', 'journalctl', 'ps'],
+                        challenges: [
+                            { command: 'systemctl status sshd', description: 'Check SSH service status' },
+                            { command: 'ps aux | grep ssh', description: 'Find SSH processes' },
+                            { command: 'journalctl -u sshd -n 10', description: 'View recent SSH logs' },
+                            { command: 'systemctl is-active sshd', description: 'Verify service is active' }
+                        ]
+                    },
+                    {
+                        level: 5,
+                        title: "Automation Engineer",
+                        badge: "Level 5: Automation Master",
+                        description: "Implement automation to handle repetitive tasks. Create and schedule scripts to monitor trading system health.",
+                        hint: "Use 'crontab' for scheduling, create bash scripts for automation, and use 'watch' for monitoring.",
+                        requiredCommands: ['crontab', 'watch', 'top'],
+                        challenges: [
+                            { command: 'crontab -l', description: 'List current cron jobs' },
+                            { command: 'cat scripts/backup.sh', description: 'Review backup script' },
+                            { command: 'top -n 1', description: 'Check system resources' },
+                            { command: 'watch -n 5 "date"', description: 'Monitor system time' }
+                        ]
+                    },
+                    {
+                        level: 6,
+                        title: "Alert Response Specialist",
+                        badge: "Level 6: Alert Hero",
+                        description: "CRITICAL ALERT: Trading system latency spike detected! Multiple alerts from global datacenters require immediate attention.",
+                        hint: "Analyze alert logs, check system metrics, and implement quick fixes to restore optimal performance.",
+                        requiredCommands: ['tail', 'awk', 'sort'],
+                        challenges: [
+                            { command: 'tail -f /var/log/trade.log', description: 'Monitor live trading logs' },
+                            { command: 'awk \'/ERROR/ {print $0}\' /var/log/messages', description: 'Extract error messages' },
+                            { command: 'sort /var/log/messages | uniq -c', description: 'Count unique log entries' },
+                            { command: 'grep -c "SUCCESS" /var/log/trade.log', description: 'Count successful trades' }
+                        ]
+                    },
+                    {
+                        level: 7,
+                        title: "Senior Linux Engineer",
+                        badge: "Level 7: Senior Engineer",
+                        description: "INCIDENT RESPONSE: Complete system analysis required for post-mortem report. You must demonstrate senior-level troubleshooting skills.",
+                        hint: "Combine multiple commands, analyze system state comprehensively, and prepare executive summary of findings.",
+                        requiredCommands: ['find', 'du', 'df'],
+                        challenges: [
+                            { command: 'df -h', description: 'Check disk space usage' },
+                            { command: 'du -sh /var/log/*', description: 'Analyze log directory sizes' },
+                            { command: 'find /home -name "*.log" -size +1M', description: 'Find large log files' },
+                            { command: 'find /etc -name "*conf" | head -5', description: 'Locate configuration files' }
+                        ]
+                    }
+                ];
+            }
 
-    <div id="completion" class="level">
-      <h2>Congratulations!</h2>
-      <p>You are now a certified Linux Admin!</p>
-      <p>Your final score is <span id="finalScore"></span>!</p>
-    </div>
-  </main>
-  <audio id="correctSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
-  <audio id="wrongSound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
-  <script>
-    let score = 0;
+            initializeGame() {
+                this.updateDisplay();
+                this.loadLevel(this.currentLevel);
+                this.addOutput("🚀 Welcome to your Linux career journey!");
+                this.addOutput("💼 Your mission: Rise from Junior Admin to Senior Engineer!");
+                this.addOutput("");
+            }
 
-    function updateScore(points) {
-      score += points;
-      document.getElementById('score').textContent = score;
-    }
+            setupEventListeners() {
+                const commandInput = document.getElementById('commandInput');
+                commandInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.executeCommand(e.target.value.trim());
+                        e.target.value = '';
+                    }
+                });
 
-    function playSound(correct) {
-      const sound = document.getElementById(correct ? 'correctSound' : 'wrongSound');
-      sound.play();
-    }
+                commandInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        this.showPreviousCommand();
+                    }
+                });
+            }
 
-    function checkAnswer(level, correct) {
-      const input = document.getElementById(`input${level}`).value.trim().toLowerCase();
-      const output = document.getElementById(`terminal${level}`);
-      if (input === correct.toLowerCase()) {
-        output.innerHTML += `\n> ${input}\n✔ Correct! Moving to next level...`;
-        updateScore(10);
-        playSound(true);
-        setTimeout(() => nextLevel(level), 1500);
-      } else {
-        output.innerHTML += `\n> ${input}\n✖ Incorrect, try again.`;
-        playSound(false);
-      }
-    }
+            executeCommand(command) {
+                if (!command) return;
 
-    function nextLevel(current) {
-      document.getElementById(`level${current}`).classList.remove('visible');
-      const next = document.getElementById(`level${current + 1}`);
-      if (next) {
-        next.classList.add('visible');
-      } else {
-        document.getElementById('completion').classList.add('visible');
-        document.getElementById('finalScore').textContent = score;
-      }
-    }
-  </script>
+                this.commandHistory.push(command);
+                this.addOutput(`${document.getElementById('prompt').textContent} ${command}`, 'command-line');
+
+                const result = this.processCommand(command);
+                if (result.output) {
+                    this.addOutput(result.output, result.type || 'output-line');
+                }
+
+                if (result.success) {
+                    this.checkChallengeCompletion(command);
+                }
+
+                this.scrollToBottom();
+            }
+
+            processCommand(command) {
+                const args = command.split(' ');
+                const cmd = args[0].toLowerCase();
+
+                // Command implementations
+                switch (cmd) {
+                    case 'help':
+                        return {
+                            output: `Available commands:
+ls [-la] [path]     - List directory contents
+cd [path]          - Change directory
+pwd               - Print working directory
+cat [file]        - Display file contents
+grep [pattern] [file] - Search in files
+chmod [perms] [file] - Change file permissions
+ping [host]       - Test network connectivity
+netstat [-tuln]   - Show network connections
+ss [-tuln]        - Socket statistics
+systemctl [action] [service] - Control services
+ps [aux]          - Show running processes
+journalctl [-u service] - View system logs
+crontab [-l]      - Manage scheduled tasks
+top [-n count]    - Show system processes
+tail [-f] [file]  - Show end of file
+awk [pattern] [file] - Text processing
+sort [file]       - Sort file contents
+find [path] [options] - Find files
+du [-sh] [path]   - Directory usage
+df [-h]           - Filesystem usage
+watch [command]   - Repeat command
+clear             - Clear terminal
+help              - Show this help`,
+                            success: true
+                        };
+
+                    case 'clear':
+                        document.getElementById('terminalOutput').innerHTML = '';
+                        return { success: true };
+
+                    case 'pwd':
+                        return { output: this.currentDirectory, success: true };
+
+                    case 'ls':
+                        return this.handleLs(args);
+
+                    case 'cd':
+                        return this.handleCd(args);
+
+                    case 'cat':
+                        return this.handleCat(args);
+
+                    case 'grep':
+                        return this.handleGrep(args);
+
+                    case 'chmod':
+                        return this.handleChmod(args);
+
+                    case 'ping':
+                        return this.handlePing(args);
+
+                    case 'netstat':
+                        return this.handleNetstat(args);
+
+                    case 'ss':
+                        return this.handleSs(args);
+
+                    case 'systemctl':
+                        return this.handleSystemctl(args);
+
+                    case 'ps':
+                        return this.handlePs(args);
+
+                    case 'journalctl':
+                        return this.handleJournalctl(args);
+
+                    case 'crontab':
+                        return this.handleCrontab(args);
+
+                    case 'top':
+                        return this.handleTop(args);
+
+                    case 'tail':
+                        return this.handleTail(args);
+
+;
+            }
+
+            addOutput(text, className = 'output-line') {
+                const output = document.getElementById('terminalOutput');
+                const div = document.createElement('div');
+                div.className = className;
+                div.textContent = text;
+                output.appendChild(div);
+            }
+
+            scrollToBottom() {
+                const output = document.getElementById('terminalOutput');
+                output.scrollTop = output.scrollHeight;
+            }
+
+            showPreviousCommand() {
+                if (this.commandHistory.length > 0) {
+                    const lastCommand = this.commandHistory[this.commandHistory.length - 1];
+                    document.getElementById('commandInput').value = lastCommand;
+                }
+            }
+        }
+
+        // Global functions for UI interactions
+        function toggleHint() {
+            const hintBox = document.getElementById('hintBox');
+            const isVisible = hintBox.style.display !== 'none';
+            hintBox.style.display = isVisible ? 'none' : 'block';
+        }
+
+        function showHelp() {
+            game.executeCommand('help');
+        }
+
+        function resetLevel() {
+            game.loadLevel(game.currentLevel);
+        }
+
+        function nextLevel() {
+            game.nextLevel();
+        }
+
+        // Initialize game when page loads
+        let game;
+        window.addEventListener('load', () => {
+            game = new LinuxCareerGame();
+        });
+    </script>
 </body>
 </html>
-
