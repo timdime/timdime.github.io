@@ -1,1 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linux Admin Career Game</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background: #2d2d2d;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .level {
+      display: none;
+    }
+    .visible {
+      display: block;
+    }
+    .terminal {
+      background: #000;
+      color: #00ff00;
+      padding: 1rem;
+      font-family: monospace;
+      min-height: 200px;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    input.command {
+      width: 100%;
+      padding: 0.75rem;
+      font-family: monospace;
+      border: none;
+      outline: none;
+      background: #222;
+      color: #0f0;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.75rem 1.25rem;
+      background: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+    button:hover {
+      background: #388e3c;
+    }
+    .task {
+      background: #e0f7fa;
+      padding: 1rem;
+      border-left: 5px solid #4caf50;
+      margin-bottom: 1rem;
+    }
+    #scoreBoard {
+      position: fixed;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: #2d2d2d;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      z-index: 1000;
+    }
+    @media (max-width: 600px) {
+      main {
+        padding: 1rem;
+      }
+      .task {
+        font-size: 1rem;
+      }
+      input.command {
+        font-size: 0.95rem;
+      }
+      button {
+        font-size: 0.95rem;
+      }
+      #scoreBoard {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Linux Admin Career Game</h1>
+    <p>Start as a Jr. Linux Admin and become a Sr. Engineer!</p>
+  </header>
+  <div id="scoreBoard">Score: <span id="score">0</span></div>
+  <main>
+    <div id="level1" class="level visible">
+      <h2>Level 1: Basic Linux Command</h2>
+      <div class="task">Task: What command lists files in a directory?</div>
+      <div class="terminal" id="terminal1"></div>
+      <input type="text" class="command" id="input1" placeholder="Type your answer..." />
+      <button onclick="checkAnswer(1, 'ls')">Submit</button>
+    </div>
+
+    <div id="level2" class="level">
+      <h2>Level 2: File Permissions</h2>
+      <div class="task">Task: Command to change file permission to 755?</div>
+      <div class="terminal" id="terminal2"></div>
+      <input type="text" class="command" id="input2" placeholder="Type your answer..." />
+      <button onclick="checkAnswer(2, 'chmod 755')">Submit</button>
+    </div>
+
+    <div id="level3" class="level">
+      <h2>Level 3: System Monitoring</h2>
+      <div class="task">Task: What command shows running processes?</div>
+      <div class="terminal" id="terminal3"></div>
+      <input type="text" class="command" id="input3" placeholder="Type your answer..." />
+      <button onclick="checkAnswer(3, 'top')">Submit</button>
+    </div>
+
+    <div id="level4" class="level">
+      <h2>Level 4: Package Management</h2>
+      <div class="task">Task: Command to install nginx using apt?</div>
+      <div class="terminal" id="terminal4"></div>
+      <input type="text" class="command" id="input4" placeholder="Type your answer..." />
+      <button onclick="checkAnswer(4, 'sudo apt install nginx')">Submit</button>
+    </div>
+
+    <div id="level5" class="level">
+      <h2>Level 5: Logs and Troubleshooting</h2>
+      <div class="task">Task: Command to view system logs?</div>
+      <div class="terminal" id="terminal5"></div>
+      <input type="text" class="command" id="input5" placeholder="Type your answer..." />
+      <button onclick="checkAnswer(5, 'journalctl')">Submit</button>
+    </div>
+
+    <div id="completion" class="level">
+      <h2>Congratulations!</h2>
+      <p>You are now a certified Linux Admin!</p>
+      <p>Your final score is <span id="finalScore"></span>!</p>
+    </div>
+  </main>
+  <audio id="correctSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+  <audio id="wrongSound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
+  <script>
+    let score = 0;
+
+    function updateScore(points) {
+      score += points;
+      document.getElementById('score').textContent = score;
+    }
+
+    function playSound(correct) {
+      const sound = document.getElementById(correct ? 'correctSound' : 'wrongSound');
+      sound.play();
+    }
+
+    function checkAnswer(level, correct) {
+      const input = document.getElementById(`input${level}`).value.trim().toLowerCase();
+      const output = document.getElementById(`terminal${level}`);
+      if (input === correct.toLowerCase()) {
+        output.innerHTML += `\n> ${input}\n✔ Correct! Moving to next level...`;
+        updateScore(10);
+        playSound(true);
+        setTimeout(() => nextLevel(level), 1500);
+      } else {
+        output.innerHTML += `\n> ${input}\n✖ Incorrect, try again.`;
+        playSound(false);
+      }
+    }
+
+    function nextLevel(current) {
+      document.getElementById(`level${current}`).classList.remove('visible');
+      const next = document.getElementById(`level${current + 1}`);
+      if (next) {
+        next.classList.add('visible');
+      } else {
+        document.getElementById('completion').classList.add('visible');
+        document.getElementById('finalScore').textContent = score;
+      }
+    }
+  </script>
+</body>
+</html>
 
