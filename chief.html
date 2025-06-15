@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chief Mobile Home Park | Quality Community Living in Justice, IL</title>
+    <meta name="description" content="Discover affordable luxury at Chief Mobile Home Park in Justice, IL. Modern manufactured homes for rent and sale with premium community amenities.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: #90c695;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #90c695;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: #90c695;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 85, 48, 0.7), rgba(74, 124, 89, 0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23e8f5e8" width="1200" height="600"/><path fill="%234a7c59" opacity="0.1" d="M0,300L48,280C96,260,192,220,288,213.3C384,207,480,233,576,246.7C672,260,768,260,864,240C960,220,1056,180,1152,173.3L1200,167V0H1152C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0H0V300Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #90c695, #4a7c59);
+            color: white;
+            box-shadow: 0 4px 15px rgba(144, 198, 149, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(144, 198, 149, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #2c5530;
+            transform: translateY(-3px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: #f8fdf8;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c5530;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #90c695, #4a7c59);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e0f2e0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: #4a7c59;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2c5530;
+        }
+
+        /* Homes Section */
+        .homes {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .homes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .home-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .home-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .home-image {
+            height: 250px;
+            background: linear-gradient(45deg, #e8f5e8, #d4edda);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a7c59;
+            font-size: 4rem;
+        }
+
+        .home-content {
+            padding: 2rem;
+        }
+
+        .home-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c5530;
+        }
+
+        .home-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .home-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .home-features li i {
+            color: #4a7c59;
+            margin-right: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c5530;
+            margin-bottom: 1rem;
+        }
+
+        /* Community Section */
+        .community {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8fdf8 0%, #e8f5e8 100%);
+        }
+
+        .community-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .community-text h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #2c5530;
+        }
+
+        .community-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .community-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .community-feature {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .community-feature i {
+            color: #4a7c59;
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .community-image {
+            height: 400px;
+            background: linear-gradient(45deg, #4a7c59, #90c695);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .testimonial-card {
+            background: #f8fdf8;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #4a7c59;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 4rem;
+            color: #4a7c59;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #2c5530;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            color: #90c695;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            width: 20px;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a3a1f;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #90c695;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #90c695;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #90c695;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #2c5530;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .community-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .community-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #e8f5e8;
+            border-top: 5px solid #4a7c59;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                Chief Mobile Home Park
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#homes">Homes</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Welcome to Chief Mobile Home Park</h1>
+                <p>Experience quality community living in Justice, Illinois. Modern manufactured homes with premium amenities in a safe, friendly neighborhood.</p>
+                <div class="cta-buttons">
+                    <a href="#homes" class="btn btn-primary">View Available Homes</a>
+                    <a href="#contact" class="btn btn-secondary">Schedule a Tour</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">Why Choose Chief Mobile Home Park?</h2>
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safe & Secure</h3>
+                    <p>Our gated community provides 24/7 security with well-lit streets and regular patrols for your peace of mind.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Prime Location</h3>
+                    <p>Conveniently located near major expressways, public transportation, schools, shopping, and entertainment.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <i class="fas fa-users"></i>
+                    <h3>Friendly Community</h3>
+                    <p>Join a welcoming neighborhood of residents who care about maintaining a clean, respectful living environment.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <i class="fas fa-tools"></i>
+                    <h3>Professional Management</h3>
+                    <p>Our experienced management team provides responsive maintenance and excellent customer service.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h3>Affordable Living</h3>
+                    <p>Low monthly land rental fees make homeownership accessible without compromising on quality.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Beautiful Grounds</h3>
+                    <p>Well-maintained landscaping and common areas create a pleasant environment for all residents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Homes Section -->
+    <section class="homes" id="homes">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">Available Homes</h2>
+            <div class="homes-grid">
+                <div class="home-card scroll-reveal">
+                    <div class="home-image">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="home-content">
+                        <h3>One Bedroom Homes</h3>
+                        <ul class="home-features">
+                            <li><i class="fas fa-check"></i> 1 Bedroom, 1 Bathroom</li>
+                            <li><i class="fas fa-check"></i> Full Kitchen with Appliances</li>
+                            <li><i class="fas fa-check"></i> Washer/Dryer Hookups</li>
+                            <li><i class="fas fa-check"></i> Central Air & Heat</li>
+                            <li><i class="fas fa-check"></i> Private Parking</li>
+                        </ul>
+                        <div class="price">Rent: $650/month + lot fee</div>
+                        <a href="#contact" class="btn btn-primary">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="home-card scroll-reveal">
+                    <div class="home-image">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="home-content">
+                        <h3>Two Bedroom Homes</h3>
+                        <ul class="home-features">
+                            <li><i class="fas fa-check"></i> 2 Bedrooms, 1-2 Bathrooms</li>
+                            <li><i class="fas fa-check"></i> Spacious Living Areas</li>
+                            <li><i class="fas fa-check"></i> Modern Kitchen Package</li>
+                            <li><i class="fas fa-check"></i> Washer/Dryer Included</li>
+                            <li><i class="fas fa-check"></i> Deck or Patio</li>
+                        </ul>
+                        <div class="price">Rent: $750/month + lot fee</div>
+                        <a href="#contact" class="btn btn-primary">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="home-card scroll-reveal">
+                    <div class="home-image">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="home-content">
+                        <h3>Homes for Purchase</h3>
+                        <ul class="home-features">
+                            <li><i class="fas fa-check"></i> Pre-owned & New Options</li>
+                            <li><i class="fas fa-check"></i> Financing Available</li>
+                            <li><i class="fas fa-check"></i> Custom Upgrades</li>
+                            <li><i class="fas fa-check"></i> Low Monthly Lot Fees</li>
+                            <li><i class="fas fa-check"></i> Build Equity</li>
+                        </ul>
+                        <div class="price">Starting at $35,000</div>
+                        <a href="#contact" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community" id="community">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">A Real Community in Justice, IL</h2>
+            <div class="community-content">
+                <div class="community-text scroll-reveal">
+                    <h3>More Than Just a Mobile Home Park</h3>
+                    <p>Chief Mobile Home Park has evolved far beyond the traditional "trailer park" concept. We're a thriving community of manufactured homes in a safe, quiet neighborhood filled with friendly residents who take pride in their homes and community.</p>
+                    <p>Located in Justice, Illinois, our residents enjoy easy access to Chicago's amenities while living in an affordable, well-maintained community that feels like home.</p>
+                    
+                    <div class="community-features">
+                        <div class="community-feature">
+                            <i class="fas fa-car"></i>
+                            <span>Easy Highway Access</span>
+                        </div>
+                        <div class="community-feature">
+                            <i class="fas fa-bus"></i>
+                            <span>Public Transportation</span>
+                        </div>
+                        <div class="community-feature">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Quality Schools Nearby</span>
+                        </div>
+                        <div class="community-feature">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Shopping & Dining</span>
+                        </div>
+                        <div class="community-feature">
+                            <i class="fas fa-hospital"></i>
+                            <span>Healthcare Facilities</span>
+                        </div>
+                        <div class="community-feature">
+                            <i class="fas fa-tree"></i>
+                            <span>Parks & Recreation</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="community-image scroll-reveal">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">What Our Residents Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card scroll-reveal">
+                    <div class="testimonial-content">
+                        Chief Mobile Home Park is a very nice little community to live in. The management and staff are very friendly and helpful. I've been here since 2013 and couldn't be happier with my decision.
+                    </div>
+                    <div class="testimonial-author">- Ken Sparr, Resident Since 2013</div>
+                </div>
+                <div class="testimonial-card scroll-reveal">
+                    <div class="testimonial-content">
+                        Moving to Chief was the best decision I made for retirement. The community is quiet, safe, and I love how affordable it is. The neighbors are wonderful and always willing to help out.
+                    </div>
+                    <div class="testimonial-author">- Mary Johnson, Resident Since 2018</div>
+                </div>
+                <div class="testimonial-card scroll-reveal">
+                    <div class="testimonial-content">
+                        As a first-time homebuyer, the staff at Chief made the process so easy. They helped me find the perfect home within my budget and the low lot fees make homeownership actually affordable.
+                    </div>
+                    <div class="testimonial-author">- David Martinez, New Homeowner</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title scroll-reveal" style="color: white;">Get in Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info scroll-reveal">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Chief Mobile Home Park<br>Justice, Illinois</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>(708) 555-0123</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@chiefmobilehomepark.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Office Hours:<br>Mon-Fri: 9AM-5PM<br>Sat: 10AM-3PM</span>
+                    </div>
+                </div>
+                <div class="contact-form scroll-reveal">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="interest">I'm Interested In</label>
+                            <select id="interest" name="interest" style="width: 100%; padding: 12px; border: none; border-radius: 8px; background: rgba(255,255,255,0.9); font-size: 1rem;">
+                                <option value="">Select an option</option>
+                                <option value="rental">Home Rental</option>
+                                <option value="purchase">Home Purchase</option>
+                                <option value="tour">Community Tour</option>
+                                <option value="general">General Information</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your housing needs or any questions you have..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#homes">Available Homes</a>
+                    <a href="#community">Community Info</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#contact">Contact Us</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <a href="#homes">Home Rentals</a>
+                    <a href="#homes">Home Sales</a>
+                    <a href="#contact">Community Tours</a>
+                    <a href="#contact">Application Process</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <a href="#community">About Justice, IL</a>
+                    <a href="#testimonials">Resident Stories</a>
+                    <a href="#contact">Community Events</a>
+                    <a href="#contact">Resident Resources</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #2c5530; padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2025 Chief Mobile Home Park. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <p style="margin-top: 0.5rem; opacity: 0.8;">Equal Housing Opportunity | Professional Property Management</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            const loading = document.getElementById('loading');
+            setTimeout(() => {
+                loading.classList.add('hidden');
+            }, 1000);
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenu.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Animate hamburger menu
+            const spans = mobileMenu.querySelectorAll('span');
+            if (navLinks.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking on links
+        navLinks.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('active');
+                const spans = mobileMenu.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('revealed');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        
+        // Initial check for elements already in view
+        revealOnScroll();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(44, 85, 48, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #2c5530 0%, #4a7c59 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            
+            // Show success message
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Message Sent!';
+            submitBtn.style.background = '#28a745';
+            
+            // Reset form
+            this.reset();
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = 'linear-gradient(45deg, #90c695, #4a7c59)';
+            }, 3000);
+            
+            // In a real implementation, you would send this data to your server
+            console.log('Form submitted:', formObject);
+        });
+
+        // Add floating animation to feature cards
+        function addFloatingAnimation() {
+            const cards = document.querySelectorAll('.feature-card, .home-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+
+        // Initialize floating animation after page load
+        window.addEventListener('load', addFloatingAnimation);
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            const speed = scrolled * 0.5;
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+
+        // Add typing effect to hero text
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const heroTitle = document.querySelector('.hero-content h1');
+                const heroText = document.querySelector('.hero-content p');
+                
+                if (heroTitle && heroText) {
+                    const titleText = heroTitle.textContent;
+                    const paragraphText = heroText.textContent;
+                    
+                    heroTitle.style.opacity = '1';
+                    heroText.style.opacity = '1';
+                    
+                    typeWriter(heroTitle, titleText, 80);
+                    setTimeout(() => {
+                        typeWriter(heroText, paragraphText, 30);
+                    }, titleText.length * 80 + 500);
+                }
+            }, 1500);
+        });
+
+        // Add intersection observer for better performance
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Add click to call functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+            phoneLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Add analytics tracking here if needed
+                    console.log('Phone call initiated');
+                });
+            });
+        });
+
+        // Add seasonal greetings or promotions
+        function addSeasonalContent() {
+            const now = new Date();
+            const month = now.getMonth();
+            let seasonalMessage = '';
+            
+            if (month >= 2 && month <= 4) { // Spring
+                seasonalMessage = '🌸 Spring Special: Tour our community and see our beautiful landscaping in bloom!';
+            } else if (month >= 5 && month <= 7) { // Summer
+                seasonalMessage = '☀️ Summer Living: Enjoy our spacious outdoor areas and community events!';
+            } else if (month >= 8 && month <= 10) { // Fall
+                seasonalMessage = '🍂 Fall Into Savings: Ask about our move-in specials!';
+            } else { // Winter
+                seasonalMessage = '❄️ Cozy Winter Living: Energy-efficient homes with modern heating systems!';
+            }
+            
+            // Add seasonal banner (could be implemented as a notification bar)
+            if (seasonalMessage) {
+                const banner = document.createElement('div');
+                banner.style.cssText = `
+                    background: linear-gradient(45deg, #90c695, #4a7c59);
+                    color: white;
+                    text-align: center;
+                    padding: 10px;
+                    position: fixed;
+                    top: 80px;
+                    width: 100%;
+                    z-index: 999;
+                    font-size: 0.9rem;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                    transform: translateY(-100%);
+                    transition: transform 0.3s ease;
+                `;
+                banner.innerHTML = `${seasonalMessage} <button onclick="this.parentElement.style.display='none'" style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; margin-left: 10px;">×</button>`;
+                document.body.appendChild(banner);
+                
+                // Show banner after page load
+                setTimeout(() => {
+                    banner.style.transform = 'translateY(0)';
+                }, 2000);
+            }
+        }
+
+        // Initialize seasonal content
+        window.addEventListener('load', addSeasonalContent);
+    </script>
+</body>
+</html>
