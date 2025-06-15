@@ -468,9 +468,53 @@
             font-size: 1rem;
         }
 
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
+        /* Email Links Section */
+        .email-links h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .email-options {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .email-option {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .email-option:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .email-option i {
+            font-size: 2rem;
+            color: #90c695;
+            margin-right: 1.5rem;
+            min-width: 40px;
+        }
+
+        .email-option h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .email-option p {
+            margin: 0;
+            opacity: 0.8;
+            font-size: 0.9rem;
         }
 
         /* Footer */
@@ -868,36 +912,54 @@
                         <span>Office Hours:<br>Mon-Fri: 9AM-5PM<br>Sat: 10AM-3PM</span>
                     </div>
                 </div>
-                <div class="contact-form scroll-reveal">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="interest">I'm Interested In</label>
-                            <select id="interest" name="interest" style="width: 100%; padding: 12px; border: none; border-radius: 8px; background: rgba(255,255,255,0.9); font-size: 1rem;">
-                                <option value="">Select an option</option>
-                                <option value="rental">Home Rental</option>
-                                <option value="purchase">Home Purchase</option>
-                                <option value="tour">Community Tour</option>
-                                <option value="general">General Information</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Tell us about your housing needs or any questions you have..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                    </form>
+                <div class="email-links scroll-reveal">
+                    <h3>Contact Us Directly</h3>
+                    <p style="margin-bottom: 2rem; opacity: 0.9;">Click the links below to send us an email about your specific needs:</p>
+                    
+                    <div class="email-options">
+                        <a href="mailto:rentals@chiefmobilehomepark.com?subject=Home Rental Inquiry&body=Hi, I'm interested in renting a home at Chief Mobile Home Park. Please send me information about available units and pricing.%0D%0A%0D%0AThank you!" class="email-option">
+                            <i class="fas fa-key"></i>
+                            <div>
+                                <h4>Home Rentals</h4>
+                                <p>Inquire about available rental homes</p>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:sales@chiefmobilehomepark.com?subject=Home Purchase Inquiry&body=Hi, I'm interested in purchasing a home at Chief Mobile Home Park. Please send me information about available homes for sale and financing options.%0D%0A%0D%0AThank you!" class="email-option">
+                            <i class="fas fa-home"></i>
+                            <div>
+                                <h4>Home Sales</h4>
+                                <p>Learn about homes for purchase</p>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:tours@chiefmobilehomepark.com?subject=Community Tour Request&body=Hi, I would like to schedule a tour of Chief Mobile Home Park. Please let me know your available times.%0D%0A%0D%0APreferred contact method: [Phone/Email]%0D%0APhone number: [Your phone number]%0D%0A%0D%0AThank you!" class="email-option">
+                            <i class="fas fa-walking"></i>
+                            <div>
+                                <h4>Schedule a Tour</h4>
+                                <p>Book a community walkthrough</p>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:info@chiefmobilehomepark.com?subject=General Information Request&body=Hi, I have questions about Chief Mobile Home Park. Please contact me with more information.%0D%0A%0D%0AQuestions:%0D%0A[Please describe what you'd like to know]%0D%0A%0D%0AThank you!" class="email-option">
+                            <i class="fas fa-info-circle"></i>
+                            <div>
+                                <h4>General Information</h4>
+                                <p>Ask questions about our community</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 10px; border-left: 4px solid #90c695;">
+                        <h4 style="margin-bottom: 1rem; display: flex; align-items: center;">
+                            <i class="fas fa-phone" style="margin-right: 0.5rem; color: #90c695;"></i>
+                            Prefer to Call?
+                        </h4>
+                        <p style="margin-bottom: 1rem;">For immediate assistance, call us during office hours:</p>
+                        <a href="tel:+17085550123" style="color: #90c695; text-decoration: none; font-size: 1.2rem; font-weight: bold;">
+                            (708) 555-0123
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -927,15 +989,6 @@
                     <a href="#testimonials">Resident Stories</a>
                     <a href="#contact">Community Events</a>
                     <a href="#contact">Resident Resources</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
                 </div>
             </div>
             <div style="border-top: 1px solid #2c5530; padding-top: 2rem; margin-top: 2rem;">
@@ -1035,34 +1088,17 @@
             }
         });
 
-        // Contact form handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const formObject = {};
-            formData.forEach((value, key) => {
-                formObject[key] = value;
+        // Contact form handling - REMOVED since using email links now
+        
+        // Add click tracking for email links
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailLinks = document.querySelectorAll('.email-option');
+            emailLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Add analytics tracking here if needed
+                    console.log('Email link clicked:', this.querySelector('h4').textContent);
+                });
             });
-            
-            // Show success message
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Message Sent!';
-            submitBtn.style.background = '#28a745';
-            
-            // Reset form
-            this.reset();
-            
-            // Reset button after 3 seconds
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.style.background = 'linear-gradient(45deg, #90c695, #4a7c59)';
-            }, 3000);
-            
-            // In a real implementation, you would send this data to your server
-            console.log('Form submitted:', formObject);
         });
 
         // Add floating animation to feature cards
