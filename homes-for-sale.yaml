@@ -1,0 +1,60 @@
+# Chief Mobile Home Park - Homes for Sale
+# This file manages all homes available for purchase
+# Update this file to add, remove, or modify home listings
+
+homes:
+  - id: "2br-1ba-784sf"
+    bedrooms: 2
+    bathrooms: 1
+    square_feet: 784
+    home_size: "14×56"
+    price: "Call for pricing"
+    land_rental: 695
+    financing_available: true
+    features:
+      - "Stainless Steel Kitchen Sink"
+      - "18 Cu. Ft. Double Door Refrigerator"
+      - "30\" Deluxe Gas Range with Range Hood"
+      - "Flat Panel MDF Cabinet Doors"
+      - "Carpet in Living Areas and Bedrooms"
+      - "Linoleum in Kitchen and Bathroom"
+      - "Mini-Blinds Throughout"
+      - "25-Year Roof Shingles"
+      - "Vinyl Lap Siding"
+      - "8' Side Wall"
+      - "Gas Furnace with Fiberglass Ducts"
+      - "40 Gal. Electric Water Heater"
+      - "PEX Water Lines"
+      - "Plumbed for Washer"
+      - "Wired for Dryer"
+      - "200 Amp Service Entrance"
+      - "Metal Single Hung Windows with Self-Storing Storms"
+      - "Deadbolts Front and Rear Door"
+      - "Smoke Detector with Battery Backup"
+      - "Textured Ceiling Throughout"
+      - "Accent Wall in Living Room & Master Bedroom"
+    
+  # Add more homes for sale here
+  # Example additional listing:
+  # - id: "1br-1ba-560sf"
+  #   bedrooms: 1
+  #   bathrooms: 1
+  #   square_feet: 560
+  #   home_size: "14×40"
+  #   price: "$32,500"
+  #   land_rental: 640
+  #   financing_available: true
+  #   features:
+  #     - "Updated Kitchen Appliances"
+  #     - "New Flooring Throughout"
+  #     - "Energy Efficient Windows"
+
+# Configuration options
+options:
+  contact_phone: "708-458-2033"
+  financing_note: "Financing available for qualified applicants"
+  land_rental_note: "Monthly land rental starting at listed price"
+  additional_fees:
+    - "Water and sewer included in land rental"
+    - "Professional on-site management"
+    - "Off-street parking included"
