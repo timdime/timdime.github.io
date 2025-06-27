@@ -15,4 +15,102 @@ homes:
     features:
       - "Master Bedroom with Full Master Bathroom"
       - "Stainless Steel Kitchen Sink"
-      - "18 Cu. Ft. Double Door Refrige
+      - "18 Cu. Ft. Double Door Refrigerator"
+      - "30\" Deluxe Electric Range with Range Hood"
+      - "Flat Panel MDF Cabinet Doors"
+      - "Carpet in Living Areas and Bedrooms"
+      - "Linoleum in Kitchen and Bathrooms"
+      - "Mini-Blinds Throughout"
+      - "25-Year Roof Shingles"
+      - "Vinyl Lap Siding"
+      - "8' Side Wall"
+      - "Electric Furnace with Fiberglass Ducts"
+      - "30 Gal. Electric Water Heater"
+      - "PEX Water Lines"
+      - "Plumbed for Washer"
+      - "Wired for Dryer"
+      - "200 Amp Service Entrance"
+      - "Metal Single Hung Windows with Self-Storing Storms"
+      - "Deadbolts Front and Rear Door"
+      - "Smoke Detector with Battery Backup"
+      - "Textured Ceiling Throughout"
+      - "Accent Wall in Living Room & Master Bedroom"
+      - "Rent Includes: Land Fee, Water, Sewer, and Trash"
+
+  - id: "2br-1ba-700sf-rent"
+    bedrooms: 2
+    bathrooms: 1
+    square_feet: 700
+    home_size: "14×50"
+    monthly_rent: 1050
+    model_year: 2015
+    lease_term: "12+ months"
+    features:
+      - "Updated Kitchen with New Appliances"
+      - "Refrigerator and Stove Included"
+      - "Carpet in Living Areas and Bedrooms"
+      - "Linoleum in Kitchen and Bathroom"
+      - "Mini-Blinds Throughout"
+      - "Central Air Conditioning"
+      - "Gas Furnace"
+      - "Plumbed for Washer"
+      - "Wired for Dryer"
+      - "Off-Street Parking"
+      - "Rent Includes: Land Fee, Water, Sewer, and Trash"
+
+  - id: "1br-1ba-500sf-rent"
+    bedrooms: 1
+    bathrooms: 1
+    square_feet: 500
+    home_size: "14×36"
+    monthly_rent: 850
+    model_year: 2018
+    lease_term: "12+ months"
+    features:
+      - "Perfect for Singles or Couples"
+      - "Refrigerator and Stove Included"
+      - "Carpet in Living Area and Bedroom"
+      - "Linoleum in Kitchen and Bathroom"
+      - "Mini-Blinds Throughout"
+      - "Central Air Conditioning"
+      - "Electric Furnace"
+      - "Plumbed for Washer"
+      - "Wired for Dryer"
+      - "Off-Street Parking"
+      - "Rent Includes: Land Fee, Water, Sewer, and Trash"
+
+# Add more rental homes here as needed
+# Example additional listing:
+# - id: "2br-2ba-800sf-rent"
+#   bedrooms: 2
+#   bathrooms: 2
+#   square_feet: 800
+#   home_size: "14×58"
+#   monthly_rent: 1200
+#   model_year: 2020
+#   lease_term: "12+ months"
+#   features:
+#     - "Dual Master Bathrooms"
+#     - "Updated Kitchen"
+#     - "Central Air"
+
+# Configuration options
+options:
+  contact_phone: "708-458-2033"
+  application_fee: 50
+  security_deposit: "Equal to one month's rent"
+  pet_policy: "Pets welcome with additional deposit"
+  lease_terms:
+    - "12-month minimum lease"
+    - "14-month lease available for select units"
+    - "Month-to-month available after initial lease"
+  included_utilities:
+    - "Water"
+    - "Sewer" 
+    - "Trash removal"
+    - "Land rental fee"
+  tenant_responsibilities:
+    - "Electric utility"
+    - "Gas utility (if applicable)"
+    - "Cable/Internet"
+    - "Renters insurance recommended"
