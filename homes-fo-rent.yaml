@@ -1,0 +1,18 @@
+# Chief Mobile Home Park - Homes for Rent
+# This file manages all homes available for rental
+# Update this file to add, remove, or modify rental listings
+
+homes:
+  - id: "3br-2ba-924sf-rent"
+    bedrooms: 3
+    bathrooms: 2
+    square_feet: 924
+    home_size: "14×66"
+    monthly_rent: 1300
+    model_year: 2017
+    lease_term: "12+ months"
+    special_offer: "14-month lease available"
+    features:
+      - "Master Bedroom with Full Master Bathroom"
+      - "Stainless Steel Kitchen Sink"
+      - "18 Cu. Ft. Double Door Refrige
