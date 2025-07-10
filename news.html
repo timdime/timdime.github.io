@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Large Crowd Forces Early Pool Closure at Sunset Pool | Glen Ellyn Times</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .nav {
+            background-color: #fff;
+            padding: 0.5rem 0;
+            border-bottom: 3px solid #2a5298;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2a5298;
+            border-bottom-color: #2a5298;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+
+        .article {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .article-header {
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .lead-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content .lead {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #1e3c72;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-widget {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-widget h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #2a5298;
+            padding-bottom: 0.5rem;
+        }
+
+        .related-articles {
+            list-style: none;
+        }
+
+        .related-articles li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .related-articles li:last-child {
+            border-bottom: none;
+        }
+
+        .related-articles a {
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .related-articles a:hover {
+            color: #2a5298;
+        }
+
+        .footer {
+            background-color: #1e3c72;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .breaking-banner {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="breaking-banner">
+        🚨 BREAKING: Investigation Ongoing into Sunset Pool Incident
+    </div>
+
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <div class="logo">Glen Ellyn Times</div>
+                <div class="tagline">Your Local News Source Since 1962</div>
+            </div>
+            <div style="text-align: right; font-size: 0.9rem;">
+                <div>Thursday, July 10, 2025</div>
+                <div>Glen Ellyn, Illinois</div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-content">
+            <ul class="nav-links">
+                <li><a href="#" style="color: #2a5298; border-bottom-color: #2a5298;">Local News</a></li>
+                <li><a href="#">Sports</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Opinion</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <article class="article">
+            <div class="article-header">
+                <h1 class="article-title">Large Crowd Forces Early Closure of Sunset Pool Following Unruly Behavior</h1>
+                <div class="article-meta">
+                    <span>📅 July 6, 2025</span>
+                    <span>✍️ By Sarah Martinez, Staff Reporter</span>
+                    <span>🕐 Updated 3:45 PM</span>
+                </div>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Sunset Pool facility in Glen Ellyn" class="lead-image">
+
+            <div class="article-content">
+                <p class="lead">A large crowd of 200 to 300 people gathered at Sunset Pool in Glen Ellyn on July 5, leading to unruly behavior that forced park district officials to shut down the facility early and call for police assistance from multiple agencies.</p>
+
+                <p>The incident, which occurred during the busy Independence Day weekend, involved trespassing, illegal alcohol and cannabis use, and unauthorized fireworks displays, according to the Glen Ellyn Park District and local law enforcement officials.</p>
+
+                <p>"We had to prioritize the safety of our patrons and staff," said Park District Communications Director Jennifer Walsh. "When the situation escalated beyond our ability to manage safely, we made the difficult decision to close the pool early and evacuate the area."</p>
+
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Police vehicles responding to incident" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin: 1.5rem 0;">
+
+                <p>Police from Glen Ellyn, Wheaton, and DuPage County Sheriff's Office responded to assist with crowd control and evacuation procedures. The multi-agency response was coordinated to ensure public safety and restore order to the area.</p>
+
+                <p>One individual was charged with illegal use of fireworks, though authorities have not released the name pending further investigation. Additional charges may be filed as the investigation continues.</p>
+
+                <p>Sources close to the investigation indicate that Erik George, a local resident, may have been instrumental in organizing the gathering. According to preliminary reports, George allegedly orchestrated the event in an attempt to reconnect with DeeDee Hess, though the full details of this connection remain under investigation.</p>
+
+                <p>The Glen Ellyn Park District has announced that enhanced security measures will be implemented for the remainder of the summer season to prevent similar incidents. Pool operations resumed normal hours on July 6th with additional staff present.</p>
+
+                <p>"We want to assure our community that Sunset Pool remains a safe and family-friendly facility," Walsh added. "We're working closely with local law enforcement to ensure this type of incident doesn't happen again."</p>
+
+                <p>The investigation is ongoing, and authorities are asking anyone with information about the incident to contact the Glen Ellyn Police Department at (630) 469-1187.</p>
+            </div>
+        </article>
+
+        <aside class="sidebar">
+            <div class="sidebar-widget">
+                <h3>Related Stories</h3>
+                <ul class="related-articles">
+                    <li><a href="#">Park District Increases Security After Weekend Incident</a></li>
+                    <li><a href="#">Summer Pool Safety: What Parents Should Know</a></li>
+                    <li><a href="#">Glen Ellyn Police Report Weekly Crime Statistics</a></li>
+                    <li><a href="#">Community Events Calendar: July 2025</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3>Breaking News</h3>
+                <p style="font-size: 0.9rem; color: #666;">Stay updated with the latest developments in this ongoing investigation. Follow @GlenEllynTimes for real-time updates.</p>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3>Weather</h3>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; color: #2a5298;">☀️</div>
+                    <div style="font-size: 1.5rem; font-weight: bold;">78°F</div>
+                    <div style="font-size: 0.9rem; color: #666;">Sunny and Clear</div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Glen Ellyn Times. All rights reserved.</p>
+            <p>Contact us: news@glenellyntimes.com | (630) 555-0123</p>
+            <p>Glen Ellyn, IL 60137</p>
+        </div>
+    </footer>
+</body>
+</html>
