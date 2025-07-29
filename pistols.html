@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Park Ridge Pistols 12U Travel Softball Team - Recruiting girls born in 2013 for competitive travel softball in the Chicagoland area.">
+    <meta name="keywords" content="Park Ridge Pistols, 12U softball, travel softball, Chicago softball, girls softball, 2013 born">
+    <meta name="author" content="Park Ridge Baseball/Softball">
+    <title>Park Ridge Pistols 12U - Join Our Team!</title>
+    
+    <!-- Open Graph tags for social media sharing -->
+    <meta property="og:title" content="Park Ridge Pistols 12U Travel Softball">
+    <meta property="og:description" content="Join one of Chicagoland's premier travel softball programs. Recruiting girls born in 2013.">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥎</text></svg>">
+    
+    <!-- Google Fonts for better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-20px) translateX(10px); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.3)); }
+            to { filter: drop-shadow(0 0 30px rgba(78, 205, 196, 0.5)); }
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            filter: brightness(1.1);
+        }
+
+        /* Cards Section */
+        .cards-section {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card h3 {
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        /* Info Section */
+        .info-section {
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #4ecdc4;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #ff6b6b;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .info-item h4 {
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+        }
+
+        .contact-item {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item strong {
+            color: #4ecdc4;
+        }
+
+        /* Additional GitHub Pages optimizations */
+        .github-corner {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .github-corner svg {
+            fill: rgba(255, 255, 255, 0.8);
+            color: #0f3460;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .github-corner:hover svg {
+            fill: rgba(255, 255, 255, 1);
+        }
+        
+        /* Print styles */
+        @media print {
+            .header, .github-corner {
+                display: none;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .card, .info-item, .contact-info {
+                background: white !important;
+                border: 1px solid #ccc !important;
+                break-inside: avoid;
+            }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .card, .info-item {
+                border: 2px solid #fff;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation for page load */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <div class="logo">🥎 Park Ridge Pistols</div>
+                <ul class="nav-links">
+                    <li><a href="#about" aria-label="About section">About</a></li>
+                    <li><a href="#team-info" aria-label="Team information">Team Info</a></li>
+                    <li><a href="#contact" aria-label="Contact information">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" role="main">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Park Ridge Pistols</h1>
+                <p class="subtitle">12U Travel Softball Team</p>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.8;">
+                    Looking for talented girls born in 2013 to join our competitive travel softball program!
+                </p>
+                <a href="#contact" class="cta-button" aria-label="Contact us to join the team">Join the Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards-section" id="about" aria-labelledby="about-title">
+        <div class="container">
+            <h2 id="about-title" class="section-title fade-in">Why Choose the Pistols?</h2>
+            <div class="cards-grid">
+                <div class="card fade-in delay-1">
+                    <span class="card-icon" aria-hidden="true">🏆</span>
+                    <h3>Championship Legacy</h3>
+                    <p>One of the longest-running travel softball programs in the Chicagoland area with a proven track record of developing elite players and winning championships.</p>
+                </div>
+                <div class="card fade-in delay-2">
+                    <span class="card-icon" aria-hidden="true">👩‍🏫</span>
+                    <h3>Coaching</h3>
+                    <p>Parent coaching staff dedicated to developing both individual skills and team chemistry. We focus on fundamentals, strategy, and sportsmanship.</p>
+                </div>
+                <div class="card fade-in delay-3">
+                    <span class="card-icon" aria-hidden="true">⚾</span>
+                    <h3>Competitive Play</h3>
+                    <p>Face top-tier competition in tournaments and leagues throughout the region. Build confidence and skills against the best teams in the area.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Information -->
+    <section class="info-section" id="team-info" aria-labelledby="team-info-title">
+        <div class="container">
+            <h2 id="team-info-title" class="section-title fade-in">Team Information</h2>
+            <div class="info-grid">
+                <div class="info-item fade-in delay-1">
+                    <h4><span aria-hidden="true">🎂</span> Age Group</h4>
+                    <p>12U Division - Girls born in 2013 calendar year</p>
+                </div>
+                <div class="info-item fade-in delay-1">
+                    <h4><span aria-hidden="true">🏟️</span> Season</h4>
+                    <p>Spring through Fall with tournaments and league play</p>
+                </div>
+                <div class="info-item fade-in delay-2">
+                    <h4><span aria-hidden="true">📍</span> Location</h4>
+                    <p>Park Ridge, Illinois and surrounding Chicagoland area</p>
+                </div>
+                <div class="info-item fade-in delay-2">
+                    <h4><span aria-hidden="true">👥</span> Team Size</h4>
+                    <p>We are seeking 1 to 2 girls to join our core team, who is starting their 3rd year together.  The girls are spread between Park Ridge and Chicago public and private school systems.  A diverse group, where you will feel welcomed by the team and families.</p>
+                </div>
+                <div class="info-item fade-in delay-3">
+                    <h4><span aria-hidden="true">🎯</span> Skill Level</h4>
+                    <p>Competitive travel ball experience preferred but not required for dedicated players with a few years experience in house league.</p>
+                </div>
+                <div class="info-item fade-in delay-3">
+                    <h4><span aria-hidden="true">🏃‍♀️</span> Commitment</h4>
+                    <p>Regular practices, weekend tournaments, and league games.</p>
+                </div>
+            </div>
+            
+            <div class="card fade-in" style="max-width: 800px; margin: 2rem auto;">
+                <h3 style="color: #ff6b6b; margin-bottom: 1rem;">What We're Looking For</h3>
+                <p style="color: white; text-align: left; line-height: 1.8;">
+                    We're seeking dedicated players who are passionate about softball and ready to take their game to the next level. 
+                    Whether you're new to travel ball or have experience, we value hustle, coachability, and team spirit above all. 
+                    Our program emphasizes skill development, competitive play, and building lifelong friendships through the love of the game.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+        <div class="container">
+            <h2 id="contact-title" class="section-title">Ready to Join the Pistols?</h2>
+            <div class="contact-info fade-in">
+                <h3 style="color: #4ecdc4; margin-bottom: 1.5rem;">Get In Touch</h3>
+                <div class="contact-item">
+                    <strong>Email:</strong> <a href="mailto:prpistolstravel@gmail.com?subject=Attn:%20Coach%20Gary%20P.%20-%20Interest" style="color: #4ecdc4; text-decoration: none;">prpistolstravel@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Organization:</strong> Park Ridge Baseball/Softball
+                </div>
+                <div class="contact-item">
+                    <strong>Mailing Address:</strong> P.O. Box 1044, Park Ridge, IL 60068
+                </div>
+                <div class="contact-item">
+                    <strong>Website:</strong> <a href="https://www.prbaseball.com" target="_blank" rel="noopener noreferrer" style="color: #4ecdc4; text-decoration: none;">prbaseball.com</a>
+                </div>
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.3);">
+                    <p style="font-style: italic; opacity: 0.9;">
+                        Established 1950 | Part of the Park Ridge Baseball/Softball tradition
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: rgba(0,0,0,0.5); padding: 2rem 0; text-align: center; color: rgba(255,255,255,0.7);" role="contentinfo">
+        <div class="container">
+            <p>&copy; 2025 Park Ridge Baseball/Softball. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                <a href="https://www.prbaseball.com" target="_blank" rel="noopener noreferrer" style="color: #4ecdc4; text-decoration: none;">Official Website</a> | 
+                <a href="mailto:prpistolstravel@gmail.com?subject=Attn:%20Coach%20Gary%20P.%20-%20Interest" style="color: #4ecdc4; text-decoration: none;">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced script for GitHub Pages deployment
+        (function() {
+            'use strict';
+            
+            // Add smooth scrolling for navigation links
+            document.addEventListener('DOMContentLoaded', function() {
+                // Smooth scrolling
+                const anchors = document.querySelectorAll('a[href^="#"]');
+                anchors.forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+
+                // Intersection Observer for animations
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                            entry.target.classList.add('animated');
+                        }
+                    });
+                }, observerOptions);
+
+                // Observe all fade-in elements
+                const fadeElements = document.querySelectorAll('.fade-in');
+                fadeElements.forEach(el => {
+                    observer.observe(el);
+                });
+
+                // Enhanced card interactions
+                const cards = document.querySelectorAll('.card');
+                cards.forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                            this.style.transform = 'translateY(-10px) scale(1.02)';
+                        }
+                    });
+                    
+                    card.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translateY(0) scale(1)';
+                    });
+                });
+
+                // Mobile menu functionality (if needed for future expansion)
+                const mobileMenuButton = document.querySelector('.mobile-menu-button');
+                const navLinks = document.querySelector('.nav-links');
+                
+                if (mobileMenuButton && navLinks) {
+                    mobileMenuButton.addEventListener('click', function() {
+                        navLinks.classList.toggle('active');
+                        this.setAttribute('aria-expanded', 
+                            this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                        );
+                    });
+                }
+
+                // Email link tracking (for analytics)
+                const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+                emailLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        // Analytics tracking could go here
+                        console.log('Email contact initiated');
+                    });
+                });
+
+                // Add loading state management
+                document.body.classList.add('loaded');
+                
+                // Performance optimization: Lazy load non-critical elements
+                if ('IntersectionObserver' in window) {
+                    const lazyElements = document.querySelectorAll('.lazy-load');
+                    const lazyObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('loaded');
+                                lazyObserver.unobserve(entry.target);
+                            }
+                        });
+                    });
+                    
+                    lazyElements.forEach(el => lazyObserver.observe(el));
+                }
+            });
+
+            // Error handling for production
+            window.addEventListener('error', function(e) {
+                console.warn('Page error:', e.message);
+                // Could send to analytics service in production
+            });
+
+            // Service Worker registration for PWA capabilities (optional)
+            if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+                window.addEventListener('load', function() {
+                    // Uncomment if you add a service worker
+                    // navigator.serviceWorker.register('/sw.js');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
