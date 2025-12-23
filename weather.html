@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Weather (With Attitude)</title>
+<style>
+body { font-family: system-ui, sans-serif; background: linear-gradient(135deg,#334155,#020617); color:#f8fafc; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
+.card { background:#020617; padding:2rem; border-radius:16px; max-width:600px; box-shadow:0 10px 30px rgba(0,0,0,.4); text-align:center; }
+#temp { font-size:2.5rem; margin:.5rem 0; }
+#snark { font-size:1.2rem; margin-top:1rem; }
+</style>
+</head>
+<body>
+<div class="card">
+<h1>🌦 Local Weather (No Sugarcoating)</h1>
+<div id="location">Finding you...</div>
+<div id="temp"></div>
+<div id="condition"></div>
+<div id="snark"></div>
+</div>
+
+
+<script>
+const snark = temp => {
+if (temp < 32) return "It’s freezing. Hope you like regret.";
+if (temp < 50) return "Technically not freezing, emotionally still winter.";
+if (temp < 70) return "Perfect weather. Don’t waste it indoors.";
+if (temp < 85) return "Warm, but still socially acceptable.";
+return "Hot enough to question all life choices.";
+};
+
+
+async function loadWeather() {
+try {
+const locRes = await fetch("https://ipapi.co/json/");
+const loc = await locRes.json();
+document.getElementById("location").textContent = loc.city + ", " + loc.region;
+
+
+const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current_weather=true`);
+const weather = await weatherRes.json();
+const temp = Math.round(weather.current_weather.temperature);
+
+
+document.getElementById("temp").textContent = temp + "°C";
+document.getElementById("condition").textContent = "Wind: " + weather.current_weather.windspeed + " km/h";
+document.getElementById("snark").textContent = snark(temp);
+} catch {
+document.getElementById("location").textContent = "Weather is unavailable. Blame the cloud.";
+}
+}
+
+
+loadWeather();
+</script>
+</body>
+</html>
