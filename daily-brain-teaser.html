@@ -92,7 +92,7 @@
         document.getElementById("question").textContent = "Fetching a fresh brain teaser...";
         document.getElementById("answer").style.display = "none";
 
-        const response = await fetch("https://api.apileague.com/retrieve-random-riddle", {
+        const response = await fetch("https://api.apileague.com/retrieve-random-riddle?difficulty=medium", {
           headers: { "x-api-key": API_KEY }
         });
 
