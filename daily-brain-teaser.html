@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Daily Brain Teaser</title>
+<style>
+body { font-family: system-ui, sans-serif; background:#111827; color:#e5e7eb; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
+.card { background:#020617; padding:2rem; border-radius:16px; max-width:650px; box-shadow:0 10px 30px rgba(0,0,0,.4); text-align:center; }
+button { margin-top:1rem; background:#22c55e; border:none; padding:.75rem 1.25rem; border-radius:999px; cursor:pointer; }
+#answer { display:none; margin-top:1rem; color:#a7f3d0; }
+</style>
+</head>
+<body>
+<div class="card">
+<h1>🧠 Daily Brain Teaser</h1>
+<div id="question"></div>
+<button onclick="showAnswer()">Show Answer</button>
+<div id="answer"></div>
+</div>
+
+
+<script>
+const teasers = [
+{ q: "I speak without a mouth and hear without ears. What am I?", a: "An echo." },
+{ q: "What has keys but can’t open locks?", a: "A piano." },
+{ q: "The more you take, the more you leave behind. What is it?", a: "Footsteps." },
+{ q: "What can travel around the world while staying in a corner?", a: "A stamp." },
+{ q: "What has a head, a tail, but no body?", a: "A coin." }
+];
+
+
+const index = new Date().getDate() % teasers.length;
+document.getElementById("question").textContent = teasers[index].q;
+document.getElementById("answer").textContent = teasers[index].a;
+
+
+function showAnswer() {
+document.getElementById("answer").style.display = "block";
+}
+</script>
+</body>
+</html>
