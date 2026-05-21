@@ -3,722 +3,1227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tim Dime - IT Professional & Financial Industry Specialist</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Tim Dime — Director of IT Operations & Infrastructure at Belvedere Trading. 20+ years building and leading technology teams in proprietary trading.">
+    <title>Tim Dime — Director, IT Operations &amp; Infrastructure</title>
+    <link rel="icon" href="favicon.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --navy-900: #061328;
+            --navy-800: #0A1F44;
+            --navy-700: #0F2A4A;
+            --navy-600: #173763;
+            --gold: #C9A961;
+            --gold-soft: #D9BE7A;
+            --ink: #15233B;
+            --ink-soft: #475569;
+            --muted: #6B7280;
+            --line: #E4E7EC;
+            --bg: #FFFFFF;
+            --bg-alt: #F6F7F9;
+            --bg-tint: #EEF1F5;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.5;
-            color: #2c3e50;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--ink);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
+
+        a { color: inherit; text-decoration: none; }
 
         .container {
-            max-width: 1200px;
+            max-width: 1180px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 32px;
         }
 
-        /* Header */
-        .header {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 4px 20px rgba(30, 60, 114, 0.15);
-            padding: 1.5rem 0;
-            margin: 1.5rem 0;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        /* Top Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(6, 19, 40, 0.96);
+            backdrop-filter: saturate(180%) blur(10px);
+            border-bottom: 1px solid rgba(201, 169, 97, 0.15);
         }
 
-        .header-content {
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            background: var(--gold);
+            color: var(--navy-900);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.75);
+            transition: color 0.2s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+
+        /* Hero */
+        .hero {
+            background:
+                radial-gradient(1100px 500px at 80% -10%, rgba(201, 169, 97, 0.12), transparent 60%),
+                radial-gradient(800px 400px at 0% 100%, rgba(23, 55, 99, 0.5), transparent 60%),
+                linear-gradient(180deg, var(--navy-900) 0%, var(--navy-800) 100%);
+            color: #fff;
+            padding: 96px 0 112px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: linear-gradient(180deg, black, transparent 80%);
+            -webkit-mask-image: linear-gradient(180deg, black, transparent 80%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 64px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 22px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+            font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 .accent {
+            color: var(--gold);
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.78);
+            max-width: 560px;
+            margin-bottom: 36px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 26px;
+            border-radius: 2px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            letter-spacing: 0.04em;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy-900);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-soft);
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 4px;
+            padding: 36px;
+            backdrop-filter: blur(6px);
             text-align: center;
         }
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
+        .hero-photo {
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            margin: 0 auto 1rem;
-            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            object-fit: cover;
+            border: 3px solid var(--gold);
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        .hero-card-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        .hero-card-title {
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        .hero-meta-row {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: white;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.92rem;
+        }
+
+        .hero-meta-row i {
+            color: var(--gold);
+            width: 18px;
+            text-align: center;
+        }
+
+        .hero-meta-row a:hover { color: var(--gold); }
+
+        /* Stats strip */
+        .stats {
+            background: var(--navy-900);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            color: #fff;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+        }
+
+        .stat {
+            padding: 36px 20px;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat:last-child { border-right: none; }
+
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            color: var(--gold);
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
+            line-height: 1;
+            margin-bottom: 6px;
         }
 
-        .name {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-            background: linear-gradient(45deg, #1e3c72, #2a5298);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
+        .stat-label {
+            font-size: 0.78rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.65);
         }
 
-        .title {
-            font-size: 1.1rem;
-            color: #64748b;
-            margin-bottom: 1rem;
-            font-weight: 500;
+        /* Sections */
+        section.block {
+            padding: 96px 0;
         }
 
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.2rem;
+        section.block.alt {
+            background: var(--bg-alt);
         }
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #555;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-item:hover {
-            color: #1e3c72;
-        }
-
-        .download-btn {
-            background: linear-gradient(45deg, #1e3c72, #2a5298);
-            color: white;
-            padding: 10px 24px;
-            border: none;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
+        .section-eyebrow {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 4px 12px rgba(30, 60, 114, 0.3);
+            gap: 10px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--navy-700);
+            margin-bottom: 14px;
         }
 
-        .download-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(30, 60, 114, 0.4);
-        }
-
-        /* Main Content */
-        .main-content {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 20px rgba(30, 60, 114, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .section {
-            margin-bottom: 2rem;
+        .section-eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--gold);
         }
 
         .section-title {
-            font-size: 1.6rem;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
             font-weight: 600;
-            margin-bottom: 1rem;
-            color: #1e293b;
-            border-bottom: 2px solid #1e3c72;
-            padding-bottom: 0.4rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            color: var(--navy-900);
             letter-spacing: -0.01em;
+            margin-bottom: 14px;
+            line-height: 1.2;
         }
 
-        .objective {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #475569;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border-left: 4px solid #1e3c72;
+        .section-lede {
+            color: var(--ink-soft);
+            font-size: 1.05rem;
+            max-width: 720px;
+            margin-bottom: 48px;
         }
 
-        .experience-item {
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            background: #f8fafc;
-            border-radius: 12px;
-            border-left: 4px solid #2a5298;
-            transition: all 0.3s ease;
-        }
-
-        .experience-item:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(30, 60, 114, 0.1);
-        }
-
-        .job-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 0.3rem;
-            letter-spacing: -0.01em;
-        }
-
-        .company {
-            font-size: 1rem;
-            color: #1e3c72;
-            font-weight: 500;
-            margin-bottom: 0.3rem;
-        }
-
-        .duration {
-            color: #64748b;
-            font-style: italic;
-            margin-bottom: 0.8rem;
-            font-size: 0.9rem;
-        }
-
-        .skills-grid {
+        /* About */
+        .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: start;
         }
 
-        .skill-category {
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 12px;
-            border-top: 3px solid #1e3c72;
+        .about-text p {
+            color: var(--ink-soft);
+            font-size: 1.05rem;
+            margin-bottom: 18px;
         }
 
-        .skill-category h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
-            color: #1e293b;
-            font-weight: 600;
+        .about-text p:last-child { margin-bottom: 0; }
+
+        .about-text strong { color: var(--navy-800); }
+
+        .values-card {
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-left: 3px solid var(--gold);
+            padding: 32px 32px 28px;
         }
 
-        .skill-tags {
+        .values-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--navy-900);
+            margin-bottom: 18px;
+        }
+
+        .values-list {
+            list-style: none;
+        }
+
+        .values-list li {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-
-        .skill-tag {
-            background: linear-gradient(45deg, #1e3c72, #2a5298);
-            color: white;
-            padding: 0.25rem 0.7rem;
-            border-radius: 16px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .contributions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.2rem;
-        }
-
-        .contribution-item {
-            background: #f8fafc;
-            padding: 1.2rem;
-            border-radius: 12px;
-            border-left: 3px solid #2a5298;
-            transition: transform 0.3s ease;
-        }
-
-        .contribution-item:hover {
-            transform: translateY(-1px);
-        }
-
-        .job-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .job-icon {
-            color: #1e3c72;
-            font-size: 1.5rem;
-            margin-top: 0.2rem;
-            min-width: 24px;
-        }
-
-        .job-responsibilities {
-            margin-left: 2.5rem;
-        }
-
-        .responsibility-item {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 0.6rem;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--line);
+            color: var(--ink-soft);
             font-size: 0.95rem;
         }
 
-        .responsibility-item i {
-            color: #2a5298;
-            font-size: 0.9rem;
-            min-width: 16px;
+        .values-list li:last-child { border-bottom: none; }
+        .values-list li i { color: var(--gold); margin-top: 4px; }
+
+        /* Experience timeline */
+        .timeline {
+            position: relative;
+            padding-left: 36px;
         }
 
-        .skill-category-header {
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: var(--line);
+        }
+
+        .exp {
+            position: relative;
+            margin-bottom: 42px;
+            padding-bottom: 6px;
+        }
+
+        .exp::before {
+            content: "";
+            position: absolute;
+            left: -36px;
+            top: 8px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--gold);
+        }
+
+        .exp:last-child { margin-bottom: 0; }
+
+        .exp-meta {
+            font-size: 0.78rem;
+            color: var(--navy-700);
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .exp-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.45rem;
+            color: var(--navy-900);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .exp-company {
+            color: var(--ink-soft);
+            font-size: 1rem;
+            margin-bottom: 14px;
+        }
+
+        .exp-company .dot {
+            color: var(--gold);
+            margin: 0 8px;
+        }
+
+        .exp-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .exp-list li {
+            position: relative;
+            padding-left: 22px;
+            color: var(--ink-soft);
+            margin-bottom: 8px;
+            font-size: 0.97rem;
+            line-height: 1.55;
+        }
+
+        .exp-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 10px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        .skill-card {
+            background: var(--bg);
+            border: 1px solid var(--line);
+            padding: 28px 26px;
+            transition: all 0.25s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(15, 42, 74, 0.07);
+        }
+
+        .skill-head {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            margin-bottom: 0.8rem;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--line);
         }
 
-        .skill-category-icon {
-            color: #1e3c72;
+        .skill-head i {
+            color: var(--gold);
+            font-size: 1.15rem;
+        }
+
+        .skill-head h3 {
+            font-size: 1rem;
+            color: var(--navy-900);
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: var(--bg-tint);
+            color: var(--navy-800);
+            padding: 6px 12px;
+            border-radius: 2px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .tag:hover {
+            background: var(--navy-800);
+            color: #fff;
+        }
+
+        /* Contributions */
+        .contrib-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .contrib {
+            background: var(--bg);
+            padding: 32px 28px;
+            border-top: 2px solid var(--gold);
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            border-left: 1px solid var(--line);
+            transition: all 0.25s ease;
+        }
+
+        .contrib:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(15, 42, 74, 0.08);
+        }
+
+        .contrib i {
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .contrib h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--navy-900);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .contrib p {
+            color: var(--ink-soft);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Education */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .edu-card {
+            background: var(--bg);
+            border: 1px solid var(--line);
+            padding: 28px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .edu-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--navy-900);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
-        .contribution-icon {
-            color: #2a5298;
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
+        .edu-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--navy-900);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .edu-card .edu-school {
+            color: var(--ink-soft);
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .edu-card .edu-meta {
+            font-size: 0.82rem;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        /* Contact CTA */
+        .cta {
+            background:
+                radial-gradient(700px 350px at 100% 0%, rgba(201, 169, 97, 0.18), transparent 60%),
+                linear-gradient(135deg, var(--navy-900), var(--navy-700));
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .cta p {
+            color: rgba(255, 255, 255, 0.78);
+            margin-bottom: 32px;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         /* Footer */
         .footer {
-            text-align: center;
-            padding: 2rem 0;
-            color: rgba(255, 255, 255, 0.8);
+            background: var(--navy-900);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 36px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            font-size: 0.88rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 22px;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .name {
-                font-size: 2rem;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-
-            .main-content {
-                padding: 1.5rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section {
-                margin-bottom: 1.5rem;
-            }
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+            .about-grid { grid-template-columns: 1fr; gap: 36px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .stat:nth-child(2) { border-right: none; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            section.block { padding: 64px 0; }
+            .hero { padding: 64px 0 80px; }
         }
 
-        /* Print styles for PDF generation */
-        @media print {
-            body {
-                background: white;
-            }
-            
-            .header, .main-content {
-                background: white;
-                box-shadow: none;
-                border: none;
-            }
-            
-            .download-btn {
-                display: none;
-            }
+        @media (max-width: 560px) {
+            .container { padding: 0 20px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .stat { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+            .stat:last-child { border-bottom: none; }
+        }
+
+        /* Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
-
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <img src="assets/1675122834072.jpeg" alt="TD" class="profile-img" style="width: 100px; height: 100px;">
-                <h1 class="name">Tim Dime</h1>
-                <p class="title">IT Professional & Financial Industry Specialist</p>
-                
-                <div class="contact-info">
-                    <a href="https://www.linkedin.com/in/tim10/" class="contact-item" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                        LinkedIn Profile
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="#top" class="brand">
+                <span class="brand-mark">TD</span>
+                <span>Tim Dime</span>
+            </a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#impact">Impact</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero" id="top">
+        <div class="container hero-grid">
+            <div>
+                <div class="eyebrow">Director · IT Operations &amp; Infrastructure</div>
+                <h1>Engineering the<br><span class="accent">infrastructure</span> behind modern trading.</h1>
+                <p class="hero-sub">
+                    Twenty years of building, scaling, and leading the technology that powers a top-tier
+                    proprietary trading firm — from low-latency networks and trading systems to the teams
+                    that keep them running.
+                </p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary">
+                        Get in touch <i class="fas fa-arrow-right"></i>
                     </a>
-                    <a href="mailto:tim@timdime.com?subject=Contact%20Request" class="contact-item" target="_blank">
-                        <i class="fas fa-globe"></i>
-                        Email
-                    </a>
-                    <a href="https://files.brokercheck.finra.org/individual/individual_6315164.pdf" class="contact-item" target="_blank"><img src="assets/bc_logo_large.png" alt="BrokerCheck" style="width:195px;height:52px;">
+                    <a href="https://www.linkedin.com/in/tim10/" target="_blank" rel="noopener" class="btn btn-ghost">
+                        <i class="fab fa-linkedin"></i> LinkedIn
                     </a>
                 </div>
             </div>
-        </header>
 
-        <!-- Main Content -->
-        <main class="main-content" id="resume-content">
-            <!-- Career Profile -->
-            <section class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-user"></i>
-                    Career Profile
-                </h2>
-                <div class="objective">
-                    IT Professional in the Trading Industry with 20+ years of IT, industry and management experience. 
-                    Excellent command of technologies, analysis, and best practices. Collaborate cross-functionally 
-                    across organizational levels to analyze system behavior, troubleshoot emerging issues, and develop solutions.
-                    <br><br>
-                    <strong>Capital Partner of Belvedere Trading from January 2011 to present.</strong>
-                </div>
-            </section>
-
-            <!-- Professional Experience -->
-            <section class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-briefcase"></i>
-                    Professional Experience
-                </h2>
-                
-                <div class="experience-item">
-                    <div class="job-header">
-                        <i class="fas fa-crown job-icon"></i>
-                        <div>
-                            <h3 class="job-title">IT Director & Capital Partner</h3>
-                            <p class="company">Belvedere Trading</p>
-                            <p class="duration">January 2011 - Present</p>
-                        </div>
+            <aside class="hero-card">
+                <img src="assets/1675122834072.jpeg" alt="Tim Dime" class="hero-photo">
+                <div class="hero-card-name">Timothy J. Dime</div>
+                <div class="hero-card-title">Capital Partner · Belvedere Trading</div>
+                <div class="hero-meta">
+                    <div class="hero-meta-row">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Chicago, Illinois</span>
                     </div>
-                    <div class="job-responsibilities">
-                        <div class="responsibility-item">
-                            <i class="fas fa-users"></i>
-                            <span>Oversee Infrastructure, Release, Support and Trading Desk Teams</span>
-                        </div>
-                        <div class="responsibility-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Manage firm-wide projects and own the Production Environment</span>
-                        </div>
-                        <div class="responsibility-item">
-                            <i class="fas fa-calculator"></i>
-                            <span>Produce annual budget forecasts and authorize expenditures</span>
-                        </div>
-                        <div class="responsibility-item">
-                            <i class="fas fa-handshake"></i>
-                            <span>Negotiate annual and multi-year service contracts</span>
-                        </div>
+                    <div class="hero-meta-row">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:tim@timdime.com?subject=Contact%20Request">tim@timdime.com</a>
+                    </div>
+                    <div class="hero-meta-row">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/tim10/" target="_blank" rel="noopener">linkedin.com/in/tim10</a>
+                    </div>
+                    <div class="hero-meta-row">
+                        <i class="fas fa-id-badge"></i>
+                        <a href="https://files.brokercheck.finra.org/individual/individual_6315164.pdf" target="_blank" rel="noopener">FINRA BrokerCheck</a>
                     </div>
                 </div>
+            </aside>
+        </div>
+    </header>
 
-                <div class="experience-item">
-                    <div class="job-header">
-                        <i class="fas fa-chart-bar job-icon"></i>
-                        <div>
-                            <h3 class="job-title">Business Intelligence Team Lead</h3>
-                            <p class="company">Belvedere Trading</p>
-                        </div>
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-num">20+</div>
+                    <div class="stat-label">Years in IT</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">15+</div>
+                    <div class="stat-label">Years at Belvedere</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">400+</div>
+                    <div class="stat-label">Endpoints Managed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">10+</div>
+                    <div class="stat-label">Datacenter Migrations</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="block" id="about">
+        <div class="container reveal">
+            <div class="section-eyebrow">About</div>
+            <h2 class="section-title">Technology leadership for the trading floor.</h2>
+            <p class="section-lede">
+                I lead the infrastructure, support, and trading desk technology organization at one of
+                Chicago's premier proprietary trading firms. My focus is the intersection of resilient
+                systems, strong teams, and the operational excellence that high-stakes markets demand.
+            </p>
+
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        As <strong>Director of IT Operations &amp; Infrastructure</strong> at Belvedere
+                        Trading, I oversee the Infrastructure, Release, Support, and Trading Desk teams.
+                        I own the firm's production environment, manage cross-functional projects across
+                        the business, and align technology investment with strategic roadmaps.
+                    </p>
+                    <p>
+                        I joined Belvedere as a Systems &amp; Network Administrator and have grown
+                        alongside the firm — building the Business Intelligence team from the ground up,
+                        leading more than ten datacenter and office migrations, and embedding external
+                        trading groups into our environment. I became a <strong>Capital Partner in 2011</strong>.
+                    </p>
+                    <p>
+                        Across every role I prioritize the same things: low-latency, well-monitored
+                        systems; clear, automated workflows; and teams that own their outcomes.
+                    </p>
+                </div>
+
+                <div class="values-card">
+                    <h3>What I bring to the table</h3>
+                    <ul class="values-list">
+                        <li><i class="fas fa-check"></i><span>Deep operational experience in low-latency, regulated environments</span></li>
+                        <li><i class="fas fa-check"></i><span>A bias for automation, observability, and clear runbooks</span></li>
+                        <li><i class="fas fa-check"></i><span>Multi-site infrastructure across Chicago, Boulder, NY, and Singapore</span></li>
+                        <li><i class="fas fa-check"></i><span>Vendor &amp; contract negotiation across hardware, market data, and connectivity</span></li>
+                        <li><i class="fas fa-check"></i><span>Coaching and growing technical leaders within the organization</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="block alt" id="experience">
+        <div class="container reveal">
+            <div class="section-eyebrow">Experience</div>
+            <h2 class="section-title">A career built inside the markets.</h2>
+            <p class="section-lede">
+                From the help desk to the executive team — every role has deepened my understanding of
+                the technology, regulation, and people that drive a successful trading business.
+            </p>
+
+            <div class="timeline">
+
+                <div class="exp">
+                    <div class="exp-meta">2018 — Present</div>
+                    <div class="exp-title">Director, IT Operations &amp; Infrastructure</div>
+                    <div class="exp-company">Belvedere Trading, LLC <span class="dot">·</span> Chicago, IL</div>
+                    <ul class="exp-list">
+                        <li>Oversee Infrastructure, Release, Support, and Trading Desk Technology teams.</li>
+                        <li>Own the firm's production trading environment and partner with the business on strategic technology roadmaps.</li>
+                        <li>Produce annual budget forecasts, authorize expenditures, and negotiate annual and multi-year service contracts.</li>
+                        <li>Manage firm-wide projects spanning trading systems, exchange connectivity, and operational risk.</li>
+                    </ul>
+                </div>
+
+                <div class="exp">
+                    <div class="exp-meta">2014 — 2018</div>
+                    <div class="exp-title">Infrastructure &amp; Support Lead</div>
+                    <div class="exp-company">Belvedere Trading, LLC <span class="dot">·</span> Chicago, IL</div>
+                    <ul class="exp-list">
+                        <li>Led the team responsible for the firm's trading desks, internal users, and core infrastructure.</li>
+                        <li>Built proactive monitoring and SLA reporting to improve uptime and time-to-resolution.</li>
+                        <li>Embedded external trading groups into Belvedere's environment with software and exchange access requirements.</li>
+                    </ul>
+                </div>
+
+                <div class="exp">
+                    <div class="exp-meta">2011 — Present</div>
+                    <div class="exp-title">Capital Partner</div>
+                    <div class="exp-company">Belvedere Trading, LLC <span class="dot">·</span> Chicago, IL</div>
+                    <ul class="exp-list">
+                        <li>Invited into the partnership in January 2011 in recognition of long-term contribution to the firm.</li>
+                        <li>Participate in firm-level strategy, risk, and growth discussions.</li>
+                    </ul>
+                </div>
+
+                <div class="exp">
+                    <div class="exp-meta">2010 — 2014</div>
+                    <div class="exp-title">Business Intelligence Team Lead</div>
+                    <div class="exp-company">Belvedere Trading, LLC <span class="dot">·</span> Chicago, IL</div>
+                    <ul class="exp-list">
+                        <li>Launched the Business Intelligence function from the ground up.</li>
+                        <li>Normalized data across proprietary software systems to deliver reporting metrics and trading desk dashboards.</li>
+                        <li>Built a complete employee review platform used by 175+ employees.</li>
+                    </ul>
+                </div>
+
+                <div class="exp">
+                    <div class="exp-meta">2007 — 2010</div>
+                    <div class="exp-title">Systems &amp; Network Administrator</div>
+                    <div class="exp-company">Belvedere Trading, LLC <span class="dot">·</span> Chicago, IL</div>
+                    <ul class="exp-list">
+                        <li>Managed 400+ endpoints across six sites in mixed Linux and Windows environments.</li>
+                        <li>Operated HP servers and Force10 (Dell) and Arista switching with a focus on low-latency performance.</li>
+                        <li>Implemented and supported trading systems including OptionsCity, ProOpticus, Orc, Trading Technologies, and Actant.</li>
+                    </ul>
+                </div>
+
+                <div class="exp">
+                    <div class="exp-meta">2005 — 2006</div>
+                    <div class="exp-title">Level II Desktop Support &amp; Special Projects</div>
+                    <div class="exp-company">Peoples Gas Company, LLC <span class="dot">·</span> Chicago, IL</div>
+                    <ul class="exp-list">
+                        <li>Started as sole desktop support resource handling application support, systems and network administration, and telecom.</li>
+                        <li>Promoted to the Special Projects group after six months.</li>
+                        <li>Led the mobile command center initiative and a company-wide infrastructure upgrade.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="block" id="expertise">
+        <div class="container reveal">
+            <div class="section-eyebrow">Expertise</div>
+            <h2 class="section-title">A stack tuned for trading.</h2>
+            <p class="section-lede">
+                Two decades of hands-on work across the full technology stack — from physical
+                connectivity in the cage to the dashboards on the trading desk.
+            </p>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-head">
+                        <i class="fas fa-desktop"></i>
+                        <h3>Operating Systems &amp; Virtualization</h3>
                     </div>
-                    <div class="job-responsibilities">
-                        <div class="responsibility-item">
-                            <i class="fas fa-rocket"></i>
-                            <span>Launched the Business Intelligence Team from ground up</span>
-                        </div>
-                        <div class="responsibility-item">
-                            <i class="fas fa-database"></i>
-                            <span>Normalized data across proprietary software systems for reporting</span>
-                        </div>
-                        <div class="responsibility-item">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <span>Created dashboards for trading desk and trader evaluations</span>
-                        </div>
-                        <div class="responsibility-item">
-                            <i class="fas fa-star"></i>
-                            <span>Developed complete employee review platform used by 175 employees</span>
-                        </div>
+                    <div class="tags">
+                        <span class="tag">Linux</span>
+                        <span class="tag">Windows Server</span>
+                        <span class="tag">CentOS / RHEL</span>
+                        <span class="tag">macOS</span>
+                        <span class="tag">VMware</span>
+                        <span class="tag">Citrix</span>
+                        <span class="tag">oVirt</span>
                     </div>
                 </div>
 
-                <div class="experience-item">
-                    <div class="job-header">
-                        <i class="fas fa-server job-icon"></i>
-                        <div>
-                            <h3 class="job-title">Systems/Network Administrator</h3>
-                            <p class="company">Belvedere Trading</p>
-                        </div>
+                <div class="skill-card">
+                    <div class="skill-head">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>Networking &amp; Infrastructure</h3>
                     </div>
-                    <div class="job-responsibilities">
-                        <div class="responsibility-item">
-                            <i class="fas fa-network-wired"></i>
-                            <span>Managed 400+ endpoints across 6 sites with Linux/Windows environments</span>
-                        </div>
-                        <div class="responsibility-item">
-                            <i class="fas fa-tools"></i>
-                            <span>Utilized HP servers, Force10 (Dell) and Arista switches</span>
-                        </div>
-                        <div class="responsibility-item">
-                            <i class="fas fa-exchange-alt"></i>
-                            <span>Implemented trading systems: OptionsCity, ProOpticus, Orc, TT, Actant</span>
-                        </div>
-                        <div class="responsibility-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>Ensured low latency and proactive monitoring via multiple tools</span>
-                        </div>
+                    <div class="tags">
+                        <span class="tag">BGP</span>
+                        <span class="tag">Multicast</span>
+                        <span class="tag">Arista</span>
+                        <span class="tag">Juniper</span>
+                        <span class="tag">Cisco</span>
+                        <span class="tag">Palo Alto</span>
+                        <span class="tag">Data Center Ops</span>
                     </div>
                 </div>
 
-                <div class="experience-item">
-                    <div class="job-header">
-                        <i class="fas fa-laptop job-icon"></i>
-                        <div>
-                            <h3 class="job-title">IT Support Specialist</h3>
-                            <p class="company">Previous Organizations</p>
-                        </div>
+                <div class="skill-card">
+                    <div class="skill-head">
+                        <i class="fas fa-robot"></i>
+                        <h3>Automation &amp; Observability</h3>
                     </div>
-                    <div class="job-responsibilities">
-                        <div class="responsibility-item">
-                            <i class="fas fa-wrench"></i>
-                            <span>Performed all IT functions as sole IT resource</span>
-                        </div>
-                        <div class="responsibility-item">
-                            <i class="fas fa-phone"></i>
-                            <span>Managed Application Support, Systems Admin, Network Admin, Telecom</span>
-                        </div>
-                        <div class="responsibility-item">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>Promoted to Special Projects group after 6 months</span>
-                        </div>
-                        <div class="responsibility-item">
-                            <i class="fas fa-mobile-alt"></i>
-                            <span>Led mobile command center and infrastructure upgrade projects</span>
-                        </div>
+                    <div class="tags">
+                        <span class="tag">SaltStack</span>
+                        <span class="tag">Puppet</span>
+                        <span class="tag">Splunk</span>
+                        <span class="tag">Nagios</span>
+                        <span class="tag">Grafana</span>
+                        <span class="tag">Telegraf</span>
+                        <span class="tag">SmokePing</span>
                     </div>
                 </div>
-            </section>
 
-            <!-- Skills -->
-            <section class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-cogs"></i>
-                    Technical Skills
-                </h2>
-                
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <div class="skill-category-header">
-                            <i class="fas fa-desktop skill-category-icon"></i>
-                            <h3>Operating Systems & Virtualization</h3>
-                        </div>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Windows Server/Desktop</span>
-                            <span class="skill-tag">Linux</span>
-                            <span class="skill-tag">CentOS</span>
-                            <span class="skill-tag">Mac OSX</span>
-                            <span class="skill-tag">VMware</span>
-                            <span class="skill-tag">Citrix</span>
-                            <span class="skill-tag">oVirt</span>
-                        </div>
+                <div class="skill-card">
+                    <div class="skill-head">
+                        <i class="fas fa-code"></i>
+                        <h3>Programming &amp; Scripting</h3>
                     </div>
-
-                    <div class="skill-category">
-                        <div class="skill-category-header">
-                            <i class="fas fa-network-wired skill-category-icon"></i>
-                            <h3>Networking & Infrastructure</h3>
-                        </div>
-                        <div class="skill-tags">
-                            <span class="skill-tag">BGP</span>
-                            <span class="skill-tag">Multicast</span>
-                            <span class="skill-tag">Juniper</span>
-                            <span class="skill-tag">Arista</span>
-                            <span class="skill-tag">Cisco</span>
-                            <span class="skill-tag">Palo Alto</span>
-                            <span class="skill-tag">Data Center Management</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <div class="skill-category-header">
-                            <i class="fas fa-robot skill-category-icon"></i>
-                            <h3>Automation & Monitoring</h3>
-                        </div>
-                        <div class="skill-tags">
-                            <span class="skill-tag">SaltStack</span>
-                            <span class="skill-tag">Puppet</span>
-                            <span class="skill-tag">Splunk</span>
-                            <span class="skill-tag">Nagios</span>
-                            <span class="skill-tag">Grafana</span>
-                            <span class="skill-tag">Telegraf</span>
-                            <span class="skill-tag">SmokePing</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <div class="skill-category-header">
-                            <i class="fas fa-code skill-category-icon"></i>
-                            <h3>Programming & Scripting</h3>
-                        </div>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Perl</span>
-                            <span class="skill-tag">Bash</span>
-                            <span class="skill-tag">PowerShell</span>
-                            <span class="skill-tag">SQL</span>
-                            <span class="skill-tag">HTML/CSS</span>
-                            <span class="skill-tag">Flask</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <div class="skill-category-header">
-                            <i class="fas fa-chart-line skill-category-icon"></i>
-                            <h3>Trading Systems</h3>
-                        </div>
-                        <div class="skill-tags">
-                            <span class="skill-tag">OptionsCity</span>
-                            <span class="skill-tag">Trading Technologies</span>
-                            <span class="skill-tag">ProOpticus</span>
-                            <span class="skill-tag">Orc</span>
-                            <span class="skill-tag">Bloomberg</span>
-                            <span class="skill-tag">Market Data</span>
-                            <span class="skill-tag">Exchange Access</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <div class="skill-category-header">
-                            <i class="fas fa-database skill-category-icon"></i>
-                            <h3>Databases & Storage</h3>
-                        </div>
-                        <div class="skill-tags">
-                            <span class="skill-tag">MariaDB</span>
-                            <span class="skill-tag">PostgreSQL</span>
-                            <span class="skill-tag">MSSQL</span>
-                            <span class="skill-tag">InfluxDB</span>
-                            <span class="skill-tag">OneTick</span>
-                            <span class="skill-tag">SAN/NAS</span>
-                        </div>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Bash</span>
+                        <span class="tag">Perl</span>
+                        <span class="tag">PowerShell</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">HTML / CSS</span>
                     </div>
                 </div>
-            </section>
 
-            <!-- Key Contributions -->
-            <section class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-trophy"></i>
-                    Key Contributions
-                </h2>
-                
-                <div class="contributions-grid">
-                    <div class="contribution-item">
-                        <i class="fas fa-robot contribution-icon"></i>
-                        <h4>Automation of Workflows</h4>
-                        <p>Belvedere Software Authorization System, Employee Management System, and Employee Change Notification System</p>
+                <div class="skill-card">
+                    <div class="skill-head">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Trading Systems</h3>
                     </div>
-
-                    <div class="contribution-item">
-                        <i class="fas fa-plug contribution-icon"></i>
-                        <h4>External Trading Groups Integration</h4>
-                        <p>Successfully embedded external traders into Belvedere's environment with various trading software and exchange access requirements</p>
-                    </div>
-
-                    <div class="contribution-item">
-                        <i class="fas fa-chart-line contribution-icon"></i>
-                        <h4>Performance Monitoring</h4>
-                        <p>Created custom monitoring solutions and load testing tools to optimize infrastructure performance and detect inefficiencies</p>
-                    </div>
-
-                    <div class="contribution-item">
-                        <i class="fas fa-globe contribution-icon"></i>
-                        <h4>General Purpose Websites</h4>
-                        <p>Company Directory, Crypto Positions tracker, Interview Rooms system, and Belvedere Office Maps</p>
-                    </div>
-
-                    <div class="contribution-item">
-                        <i class="fas fa-building contribution-icon"></i>
-                        <h4>Infrastructure Projects</h4>
-                        <p>Led 10+ datacenter and office migrations, moves, and expansions across multiple locations</p>
-                    </div>
-
-                    <div class="contribution-item">
-                        <i class="fas fa-lock contribution-icon"></i>
-                        <h4>Environment Segmentation</h4>
-                        <p>Implemented secure development/production environment separation to prevent unauthorized access to trading systems</p>
+                    <div class="tags">
+                        <span class="tag">OptionsCity</span>
+                        <span class="tag">Trading Technologies</span>
+                        <span class="tag">ProOpticus</span>
+                        <span class="tag">Orc</span>
+                        <span class="tag">Actant</span>
+                        <span class="tag">Bloomberg</span>
+                        <span class="tag">Exchange Access</span>
                     </div>
                 </div>
-            </section>
 
-            <!-- Soft Skills -->
-            <section class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-users"></i>
-                    Core Competencies
-                </h2>
-                <div class="skill-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span class="skill-tag">Project Management</span>
-                    <span class="skill-tag">Leadership</span>
-                    <span class="skill-tag">Team Management</span>
-                    <span class="skill-tag">Troubleshooting</span>
-                    <span class="skill-tag">Problem Solving</span>
-                    <span class="skill-tag">Budgeting</span>
-                    <span class="skill-tag">Contract Negotiations</span>
-                    <span class="skill-tag">Financial Markets</span>
-                    <span class="skill-tag">Data Analysis</span>
-                    <span class="skill-tag">Cross-functional Collaboration</span>
+                <div class="skill-card">
+                    <div class="skill-head">
+                        <i class="fas fa-database"></i>
+                        <h3>Data &amp; Storage</h3>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">MariaDB</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">MSSQL</span>
+                        <span class="tag">InfluxDB</span>
+                        <span class="tag">OneTick</span>
+                        <span class="tag">SAN / NAS</span>
+                    </div>
                 </div>
-            </section>
-        </main>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <p>&copy; 2025 Tim Dime. All rights reserved. | <a href="https://www.linkedin.com/in/tim10/" style="color: rgba(255,255,255,0.8);">LinkedIn</a> | <a href="mailto:tim@timdime.com?subject=Contact%20Request" style="color: rgba(255,255,255,0.8);">Email</a></p>
-        </footer>
-    </div>
+                <div class="skill-card">
+                    <div class="skill-head">
+                        <i class="fas fa-users-cog"></i>
+                        <h3>Leadership</h3>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Team Management</span>
+                        <span class="tag">Project Management</span>
+                        <span class="tag">Budgeting</span>
+                        <span class="tag">Contract Negotiation</span>
+                        <span class="tag">Strategic Planning</span>
+                        <span class="tag">Mentorship</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-head">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>Industry &amp; Compliance</h3>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Equity Derivatives</span>
+                        <span class="tag">Commodity Derivatives</span>
+                        <span class="tag">Market Data</span>
+                        <span class="tag">FINRA Registered</span>
+                        <span class="tag">Risk Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact / Contributions -->
+    <section class="block alt" id="impact">
+        <div class="container reveal">
+            <div class="section-eyebrow">Selected Impact</div>
+            <h2 class="section-title">Projects that moved the firm forward.</h2>
+            <p class="section-lede">
+                A sample of initiatives I've led or partnered on — work that shaped how the firm
+                operates day-to-day.
+            </p>
+
+            <div class="contrib-grid">
+                <div class="contrib">
+                    <i class="fas fa-robot"></i>
+                    <h4>Workflow Automation</h4>
+                    <p>Designed and shipped the Belvedere Software Authorization System, Employee
+                    Management System, and Employee Change Notification platform.</p>
+                </div>
+
+                <div class="contrib">
+                    <i class="fas fa-plug"></i>
+                    <h4>External Trading Group Integration</h4>
+                    <p>Embedded external trading groups into Belvedere's environment, accommodating
+                    diverse software stacks and exchange access requirements.</p>
+                </div>
+
+                <div class="contrib">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h4>Performance Monitoring</h4>
+                    <p>Built custom monitoring solutions and load-testing tooling to surface
+                    inefficiencies before they affected trading.</p>
+                </div>
+
+                <div class="contrib">
+                    <i class="fas fa-globe"></i>
+                    <h4>Internal Tooling Suite</h4>
+                    <p>Delivered company directory, crypto positions tracking, interview rooms
+                    coordination, and Belvedere office maps used across the firm.</p>
+                </div>
+
+                <div class="contrib">
+                    <i class="fas fa-building"></i>
+                    <h4>Datacenter &amp; Office Build-outs</h4>
+                    <p>Led 10+ datacenter and office migrations, moves, and expansions across
+                    multiple offices and trading venues.</p>
+                </div>
+
+                <div class="contrib">
+                    <i class="fas fa-lock"></i>
+                    <h4>Environment Segmentation</h4>
+                    <p>Implemented secure development and production environment separation to
+                    safeguard trading systems from unauthorized access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Credentials -->
+    <section class="block" id="credentials">
+        <div class="container reveal">
+            <div class="section-eyebrow">Education &amp; Credentials</div>
+            <h2 class="section-title">Formal foundation.</h2>
+
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div>
+                        <h4>Bachelor of Science, Information Management</h4>
+                        <p class="edu-school">Western Illinois University</p>
+                        <p class="edu-meta">2000 — 2004</p>
+                    </div>
+                </div>
+
+                <div class="edu-card">
+                    <div class="edu-icon"><i class="fas fa-id-card"></i></div>
+                    <div>
+                        <h4>FINRA Registered Representative</h4>
+                        <p class="edu-school">Series registrations · Belvedere Trading, LLC</p>
+                        <p class="edu-meta">
+                            <a href="https://files.brokercheck.finra.org/individual/individual_6315164.pdf" target="_blank" rel="noopener" style="color: var(--navy-700);">
+                                View BrokerCheck report <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>Let's talk.</h2>
+            <p>
+                I'm always happy to connect with peers in trading technology, leaders building
+                infrastructure teams, and folks earlier in their careers looking for advice.
+            </p>
+            <div class="cta-actions">
+                <a href="mailto:tim@timdime.com?subject=Hello%20from%20your%20site" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> tim@timdime.com
+                </a>
+                <a href="https://www.linkedin.com/in/tim10/" target="_blank" rel="noopener" class="btn btn-ghost">
+                    <i class="fab fa-linkedin"></i> Connect on LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div>&copy; 2026 Timothy J. Dime. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/tim10/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="mailto:tim@timdime.com?subject=Contact%20Request">Email</a>
+                <a href="https://files.brokercheck.finra.org/individual/individual_6315164.pdf" target="_blank" rel="noopener">BrokerCheck</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        
-        // Smooth scrolling for any anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href'))?.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Add subtle scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        // Reveal animation on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('in');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-        // Observe all sections
-        document.querySelectorAll('.section, .experience-item, .contribution-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
