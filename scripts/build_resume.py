@@ -315,7 +315,7 @@ EDUCATION = [
 ]
 
 CREDENTIALS = [
-    "FINRA Registered Representative",
+    "FINRA Registered Representative — SIE & Series 56, 57 & 99",
     "Capital Partner, Belvedere Trading (2011 — Present)",
 ]
 
