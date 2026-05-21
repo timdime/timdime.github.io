@@ -169,8 +169,8 @@ EXPERIENCE = [
             "GPS-disciplined time precision.",
             "Modernized identity and access with Azure Entra ID — conditional access, "
             "MFA, and Entra-registered apps for the firm's SSO portfolio.",
-            "Built out the firm's Google Cloud footprint — VPC peering, private "
-            "interconnect, and BigQuery-backed analytics — alongside the on-prem "
+            "Built out the firm's Google Cloud footprint — VPC peering & private "
+            "interconnect for BigQuery-backed analytics — alongside the on-prem "
             "trading stack.",
             "Produce annual budget forecasts, authorize expenditures, and negotiate "
             "multi-year service contracts.",
