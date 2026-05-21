@@ -196,8 +196,8 @@ EXPERIENCE = [
         "location": "Chicago, IL",
         "dates": "Jan 2011 — Present",
         "bullets": [
-            "Invited into the partnership in recognition of long-term contribution to "
-            "the firm.",
+            "Invited into the partnership in recognition of long-term contribution and "
+            "impact to the firm.",
             "Participate in firm-level strategy, risk, and growth discussions.",
         ],
     },
