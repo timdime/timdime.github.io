@@ -161,7 +161,7 @@ EXPERIENCE = [
         "title": "Director, IT Operations & Infrastructure",
         "company": "Belvedere Trading, LLC",
         "location": "Chicago, IL",
-        "dates": "2018 — Present",
+        "dates": "Sep 2017 — Present",
         "bullets": [
             "Oversee Infrastructure, Release, Support, and Trading Desk Technology teams.",
             "Steward the firm's low-latency edge: exchange colocation, Layer 1 switching, "
@@ -179,35 +179,10 @@ EXPERIENCE = [
         ],
     },
     {
-        "title": "Infrastructure & Support Lead",
-        "company": "Belvedere Trading, LLC",
-        "location": "Chicago, IL",
-        "dates": "2014 — 2018",
-        "bullets": [
-            "Led the team responsible for the firm's trading desks, internal users, and "
-            "core infrastructure.",
-            "Introduced proactive monitoring and SLA reporting that improved uptime and "
-            "time-to-resolution.",
-            "Embedded external trading groups into Belvedere's environment, accommodating "
-            "diverse software stacks and exchange access requirements.",
-        ],
-    },
-    {
-        "title": "Capital Partner",
-        "company": "Belvedere Trading, LLC",
-        "location": "Chicago, IL",
-        "dates": "2011 — Present",
-        "bullets": [
-            "Invited into the partnership in January 2011 in recognition of long-term "
-            "contribution to the firm.",
-            "Participate in firm-level strategy, risk, and growth discussions.",
-        ],
-    },
-    {
         "title": "Business Intelligence Team Lead",
         "company": "Belvedere Trading, LLC",
         "location": "Chicago, IL",
-        "dates": "2010 — 2014",
+        "dates": "Mar 2013 — Sep 2017",
         "bullets": [
             "Launched the Business Intelligence function from the ground up.",
             "Normalized data across proprietary software systems to deliver reporting "
@@ -216,29 +191,52 @@ EXPERIENCE = [
         ],
     },
     {
-        "title": "Systems & Network Administrator",
+        "title": "Capital Partner",
         "company": "Belvedere Trading, LLC",
         "location": "Chicago, IL",
-        "dates": "2007 — 2010",
+        "dates": "Jan 2011 — Present",
         "bullets": [
-            "Started as sole desktop support resource handling application support, "
-            "systems and network administration, and telecom.",
-            "Managed 400+ endpoints across six sites in mixed Linux and Windows "
-            "environments.",
-            "Operated HP servers and Force10 (Dell) / Arista switching with a focus on "
-            "low-latency performance — exchange colocation, Layer 1 / cut-through "
-            "switching, GPS-disciplined NTP/PTP time sources.",
-            "Built PCAP capture and tick-to-trade measurement to quantify network and "
-            "application latency end-to-end.",
+            "Invited into the partnership in January 2011 in recognition of long-term "
+            "contribution to the firm.",
+            "Participate in firm-level strategy, risk, and growth discussions.",
+        ],
+    },
+    {
+        "title": "Infrastructure/Support Lead",
+        "company": "Belvedere Trading, LLC",
+        "location": "Chicago, IL",
+        "dates": "Dec 2007 — Mar 2013",
+        "bullets": [
+            "Led the team responsible for the firm's trading desks, internal users, and "
+            "core infrastructure — 400+ endpoints across six sites in mixed Linux and "
+            "Windows environments.",
+            "Built out the firm's trading edge: HP servers, Force10 (Dell) / Arista "
+            "switching, exchange colocation, Layer 1 / cut-through switching, and "
+            "GPS-disciplined NTP/PTP time sources.",
             "Implemented and supported options trading systems including OptionsCity, "
             "ProOpticus, Orc, Trading Technologies, and Actant.",
+            "Built PCAP capture and tick-to-trade measurement to quantify network and "
+            "application latency end-to-end.",
+            "Introduced proactive monitoring and SLA reporting that improved uptime and "
+            "time-to-resolution.",
+        ],
+    },
+    {
+        "title": "IT Specialist",
+        "company": "Belvedere Trading, LLC",
+        "location": "Chicago, IL",
+        "dates": "Dec 2006 — Dec 2007",
+        "bullets": [
+            "Performed all IT functions to support the business as the sole IT "
+            "resource — application support, systems administration, network "
+            "administration, telecom, and more.",
         ],
     },
     {
         "title": "Level II Desktop Support & Special Projects",
         "company": "Peoples Gas Company, LLC",
         "location": "Chicago, IL",
-        "dates": "2005 — 2006",
+        "dates": "May 2005 — Dec 2006",
         "bullets": [
             "Promoted to the Special Projects group after six months.",
             "Led the mobile command center initiative and a company-wide infrastructure "
