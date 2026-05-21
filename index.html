@@ -287,7 +287,7 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             text-align: center;
         }
 
@@ -710,8 +710,9 @@
         @media (max-width: 900px) {
             .hero-grid { grid-template-columns: 1fr; gap: 48px; }
             .about-grid { grid-template-columns: 1fr; gap: 36px; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .stat:nth-child(2) { border-right: none; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .stat { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+            .stat:last-child { border-bottom: none; }
             .edu-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
             section.block { padding: 64px 0; }
@@ -772,6 +773,9 @@
                     <a href="#contact" class="btn btn-primary">
                         Get in touch <i class="fas fa-arrow-right"></i>
                     </a>
+                    <a href="Tim_Dime_Resume.pdf" download class="btn btn-ghost">
+                        <i class="fas fa-file-arrow-down"></i> Download Résumé
+                    </a>
                     <a href="https://www.linkedin.com/in/tim10/" target="_blank" rel="noopener" class="btn btn-ghost">
                         <i class="fab fa-linkedin"></i> LinkedIn
                     </a>
@@ -789,7 +793,7 @@
                     </div>
                     <div class="hero-meta-row">
                         <i class="fas fa-envelope"></i>
-                        <a href="mailto:tim@timdime.com?subject=Contact%20Request">tim@timdime.com</a>
+                        <a href="mailto:tim@timdime.com?subject=Hello%20from%20timdime.com">tim@timdime.com</a>
                     </div>
                     <div class="hero-meta-row">
                         <i class="fab fa-linkedin"></i>
@@ -798,6 +802,10 @@
                     <div class="hero-meta-row">
                         <i class="fas fa-id-badge"></i>
                         <a href="https://files.brokercheck.finra.org/individual/individual_6315164.pdf" target="_blank" rel="noopener">FINRA BrokerCheck</a>
+                    </div>
+                    <div class="hero-meta-row">
+                        <i class="fas fa-file-arrow-down"></i>
+                        <a href="Tim_Dime_Resume.pdf" download>Download résumé (PDF)</a>
                     </div>
                 </div>
             </aside>
@@ -817,10 +825,6 @@
                     <div class="stat-label">Years at Belvedere</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-num">400+</div>
-                    <div class="stat-label">Endpoints Managed</div>
-                </div>
-                <div class="stat">
                     <div class="stat-num">10+</div>
                     <div class="stat-label">Datacenter Migrations</div>
                 </div>
@@ -834,28 +838,25 @@
             <div class="section-eyebrow">About</div>
             <h2 class="section-title">Technology leadership for the trading floor.</h2>
             <p class="section-lede">
-                I lead the infrastructure, support, and trading desk technology organization at one of
-                Chicago's premier proprietary options trading firms. My focus is the intersection of resilient
-                systems, strong teams, and the operational excellence that high-stakes markets demand.
+                The intersection of resilient systems, strong teams, and operational excellence is
+                where high-stakes markets are won or lost — and where I've spent the last two decades.
             </p>
 
             <div class="about-grid">
                 <div class="about-text">
                     <p>
-                        As <strong>Director of IT Operations &amp; Infrastructure</strong> at Belvedere
-                        Trading, I oversee the Infrastructure, Release, Support, and Trading Desk teams.
-                        I own the firm's production environment, manage cross-functional projects across
-                        the business, and align technology investment with strategic roadmaps.
+                        I'm <strong>Director of IT Operations &amp; Infrastructure</strong> at Belvedere
+                        Trading, where I lead the teams that keep our production trading environment
+                        running and shape the technology roadmap that supports it.
                     </p>
                     <p>
-                        I joined Belvedere as a Systems &amp; Network Administrator and have grown
-                        alongside the firm — building the Business Intelligence team from the ground up,
-                        leading more than ten datacenter and office migrations, and embedding external
-                        trading groups into our environment. I became a <strong>Capital Partner in 2011</strong>.
+                        I started at Belvedere on the systems and network side and grew with the firm,
+                        becoming a <strong>Capital Partner in 2011</strong>. The breadth of that
+                        journey — from rack cabling to executive strategy — is what I draw on every day.
                     </p>
                     <p>
-                        Across every role I prioritize the same things: low-latency, well-monitored
-                        systems; clear, automated workflows; and teams that own their outcomes.
+                        My through-line is the same in every role: well-monitored systems, clear and
+                        automated workflows, and teams that own their outcomes.
                     </p>
                 </div>
 
@@ -892,9 +893,8 @@
                     <div class="exp-company">Belvedere Trading, LLC <span class="dot">·</span> Chicago, IL</div>
                     <ul class="exp-list">
                         <li>Oversee Infrastructure, Release, Support, and Trading Desk Technology teams.</li>
-                        <li>Own the firm's production trading environment and partner with the business on strategic technology roadmaps.</li>
-                        <li>Steward the firm's low-latency edge: exchange colocation footprints, Layer 1 switching, FPGA-accelerated trading platforms, line-rate PCAP capture, and GPS-disciplined time precision.</li>
-                        <li>Produce annual budget forecasts, authorize expenditures, and negotiate annual and multi-year service contracts.</li>
+                        <li>Steward the firm's low-latency edge: exchange colocation, Layer 1 switching, FPGA-accelerated trading platforms, line-rate PCAP capture, and GPS-disciplined time precision.</li>
+                        <li>Produce annual budget forecasts, authorize expenditures, and negotiate multi-year service contracts.</li>
                         <li>Manage firm-wide projects spanning trading systems, exchange connectivity, and operational risk.</li>
                     </ul>
                 </div>
@@ -905,8 +905,7 @@
                     <div class="exp-company">Belvedere Trading, LLC <span class="dot">·</span> Chicago, IL</div>
                     <ul class="exp-list">
                         <li>Led the team responsible for the firm's trading desks, internal users, and core infrastructure.</li>
-                        <li>Built proactive monitoring and SLA reporting to improve uptime and time-to-resolution.</li>
-                        <li>Embedded external trading groups into Belvedere's environment with software and exchange access requirements.</li>
+                        <li>Introduced proactive monitoring and SLA reporting that improved uptime and time-to-resolution.</li>
                     </ul>
                 </div>
 
@@ -940,7 +939,7 @@
                         <li>Managed 400+ endpoints across six sites in mixed Linux and Windows environments.</li>
                         <li>Operated HP servers and Force10 (Dell) and Arista switching with a focus on low-latency performance, including exchange colocation, Layer 1 / cut-through switching, and GPS-disciplined NTP/PTP time sources.</li>
                         <li>Built PCAP capture and tick-to-trade measurement to quantify network and application latency end-to-end.</li>
-                        <li>Implemented and supported options trading systems including OptionsCity, ProOpticus, Orc, Trading Technologies, and Actant, alongside FPGA-accelerated platforms for market data and order entry.</li>
+                        <li>Implemented and supported options trading systems including OptionsCity, ProOpticus, Orc, Trading Technologies, and Actant.</li>
                     </ul>
                 </div>
 
@@ -1226,7 +1225,7 @@
                 infrastructure teams, and folks earlier in their careers looking for advice.
             </p>
             <div class="cta-actions">
-                <a href="mailto:tim@timdime.com?subject=Hello%20from%20your%20site" class="btn btn-primary">
+                <a href="mailto:tim@timdime.com?subject=Hello%20from%20timdime.com" class="btn btn-primary">
                     <i class="fas fa-envelope"></i> tim@timdime.com
                 </a>
                 <a href="https://www.linkedin.com/in/tim10/" target="_blank" rel="noopener" class="btn btn-ghost">
@@ -1241,8 +1240,9 @@
         <div class="container footer-inner">
             <div>&copy; 2026 Timothy J. Dime. All rights reserved.</div>
             <div class="footer-links">
+                <a href="Tim_Dime_Resume.pdf" download>Résumé</a>
                 <a href="https://www.linkedin.com/in/tim10/" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="mailto:tim@timdime.com?subject=Contact%20Request">Email</a>
+                <a href="mailto:tim@timdime.com?subject=Hello%20from%20timdime.com">Email</a>
                 <a href="https://files.brokercheck.finra.org/individual/individual_6315164.pdf" target="_blank" rel="noopener">BrokerCheck</a>
             </div>
         </div>
