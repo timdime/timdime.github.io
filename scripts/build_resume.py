@@ -202,7 +202,7 @@ EXPERIENCE = [
         ],
     },
     {
-        "title": "Infrastructure/Support Lead",
+        "title": "Infrastructure & Support Lead",
         "company": "Belvedere Trading, LLC",
         "location": "Chicago, IL",
         "dates": "Dec 2007 — Mar 2013",
