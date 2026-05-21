@@ -23,8 +23,8 @@ SIDEBAR_BG = HexColor("#F4F6FA")
 
 PAGE_W, PAGE_H = LETTER
 MARGIN = 0.55 * 72
-SIDEBAR_W = 2.25 * 72
-GUTTER = 0.30 * 72
+SIDEBAR_W = 2.40 * 72
+GUTTER = 0.28 * 72
 MAIN_X = MARGIN + SIDEBAR_W + GUTTER
 MAIN_W = PAGE_W - MAIN_X - MARGIN
 
@@ -85,7 +85,7 @@ def sidebar_section(c, label, x, y, width):
     c.setStrokeColor(GOLD)
     c.setLineWidth(0.8)
     c.line(x, y - 4, x + 26, y - 4)
-    return y - 16
+    return y - 13
 
 
 def draw_header(c):
@@ -151,8 +151,9 @@ SUMMARY = (
     "technology behind a top-tier proprietary options trading firm. Owner of the firm's "
     "production trading environment and the teams that keep it running, with deep "
     "experience across low-latency networks, exchange colocation, FPGA-accelerated "
-    "trading, and the automation and observability that make it all reliable. "
-    "Capital Partner at Belvedere Trading since 2011."
+    "trading, hybrid cloud identity on Azure Entra and Google Cloud, and the "
+    "automation and observability that make it all reliable. Capital Partner at "
+    "Belvedere Trading since 2011."
 )
 
 EXPERIENCE = [
@@ -166,6 +167,11 @@ EXPERIENCE = [
             "Steward the firm's low-latency edge: exchange colocation, Layer 1 switching, "
             "FPGA-accelerated trading platforms, line-rate PCAP capture, and "
             "GPS-disciplined time precision.",
+            "Modernized identity and access with Azure Entra ID — conditional access, "
+            "MFA, and Entra-registered apps for the firm's SSO portfolio.",
+            "Built out the firm's Google Cloud footprint — VPC peering, private "
+            "interconnect, and BigQuery-backed analytics — alongside the on-prem "
+            "trading stack.",
             "Produce annual budget forecasts, authorize expenditures, and negotiate "
             "multi-year service contracts.",
             "Manage firm-wide projects spanning trading systems, exchange connectivity, "
@@ -267,6 +273,11 @@ SIDEBAR_SKILLS = [
         "PCAP Capture", "GPS Time Precision", "PTP / NTP",
         "Tick-to-Trade Measurement", "Kernel Bypass",
     ]),
+    ("Cloud & Identity", [
+        "Microsoft Azure", "Azure Entra ID", "Entra Apps",
+        "Conditional Access", "MFA / SSO", "Google Cloud",
+        "GCP VPC Peering", "Private Interconnect", "IAM",
+    ]),
     ("Networking & Infrastructure", [
         "BGP", "Multicast", "Arista", "Juniper", "Cisco",
         "Palo Alto", "Data Center Ops",
@@ -340,37 +351,36 @@ def draw_resume():
         "linkedin.com/in/tim10",
         "timdime.com",
     ]:
-        sy = draw_text_block(c, line, sx, sy, "Helvetica", 9, INK_SOFT, sw, leading=12.5)
-    sy -= 8
+        sy = draw_text_block(c, line, sx, sy, "Helvetica", 9, INK_SOFT, sw, leading=11.5)
+    sy -= 4
 
     sy = sidebar_section(c, "Education", sx, sy, sw)
     for edu in EDUCATION:
-        c.setFont("Helvetica-Bold", 9.5)
+        c.setFont("Helvetica-Bold", 9.3)
         c.setFillColor(NAVY)
         c.drawString(sx, sy, edu["degree"])
-        sy -= 12
-        sy = draw_text_block(c, edu["school"], sx, sy, "Helvetica", 9, INK_SOFT, sw, leading=12)
+        sy -= 11
+        sy = draw_text_block(c, edu["school"], sx, sy, "Helvetica", 9, INK_SOFT, sw, leading=11)
         c.setFont("Helvetica-Oblique", 8.5)
         c.setFillColor(MUTED)
         c.drawString(sx, sy, edu["dates"])
-        sy -= 14
-    sy -= 4
+        sy -= 12
+    sy -= 2
 
     sy = sidebar_section(c, "Credentials", sx, sy, sw)
     for cred in CREDENTIALS:
-        sy = draw_bullet_block(c, cred, sx, sy, "Helvetica", 9, INK_SOFT, sw, leading=12.5)
-        sy -= 1
-    sy -= 6
+        sy = draw_bullet_block(c, cred, sx, sy, "Helvetica", 9, INK_SOFT, sw, leading=11.5)
+    sy -= 4
 
     sy = sidebar_section(c, "Skills", sx, sy, sw)
     for header, items in SIDEBAR_SKILLS:
-        c.setFont("Helvetica-Bold", 9)
+        c.setFont("Helvetica-Bold", 8.8)
         c.setFillColor(NAVY)
         c.drawString(sx, sy, header)
-        sy -= 11
+        sy -= 10
         text = "  ·  ".join(items)
-        sy = draw_text_block(c, text, sx, sy, "Helvetica", 8.5, INK_SOFT, sw, leading=11.5)
-        sy -= 6
+        sy = draw_text_block(c, text, sx, sy, "Helvetica", 8.3, INK_SOFT, sw, leading=10.5)
+        sy -= 3
 
     # ============ Main content ============
     mx = MAIN_X
